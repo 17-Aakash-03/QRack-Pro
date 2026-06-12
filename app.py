@@ -73,8 +73,8 @@ def me():
                     "role": session['role'], "can_edit": session.get('can_edit', 0),
                     "excel_access": session.get('excel_access', False)})
 
-@app.route("/register", methods=["POST"])
-def register():
+@app.route("/register-head", methods=["POST"])
+def register_head():
     data = request.json
     u = data.get("username", "").strip()
     p = data.get("password", "").strip()
@@ -82,7 +82,7 @@ def register():
         return jsonify({"error": "Fill all fields"}), 400
     if len(p) < 4:
         return jsonify({"error": "Password too short"}), 400
-    if create_user(u, p, 'member', 0):
+    if create_user(u, p, 'head', 1):
         return jsonify({"success": True})
     return jsonify({"error": "Username already exists"}), 400
 

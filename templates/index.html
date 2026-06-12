@@ -23,7 +23,6 @@
       font-size: 15px
     }
 
-    /* LOGIN */
     #login-page {
       min-height: 100vh;
       display: flex;
@@ -61,7 +60,6 @@
       opacity: .85
     }
 
-    /* Role selector cards */
     .role-selector {
       display: flex;
       gap: 12px;
@@ -118,23 +116,18 @@
       box-shadow: 0 8px 32px rgba(0, 0, 0, .2)
     }
 
-    .login-box-title {
+    .lbt {
       font-size: 16px;
       font-weight: 700;
       color: #4f46e5;
       margin-bottom: 20px;
-      text-align: center;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 6px
+      text-align: center
     }
 
-    .login-box-title.m {
+    .lbt.m {
       color: #7c3aed
     }
 
-    /* Form tabs */
     .form-tabs {
       display: flex;
       background: #f3f4f6;
@@ -186,7 +179,6 @@
       text-align: center
     }
 
-    /* HEADER */
     header {
       color: white;
       padding: 14px 20px;
@@ -234,7 +226,6 @@
       font-size: 13px
     }
 
-    /* NAV */
     .nav-bar {
       display: flex;
       background: white;
@@ -272,7 +263,6 @@
       background: #faf5ff
     }
 
-    /* PAGES */
     .page {
       display: none;
       padding: 16px;
@@ -284,7 +274,6 @@
       display: block
     }
 
-    /* CARDS */
     .card {
       background: white;
       border-radius: 12px;
@@ -344,7 +333,6 @@
       opacity: .85
     }
 
-    /* STATS */
     .qs {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
@@ -412,7 +400,6 @@
       margin-top: 3px
     }
 
-    /* FORM */
     .fg {
       margin-bottom: 13px
     }
@@ -474,7 +461,6 @@
       letter-spacing: 0
     }
 
-    /* BUTTONS */
     .bp {
       width: 100%;
       padding: 12px;
@@ -526,7 +512,6 @@
       cursor: pointer
     }
 
-    /* ACCESS CODE */
     .ac-box {
       background: linear-gradient(135deg, #f5f3ff, #ede9fe);
       border: 2px solid #c4b5fd;
@@ -610,7 +595,6 @@
       min-height: 18px
     }
 
-    /* SHARE TOGGLE */
     .st {
       display: flex;
       align-items: center;
@@ -678,7 +662,6 @@
       transform: translateX(22px)
     }
 
-    /* PERM TOGGLE */
     .pt {
       position: relative;
       width: 40px;
@@ -723,7 +706,6 @@
       transform: translateX(18px)
     }
 
-    /* SCAN */
     .mr {
       display: flex;
       gap: 8px;
@@ -864,7 +846,6 @@
       color: #7c3aed
     }
 
-    /* RESULT */
     .rc {
       background: white;
       border-radius: 12px;
@@ -993,7 +974,6 @@
       margin-bottom: 14px
     }
 
-    /* UPLOAD */
     .ub {
       border: 2px dashed #c7d2fe;
       border-radius: 10px;
@@ -1064,7 +1044,6 @@
       font-size: 16px
     }
 
-    /* TABLE */
     .tw {
       overflow-x: auto;
       border-radius: 8px;
@@ -1101,7 +1080,6 @@
       background: #fafafe
     }
 
-    /* USERS */
     .ui {
       display: flex;
       align-items: center;
@@ -1162,7 +1140,6 @@
       font-weight: 600
     }
 
-    /* COLLAPSE */
     .cb {
       width: 100%;
       padding: 11px 14px;
@@ -1197,7 +1174,6 @@
       display: block
     }
 
-    /* PERM INFO */
     .pi {
       display: flex;
       padding: 8px 0;
@@ -1221,7 +1197,6 @@
       flex: 1
     }
 
-    /* STATUS BOXES */
     .na-box {
       background: #fef2f2;
       border: 1px solid #fecaca;
@@ -1262,7 +1237,6 @@
       font-size: 13px
     }
 
-    /* MY SCANS */
     .msc {
       background: #fafafe;
       border: 1px solid #e5e7eb;
@@ -1310,6 +1284,27 @@
       box-shadow: 0 4px 16px rgba(0, 0, 0, .2);
       white-space: nowrap
     }
+
+    /* Member info box on login */
+    .member-info {
+      background: rgba(255, 255, 255, .1);
+      border: 1px solid rgba(255, 255, 255, .2);
+      border-radius: 10px;
+      padding: 14px;
+      text-align: center;
+      color: white
+    }
+
+    .member-info p {
+      font-size: 13px;
+      opacity: .9;
+      margin-bottom: 4px
+    }
+
+    .member-info small {
+      font-size: 12px;
+      opacity: .7
+    }
   </style>
 </head>
 
@@ -1339,35 +1334,43 @@
       </div>
 
       <div class="login-box">
-        <div class="login-box-title" id="lbt">👑 Team Head Login</div>
+        <div class="lbt" id="lbt">👑 Team Head</div>
 
-        <!-- MEMBER TABS (only shown for member) -->
-        <div class="form-tabs" id="m-tabs" style="display:none">
-          <button class="form-tab active" id="ft-login">Login</button>
-          <button class="form-tab" id="ft-register">Register</button>
+        <!-- HEAD TABS: Login + Register -->
+        <div class="form-tabs" id="head-tabs">
+          <button class="form-tab active" id="ht-login">Login</button>
+          <button class="form-tab" id="ht-register">Register</button>
         </div>
 
         <div class="l-err" id="l-err"></div>
         <div class="l-suc" id="l-suc"></div>
 
-        <!-- LOGIN FORM -->
+        <!-- LOGIN FORM (both roles) -->
         <div id="lf">
           <div class="fg"><label>Username</label><input type="text" id="l-u" placeholder="Enter username" /></div>
           <div class="fg"><label>Password</label><input type="password" id="l-p" placeholder="Enter password" /></div>
           <button class="bp" id="login-btn">🔐 Login</button>
-          <p id="l-hint" style="text-align:center;font-size:12px;color:#9ca3af;margin-top:12px">Default: teamhead /
+          <p id="l-hint" style="text-align:center;font-size:12px;color:#9ca3af;margin-top:12px">Default head: teamhead /
             admin123</p>
         </div>
 
-        <!-- REGISTER FORM (member only) -->
-        <div id="rf" style="display:none">
-          <div class="fg"><label>Username</label><input type="text" id="r-u" placeholder="Choose username" /></div>
-          <div class="fg"><label>Password</label><input type="password" id="r-p" placeholder="Choose password" /></div>
-          <div class="fg"><label>Confirm Password</label><input type="password" id="r-p2"
+        <!-- HEAD REGISTER FORM -->
+        <div id="hrf" style="display:none">
+          <div class="fg"><label>Username</label><input type="text" id="hr-u" placeholder="Choose username" /></div>
+          <div class="fg"><label>Password</label><input type="password" id="hr-p" placeholder="Choose password" /></div>
+          <div class="fg"><label>Confirm Password</label><input type="password" id="hr-p2"
               placeholder="Confirm password" /></div>
-          <button class="bp m" id="register-btn">📝 Register as Member</button>
-          <p style="text-align:center;font-size:12px;color:#9ca3af;margin-top:10px">You'll need an access code from Team
-            Head to scan</p>
+          <button class="bp" id="head-register-btn">👑 Register as Team Head</button>
+          <p style="text-align:center;font-size:12px;color:#9ca3af;margin-top:10px">You will have full access to manage
+            team and inventory</p>
+        </div>
+
+        <!-- MEMBER INFO (no register, login only) -->
+        <div id="member-info-box" style="display:none">
+          <div class="member-info">
+            <p>🔑 Contact your Team Head to get login credentials</p>
+            <small>Members are created by Team Head only</small>
+          </div>
         </div>
       </div>
     </div>
@@ -1384,11 +1387,11 @@
       </div>
     </header>
     <div class="nav-bar">
-      <button class="nav-btn ha" data-pg="hh" id="hn-hh">🏠 Home</button>
-      <button class="nav-btn" data-pg="hs" id="hn-hs">📷 Scan</button>
-      <button class="nav-btn" data-pg="hr" id="hn-hr">📊 Report</button>
-      <button class="nav-btn" data-pg="ht" id="hn-ht">👥 Team</button>
-      <button class="nav-btn" data-pg="he" id="hn-he">📂 Excel</button>
+      <button class="nav-btn ha" data-pg="hh">🏠 Home</button>
+      <button class="nav-btn" data-pg="hs">📷 Scan</button>
+      <button class="nav-btn" data-pg="hr">📊 Report</button>
+      <button class="nav-btn" data-pg="ht">👥 Team</button>
+      <button class="nav-btn" data-pg="he">📂 Excel</button>
     </div>
 
     <!-- H HOME -->
@@ -1511,15 +1514,19 @@
     <div class="page" id="ht">
       <div class="card">
         <div class="ct">➕ Add Team Member</div>
-        <div class="fg"><label>Username</label><input type="text" id="nu-n" placeholder="Username" /></div>
-        <div class="fg"><label>Password</label><input type="password" id="nu-p" placeholder="Password" /></div>
-        <div class="fg"><label>Role</label><select id="nu-r">
+        <p style="font-size:13px;color:#6b7280;margin-bottom:14px">Create login credentials for your team members. Share
+          the username and password with them.</p>
+        <div class="fg"><label>Username</label><input type="text" id="nu-n" placeholder="Member username" /></div>
+        <div class="fg"><label>Password</label><input type="password" id="nu-p" placeholder="Member password" /></div>
+        <div class="fg"><label>Role</label>
+          <select id="nu-r">
             <option value="member">Member</option>
             <option value="head">Team Head</option>
-          </select></div>
+          </select>
+        </div>
         <div class="cr"><input type="checkbox" id="nu-e" /><label for="nu-e">Allow this member to edit items</label>
         </div>
-        <button class="bp" id="add-u-btn">➕ Add Member</button>
+        <button class="bp" id="add-u-btn">➕ Create Member Account</button>
       </div>
       <div class="card">
         <div class="ct">👥 Team Members</div>
@@ -1530,17 +1537,17 @@
     <!-- H EXCEL -->
     <div class="page" id="he">
       <div class="card">
-        <div class="ct">🔑 Access Code for Members</div>
+        <div class="ct">🔑 Member Access Code</div>
         <div class="ac-box">
           <h3>Share this code with team members</h3>
           <span class="ac-code" id="ac-code">--------</span>
-          <p class="ac-hint">Members enter this code to access the Excel sheet for scanning</p>
+          <p class="ac-hint">Members enter this code to unlock Excel sheet scanning</p>
           <button class="bp" id="regen-btn" style="margin-top:14px;max-width:220px">🔄 Regenerate Code</button>
         </div>
         <div class="st">
           <div class="si">
             <h4>🔗 Enable Member Access</h4>
-            <p>Toggle to allow/block members from using the code</p>
+            <p>Toggle to allow/block members from scanning</p>
           </div>
           <label class="ts"><input type="checkbox" id="sh-tog" /><span class="sl"></span></label>
         </div>
@@ -1589,9 +1596,9 @@
       </div>
     </header>
     <div class="nav-bar">
-      <button class="nav-btn ma" data-pg="mh" id="mn-mh">🏠 Home</button>
-      <button class="nav-btn" data-pg="ms" id="mn-ms">📷 Scan</button>
-      <button class="nav-btn" data-pg="mhi" id="mn-mhi">📋 History</button>
+      <button class="nav-btn ma" data-pg="mh">🏠 Home</button>
+      <button class="nav-btn" data-pg="ms">📷 Scan</button>
+      <button class="nav-btn" data-pg="mhi">📋 History</button>
     </div>
 
     <!-- M HOME -->
@@ -1628,13 +1635,13 @@
       <div id="m-no-acc" style="display:none">
         <div class="na-box">
           <h3>🔒 Access Required</h3>
-          <p id="m-no-acc-msg">Ask your Team Head for the access code.</p>
+          <p id="m-no-msg">Contact your Team Head.</p>
         </div>
       </div>
       <div id="m-code-area" style="display:none">
         <div class="ec-box">
           <h3>🔑 Enter Access Code</h3>
-          <p>Ask your Team Head for the 8-character access code</p>
+          <p>Ask your Team Head for the 8-character access code to start scanning</p>
           <input class="ci" type="text" id="m-ci" placeholder="XXXXXXXX" maxlength="8" />
           <div class="ce" id="m-ce"></div>
           <button class="bp m" id="m-cv" style="margin-top:12px">✅ Verify & Unlock</button>
@@ -1692,7 +1699,6 @@
     const hV = document.getElementById('hv'), hC = document.getElementById('hc'), hX = hC.getContext('2d');
     const mV = document.getElementById('mv'), mC = document.getElementById('mc'), mX = mC.getContext('2d');
 
-    // SESSION CHECK
     window.addEventListener('load', async function () {
       const r = await fetch('/me'); const d = await r.json();
       if (d.logged_in) { cu = d; showDash(d); }
@@ -1703,28 +1709,32 @@
       selRole = role;
       document.getElementById('rc-head').classList.toggle('active', role === 'head');
       document.getElementById('rc-member').classList.toggle('active', role === 'member');
-      document.getElementById('m-tabs').style.display = role === 'member' ? 'flex' : 'none';
-      document.getElementById('lbt').textContent = role === 'head' ? '👑 Team Head Login' : '👷 Team Member';
-      document.getElementById('lbt').className = 'login-box-title' + (role === 'member' ? ' m' : '');
+      document.getElementById('lbt').textContent = role === 'head' ? '👑 Team Head' : '👷 Team Member';
+      document.getElementById('lbt').className = 'lbt' + (role === 'member' ? ' m' : '');
+      document.getElementById('head-tabs').style.display = role === 'head' ? 'flex' : 'none';
+      document.getElementById('member-info-box').style.display = role === 'member' ? 'block' : 'none';
       document.getElementById('l-hint').style.display = role === 'head' ? 'block' : 'none';
-      document.getElementById('bp-color') && (document.getElementById('login-btn').className = role === 'member' ? 'bp m' : 'bp');
       document.getElementById('login-btn').className = role === 'member' ? 'bp m' : 'bp';
-      clearMsg(); showLoginForm();
+      clearMsg(); showLF();
     }
 
-    // FORM TABS (member)
-    document.getElementById('ft-login').addEventListener('click', function () {
-      this.classList.add('active'); document.getElementById('ft-register').classList.remove('active');
-      showLoginForm(); clearMsg();
+    // HEAD TABS
+    document.getElementById('ht-login').addEventListener('click', function () {
+      this.classList.add('active'); document.getElementById('ht-register').classList.remove('active');
+      showLF(); clearMsg();
     });
-    document.getElementById('ft-register').addEventListener('click', function () {
-      this.classList.add('active'); document.getElementById('ft-login').classList.remove('active');
-      document.getElementById('lf').style.display = 'none'; document.getElementById('rf').style.display = 'block'; clearMsg();
+    document.getElementById('ht-register').addEventListener('click', function () {
+      this.classList.add('active'); document.getElementById('ht-login').classList.remove('active');
+      document.getElementById('lf').style.display = 'none';
+      document.getElementById('hrf').style.display = 'block';
+      clearMsg();
     });
 
-    function showLoginForm() {
-      document.getElementById('lf').style.display = 'block'; document.getElementById('rf').style.display = 'none';
-      document.getElementById('ft-login').classList.add('active'); document.getElementById('ft-register').classList.remove('active');
+    function showLF() {
+      document.getElementById('lf').style.display = 'block';
+      document.getElementById('hrf').style.display = 'none';
+      document.getElementById('ht-login').classList.add('active');
+      document.getElementById('ht-register').classList.remove('active');
     }
 
     function clearMsg() { document.getElementById('l-err').style.display = 'none'; document.getElementById('l-suc').style.display = 'none'; }
@@ -1734,7 +1744,6 @@
     // LOGIN
     document.getElementById('login-btn').addEventListener('click', doLogin);
     document.getElementById('l-p').addEventListener('keypress', function (e) { if (e.key === 'Enter') doLogin(); });
-
     async function doLogin() {
       const u = document.getElementById('l-u').value.trim(), p = document.getElementById('l-p').value.trim();
       if (!u || !p) { showErr('Enter username and password'); return; }
@@ -1747,17 +1756,20 @@
       else showErr(d.error || 'Login failed');
     }
 
-    // REGISTER
-    document.getElementById('register-btn').addEventListener('click', async function () {
-      const u = document.getElementById('r-u').value.trim();
-      const p = document.getElementById('r-p').value.trim();
-      const p2 = document.getElementById('r-p2').value.trim();
+    // HEAD REGISTER
+    document.getElementById('head-register-btn').addEventListener('click', async function () {
+      const u = document.getElementById('hr-u').value.trim();
+      const p = document.getElementById('hr-p').value.trim();
+      const p2 = document.getElementById('hr-p2').value.trim();
       if (!u || !p) { showErr('Fill all fields'); return; }
       if (p !== p2) { showErr('Passwords do not match'); return; }
-      if (p.length < 4) { showErr('Password too short'); return; }
-      const r = await fetch('/register', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ username: u, password: p }) });
+      if (p.length < 4) { showErr('Password too short (min 4)'); return; }
+      const r = await fetch('/register-head', {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username: u, password: p })
+      });
       const d = await r.json();
-      if (d.success) { showSuc('✅ Registered! You can now login.'); document.getElementById('r-u').value = ''; document.getElementById('r-p').value = ''; document.getElementById('r-p2').value = ''; }
+      if (d.success) { showSuc('✅ Team Head account created! You can now login.'); document.getElementById('hr-u').value = ''; document.getElementById('hr-p').value = ''; document.getElementById('hr-p2').value = ''; }
       else showErr(d.error || 'Registration failed');
     });
 
@@ -1772,7 +1784,7 @@
         document.getElementById('member-app').style.display = 'block';
         document.getElementById('m-un').textContent = '👤 ' + u.username;
         document.getElementById('m-wlc').textContent = '👋 Welcome, ' + u.username + '!';
-        document.getElementById('m-ep').textContent = u.can_edit ? '✅ Allowed (Head granted)' : '❌ Not Allowed';
+        document.getElementById('m-ep').textContent = u.can_edit ? '✅ Allowed' : '❌ Not Allowed';
         document.getElementById('m-ep').style.color = u.can_edit ? '#16a34a' : '#dc2626';
         loadMHome();
       }
@@ -1804,7 +1816,6 @@
         if (pg !== 'hs' && hCam) { hCam.getTracks().forEach(function (t) { t.stop(); }); hCam = null; }
       });
     });
-
     function goH(pg) {
       document.querySelectorAll('#head-app .page').forEach(function (p) { p.classList.remove('active'); });
       document.querySelectorAll('#head-app .nav-btn').forEach(function (x) { x.classList.remove('ha'); });
@@ -1826,19 +1837,18 @@
         if (pg !== 'ms' && mCam) { mCam.getTracks().forEach(function (t) { t.stop(); }); mCam = null; }
       });
     });
-
     document.getElementById('m-qa-s').addEventListener('click', function () {
       document.querySelectorAll('#member-app .page').forEach(function (p) { p.classList.remove('active'); });
       document.querySelectorAll('#member-app .nav-btn').forEach(function (x) { x.classList.remove('ma'); });
       document.getElementById('ms').classList.add('active');
-      document.getElementById('mn-ms').classList.add('ma');
+      document.querySelector('#member-app .nav-btn[data-pg="ms"]').classList.add('ma');
       checkMAccess();
     });
     document.getElementById('m-qa-h').addEventListener('click', function () {
       document.querySelectorAll('#member-app .page').forEach(function (p) { p.classList.remove('active'); });
       document.querySelectorAll('#member-app .nav-btn').forEach(function (x) { x.classList.remove('ma'); });
       document.getElementById('mhi').classList.add('active');
-      document.getElementById('mn-mhi').classList.add('ma');
+      document.querySelector('#member-app .nav-btn[data-pg="mhi"]').classList.add('ma');
       renderHist();
     });
 
@@ -1846,12 +1856,7 @@
     async function loadHHome() {
       try {
         const r = await fetch('/report'); const d = await r.json();
-        if (!d.error) {
-          document.getElementById('qs-t').textContent = d.total;
-          document.getElementById('qs-s').textContent = d.scanned;
-          document.getElementById('qs-v').textContent = d.verified;
-          document.getElementById('qs-r').textContent = d.rejected;
-        }
+        if (!d.error) { document.getElementById('qs-t').textContent = d.total; document.getElementById('qs-s').textContent = d.scanned; document.getElementById('qs-v').textContent = d.verified; document.getElementById('qs-r').textContent = d.rejected; }
       } catch (e) { }
     }
 
@@ -1879,11 +1884,11 @@
       const el = document.getElementById('m-ex-st');
       if (!d.available) { el.innerHTML = '<div class="na-box"><h3>⚠️ No Excel Sheet</h3><p>Team Head has not uploaded any sheet yet.</p></div>'; }
       else if (!d.shared) { el.innerHTML = '<div class="na-box"><h3>🔒 Access Not Enabled</h3><p>Team Head has not enabled member access yet.</p></div>'; }
-      else if (!d.has_access) { el.innerHTML = '<div class="ec-box"><h3>🔑 Enter Access Code</h3><p>Ask Team Head for the code to start scanning</p><input class="ci" type="text" id="hm-ci" placeholder="XXXXXXXX" maxlength="8"/><div class="ce" id="hm-ce"></div><button class="bp m" id="hm-cv" style="margin-top:12px">✅ Verify Code</button></div>'; attachHomeCv(); }
+      else if (!d.has_access) { el.innerHTML = '<div class="ec-box"><h3>🔑 Enter Access Code</h3><p>Ask your Team Head for the access code</p><input class="ci" type="text" id="hm-ci" placeholder="XXXXXXXX" maxlength="8"/><div class="ce" id="hm-ce"></div><button class="bp m" id="hm-cv" style="margin-top:12px">✅ Verify Code</button></div>'; attachHmCv(); }
       else { el.innerHTML = '<div class="ok-box"><h3>✅ Access Active</h3><p>' + d.total_items + ' items ready for scanning</p></div>'; }
     }
 
-    function attachHomeCv() {
+    function attachHmCv() {
       const btn = document.getElementById('hm-cv');
       if (btn) {
         btn.addEventListener('click', async function () {
@@ -1891,12 +1896,11 @@
           const r = await fetch('/verify-code', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ code: code }) });
           const d = await r.json();
           if (d.success) { cu.excel_access = true; showToast('✅ Access granted!'); loadMHome(); }
-          else { document.getElementById('hm-ce').textContent = d.error || 'Invalid code'; }
+          else document.getElementById('hm-ce').textContent = d.error || 'Invalid code';
         });
       }
     }
 
-    // CHECK MEMBER ACCESS
     async function checkMAccess() {
       const r = await fetch('/excel/status'); const d = await r.json();
       document.getElementById('m-no-acc').style.display = 'none';
@@ -1904,7 +1908,7 @@
       document.getElementById('m-scan-area').style.display = 'none';
       if (!d.available || !d.shared) {
         document.getElementById('m-no-acc').style.display = 'block';
-        document.getElementById('m-no-acc-msg').textContent = !d.available ? 'Team Head has not uploaded an Excel sheet yet.' : 'Team Head has not enabled member access yet.';
+        document.getElementById('m-no-msg').textContent = !d.available ? 'Team Head has not uploaded an Excel sheet yet.' : 'Team Head has not enabled member access yet.';
       } else if (!d.has_access) {
         document.getElementById('m-code-area').style.display = 'block';
       } else {
@@ -1912,13 +1916,12 @@
       }
     }
 
-    // CODE VERIFY (SCAN PAGE)
     document.getElementById('m-cv').addEventListener('click', async function () {
       const code = document.getElementById('m-ci').value.trim().toUpperCase();
       const r = await fetch('/verify-code', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ code: code }) });
       const d = await r.json();
       if (d.success) { cu.excel_access = true; showToast('✅ Access granted!'); checkMAccess(); loadMHome(); }
-      else { document.getElementById('m-ce').textContent = d.error || 'Invalid code'; }
+      else document.getElementById('m-ce').textContent = d.error || 'Invalid code';
     });
 
     // SHARE TOGGLE
@@ -1929,7 +1932,7 @@
 
     // REGENERATE CODE
     document.getElementById('regen-btn').addEventListener('click', async function () {
-      if (!confirm('Regenerate code? Current code will stop working.')) return;
+      if (!confirm('Regenerate? Current code will stop working.')) return;
       const r = await fetch('/excel/regenerate-code', { method: 'POST' });
       const d = await r.json();
       if (d.success) { document.getElementById('ac-code').textContent = d.code; showToast('✅ New code: ' + d.code); }
@@ -1943,15 +1946,13 @@
       const r = await fetch('/upload-excel', { method: 'POST', body: fd });
       const d = await r.json();
       if (d.success) { document.getElementById('h-si').classList.add('show'); document.getElementById('h-sn').textContent = f.name; document.getElementById('h-sc').textContent = d.total_items + ' items'; document.getElementById('h-ez').style.display = 'none'; showToast('✅ ' + d.total_items + ' items loaded!'); loadInv(); }
-      else showToast('❌ ' + d.error);
-      e.target.value = '';
+      else showToast('❌ ' + d.error); e.target.value = '';
     });
     document.getElementById('h-scl').addEventListener('click', function () { document.getElementById('h-si').classList.remove('show'); document.getElementById('h-ez').style.display = 'block'; document.getElementById('h-ic').style.display = 'none'; });
 
     async function loadInv() {
       const r = await fetch('/items'); const items = await r.json();
-      invMap = {};
-      items.forEach(function (i) { invMap[i['QR Code ID']] = i['Item Name']; });
+      invMap = {}; items.forEach(function (i) { invMap[i['QR Code ID']] = i['Item Name']; });
       document.getElementById('inv-rows').innerHTML = items.map(function (i) {
         return '<tr><td>' + (i['Serial Number'] || '') + '</td><td>' + (i['Item Name'] || '') + '</td><td>' + (i['Value'] || '') + '</td><td><span class="badge ' + (i['Verification Status'] || '') + '">' + (i['Verification Status'] || '') + '</span></td><td>' + (i['Varied Date'] || '') + '</td><td style="font-size:12px;color:#6b7280">' + (i['QR Code ID'] || '') + '</td></tr>';
       }).join('');
@@ -2075,19 +2076,8 @@
           + (u.role !== 'head' ? '<div style="display:flex;flex-direction:column;align-items:center;gap:4px"><span style="font-size:10px;color:#6b7280">Edit</span><label class="pt"><input type="checkbox" ' + (ce ? 'checked' : '') + ' data-id="' + u.id + '" class="pc"/><span class="ps"></span></label></div><button class="bd" data-id="' + u.id + '">Remove</button>' : '')
           + '</div>';
       }).join('');
-      document.querySelectorAll('.pc').forEach(function (c) {
-        c.addEventListener('change', async function () {
-          await fetch('/users/' + this.dataset.id + '/permission', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ can_edit: this.checked }) });
-          showToast(this.checked ? '✅ Edit permission granted' : '🔒 Edit permission revoked');
-        });
-      });
-      document.querySelectorAll('.bd[data-id]').forEach(function (b) {
-        b.addEventListener('click', async function () {
-          if (!confirm('Remove this member?')) return;
-          await fetch('/users/' + this.dataset.id, { method: 'DELETE' });
-          loadUsers(); showToast('✅ Member removed!');
-        });
-      });
+      document.querySelectorAll('.pc').forEach(function (c) { c.addEventListener('change', async function () { await fetch('/users/' + this.dataset.id + '/permission', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ can_edit: this.checked }) }); showToast(this.checked ? '✅ Edit granted' : '🔒 Edit revoked'); }); });
+      document.querySelectorAll('.bd[data-id]').forEach(function (b) { b.addEventListener('click', async function () { if (!confirm('Remove member?')) return; await fetch('/users/' + this.dataset.id, { method: 'DELETE' }); loadUsers(); showToast('✅ Removed!'); }); });
     }
 
     document.getElementById('add-u-btn').addEventListener('click', async function () {
@@ -2096,14 +2086,13 @@
       if (!u || !p) { showToast('❌ Fill all fields'); return; }
       const r = await fetch('/users', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ username: u, password: p, role: role, can_edit: ce }) });
       const d = await r.json();
-      if (d.success) { showToast('✅ Member added!'); document.getElementById('nu-n').value = ''; document.getElementById('nu-p').value = ''; document.getElementById('nu-e').checked = false; loadUsers(); }
+      if (d.success) { showToast('✅ Member account created!'); document.getElementById('nu-n').value = ''; document.getElementById('nu-p').value = ''; document.getElementById('nu-e').checked = false; loadUsers(); }
       else showToast('❌ ' + d.error);
     });
 
     // MEMBER SCAN
     document.getElementById('m-cb').addEventListener('click', function () { setMM('camera'); });
     document.getElementById('m-fb').addEventListener('click', function () { setMM('file'); });
-
     function setMM(m) {
       mMeth = m;
       document.getElementById('m-cb').classList.toggle('active', m === 'camera');
@@ -2139,8 +2128,7 @@
     async function procM(qrId) {
       const r = await fetch('/item/' + qrId);
       if (!r.ok) { document.getElementById('m-res').innerHTML += '<div class="rc"><p style="color:#dc2626;text-align:center;padding:10px">❌ Not found: ' + qrId + '</p></div>'; addMA(); return; }
-      const item = await r.json();
-      showMR(item);
+      const item = await r.json(); showMR(item);
     }
 
     function showMR(item) {
@@ -2156,13 +2144,12 @@
         + (item['Last Scanned'] ? '<div class="ir"><span class="il">Last Scanned</span><span class="iv">' + item['Last Scanned'] + '</span></div>' : '')
         + (item['Scanned By'] ? '<div class="ir"><span class="il">Scanned By</span><span class="iv" style="color:#7c3aed;font-weight:700">👤 ' + item['Scanned By'] + '</span></div>' : '')
         + '</div>';
-      showMRem(item['QR Code ID'], item);
-      addMA();
+      showMRem(item['QR Code ID'], item); addMA();
     }
 
     function showMRem(qrId, item) {
       const box = document.createElement('div'); box.className = 'rem-box';
-      box.innerHTML = '<label>📝 Add Remark</label><textarea id="m-rem" placeholder="Enter your remark for this scan..."></textarea><button class="bp m" id="m-sub" style="margin-top:8px">✅ Submit Scan</button>';
+      box.innerHTML = '<label>📝 Add Remark</label><textarea id="m-rem" placeholder="Enter your remark..."></textarea><button class="bp m" id="m-sub" style="margin-top:8px">✅ Submit Scan</button>';
       document.getElementById('m-res').appendChild(box);
       document.getElementById('m-sub').addEventListener('click', async function () {
         const rem = document.getElementById('m-rem').value;
