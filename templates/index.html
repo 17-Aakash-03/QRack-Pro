@@ -13,125 +13,158 @@
     * {
       box-sizing: border-box;
       margin: 0;
-      padding: 0;
+      padding: 0
     }
 
     body {
       font-family: 'Segoe UI', Arial, sans-serif;
       background: #f0f2f5;
       color: #1a1a2e;
-      font-size: 15px;
+      font-size: 15px
     }
 
-    header {
-      background: linear-gradient(135deg, #4f46e5, #7c3aed);
-      color: white;
-      padding: 14px 20px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      box-shadow: 0 2px 10px rgba(79, 70, 229, 0.3);
-    }
-
-    header h1 {
-      font-size: 20px;
-      font-weight: 700;
-    }
-
-    header .user-info {
-      margin-left: auto;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 13px;
-    }
-
-    header .role-badge {
-      background: rgba(255, 255, 255, 0.2);
-      padding: 3px 10px;
-      border-radius: 20px;
-      font-size: 12px;
-    }
-
-    header .logout-btn {
-      background: rgba(255, 255, 255, 0.15);
-      border: none;
-      color: white;
-      padding: 5px 12px;
-      border-radius: 6px;
-      cursor: pointer;
-      font-size: 13px;
-    }
-
-    .main {
-      padding: 16px;
-      max-width: 580px;
-      margin: 0 auto;
-    }
-
-    .card {
-      background: white;
-      border-radius: 12px;
-      padding: 18px;
-      margin-bottom: 14px;
-      box-shadow: 0 1px 6px rgba(0, 0, 0, 0.07);
-      border: 1px solid #f0f0f0;
-    }
-
-    .card-title {
-      font-size: 13px;
-      font-weight: 700;
-      color: #4f46e5;
-      margin-bottom: 14px;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .card-title::after {
-      content: '';
-      flex: 1;
-      height: 1px;
-      background: #e5e7eb;
-      margin-left: 6px;
-    }
-
-    /* Login */
+    /* LOGIN */
     #login-page {
       min-height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
       background: linear-gradient(135deg, #4f46e5, #7c3aed);
+      padding: 16px
+    }
+
+    .login-wrap {
+      width: 100%;
+      max-width: 420px
+    }
+
+    .login-logo-area {
+      text-align: center;
+      margin-bottom: 24px;
+      color: white
+    }
+
+    .login-logo-area .logo {
+      font-size: 56px;
+      display: block;
+      margin-bottom: 8px
+    }
+
+    .login-logo-area h1 {
+      font-size: 28px;
+      font-weight: 800;
+      letter-spacing: 1px
+    }
+
+    .login-logo-area p {
+      font-size: 14px;
+      opacity: .85
+    }
+
+    /* Role selector cards */
+    .role-selector {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 20px
+    }
+
+    .role-card {
+      flex: 1;
+      background: rgba(255, 255, 255, .15);
+      border: 2px solid rgba(255, 255, 255, .3);
+      border-radius: 12px;
+      padding: 16px;
+      text-align: center;
+      cursor: pointer;
+      transition: all .2s;
+      color: white
+    }
+
+    .role-card:hover {
+      background: rgba(255, 255, 255, .25)
+    }
+
+    .role-card.active {
+      background: white;
+      border-color: white;
+      color: #4f46e5
+    }
+
+    .role-card .rc-icon {
+      font-size: 28px;
+      display: block;
+      margin-bottom: 6px
+    }
+
+    .role-card .rc-title {
+      font-size: 14px;
+      font-weight: 700
+    }
+
+    .role-card .rc-sub {
+      font-size: 11px;
+      opacity: .7;
+      margin-top: 2px
+    }
+
+    .role-card.active .rc-sub {
+      color: #6b7280
     }
 
     .login-box {
       background: white;
       border-radius: 16px;
-      padding: 32px;
-      width: 100%;
-      max-width: 380px;
-      margin: 16px;
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+      padding: 28px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, .2)
     }
 
-    .login-box h2 {
-      text-align: center;
-      font-size: 24px;
+    .login-box-title {
+      font-size: 16px;
+      font-weight: 700;
       color: #4f46e5;
-      margin-bottom: 6px;
-    }
-
-    .login-box p {
+      margin-bottom: 20px;
       text-align: center;
-      color: #6b7280;
-      font-size: 13px;
-      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px
     }
 
-    .login-error {
+    .login-box-title.m {
+      color: #7c3aed
+    }
+
+    /* Form tabs */
+    .form-tabs {
+      display: flex;
+      background: #f3f4f6;
+      border-radius: 8px;
+      padding: 4px;
+      margin-bottom: 20px;
+      gap: 4px
+    }
+
+    .form-tab {
+      flex: 1;
+      padding: 8px;
+      border: none;
+      border-radius: 6px;
+      background: transparent;
+      font-size: 13px;
+      cursor: pointer;
+      color: #6b7280;
+      font-weight: 500;
+      transition: all .2s
+    }
+
+    .form-tab.active {
+      background: white;
+      color: #4f46e5;
+      font-weight: 700;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, .1)
+    }
+
+    .l-err {
       background: #fef2f2;
       color: #dc2626;
       padding: 10px;
@@ -139,26 +172,264 @@
       font-size: 13px;
       margin-bottom: 14px;
       display: none;
-      text-align: center;
+      text-align: center
     }
 
-    .form-group {
+    .l-suc {
+      background: #f0fdf4;
+      color: #16a34a;
+      padding: 10px;
+      border-radius: 8px;
+      font-size: 13px;
       margin-bottom: 14px;
+      display: none;
+      text-align: center
     }
 
-    .form-group label {
-      display: block;
+    /* HEADER */
+    header {
+      color: white;
+      padding: 14px 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, .2)
+    }
+
+    header.hh {
+      background: linear-gradient(135deg, #4f46e5, #7c3aed)
+    }
+
+    header.mh {
+      background: linear-gradient(135deg, #7c3aed, #a855f7)
+    }
+
+    header h1 {
+      font-size: 20px;
+      font-weight: 700
+    }
+
+    .user-info {
+      margin-left: auto;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px
+    }
+
+    .role-badge {
+      background: rgba(255, 255, 255, .2);
+      padding: 3px 10px;
+      border-radius: 20px;
+      font-size: 11px
+    }
+
+    .logout-btn {
+      background: rgba(255, 255, 255, .15);
+      border: none;
+      color: white;
+      padding: 5px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 13px
+    }
+
+    /* NAV */
+    .nav-bar {
+      display: flex;
+      background: white;
+      border-bottom: 1px solid #e5e7eb;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, .06);
+      overflow-x: auto
+    }
+
+    .nav-btn {
+      flex: 1;
+      min-width: 60px;
+      padding: 12px 6px;
+      border: none;
+      background: none;
       font-size: 12px;
+      cursor: pointer;
+      color: #6b7280;
+      border-bottom: 3px solid transparent;
+      font-weight: 500;
+      white-space: nowrap;
+      transition: all .2s
+    }
+
+    .nav-btn.ha {
+      color: #4f46e5;
+      border-bottom-color: #4f46e5;
+      font-weight: 700;
+      background: #fafafe
+    }
+
+    .nav-btn.ma {
+      color: #7c3aed;
+      border-bottom-color: #7c3aed;
+      font-weight: 700;
+      background: #faf5ff
+    }
+
+    /* PAGES */
+    .page {
+      display: none;
+      padding: 16px;
+      max-width: 600px;
+      margin: 0 auto
+    }
+
+    .page.active {
+      display: block
+    }
+
+    /* CARDS */
+    .card {
+      background: white;
+      border-radius: 12px;
+      padding: 18px;
+      margin-bottom: 14px;
+      box-shadow: 0 1px 6px rgba(0, 0, 0, .07);
+      border: 1px solid #f0f0f0
+    }
+
+    .ct {
+      font-size: 13px;
+      font-weight: 700;
+      color: #4f46e5;
+      margin-bottom: 14px;
+      text-transform: uppercase;
+      letter-spacing: .5px;
+      display: flex;
+      align-items: center;
+      gap: 6px
+    }
+
+    .ct::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: #e5e7eb;
+      margin-left: 6px
+    }
+
+    .ct.m {
+      color: #7c3aed
+    }
+
+    .wc {
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 14px;
+      color: white
+    }
+
+    .wc.hd {
+      background: linear-gradient(135deg, #4f46e5, #7c3aed)
+    }
+
+    .wc.md {
+      background: linear-gradient(135deg, #7c3aed, #a855f7)
+    }
+
+    .wc h2 {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 4px
+    }
+
+    .wc p {
+      font-size: 13px;
+      opacity: .85
+    }
+
+    /* STATS */
+    .qs {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      margin-bottom: 14px
+    }
+
+    .sg {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-bottom: 14px
+    }
+
+    .sb {
+      border-radius: 10px;
+      padding: 14px;
+      text-align: center
+    }
+
+    .sb.df {
+      background: linear-gradient(135deg, #ede9fe, #f5f3ff);
+      border: 1px solid #e0d9fe
+    }
+
+    .sb.df h3 {
+      color: #4f46e5
+    }
+
+    .sb.gn {
+      background: linear-gradient(135deg, #f0fdf4, #dcfce7);
+      border: 1px solid #bbf7d0
+    }
+
+    .sb.gn h3 {
+      color: #16a34a
+    }
+
+    .sb.rd {
+      background: linear-gradient(135deg, #fef2f2, #fee2e2);
+      border: 1px solid #fecaca
+    }
+
+    .sb.rd h3 {
+      color: #dc2626
+    }
+
+    .sb.yw {
+      background: linear-gradient(135deg, #fffbeb, #fef9c3);
+      border: 1px solid #fde68a
+    }
+
+    .sb.yw h3 {
+      color: #d97706
+    }
+
+    .sb h3 {
+      font-size: 26px;
+      font-weight: 800
+    }
+
+    .sb p {
+      font-size: 11px;
+      color: #6b7280;
+      margin-top: 3px
+    }
+
+    /* FORM */
+    .fg {
+      margin-bottom: 13px
+    }
+
+    .fg label {
+      display: block;
+      font-size: 11px;
       color: #6b7280;
       margin-bottom: 5px;
       font-weight: 700;
       text-transform: uppercase;
-      letter-spacing: 0.4px;
+      letter-spacing: .4px
     }
 
-    .form-group input,
-    .form-group select,
-    .form-group textarea {
+    .fg input,
+    .fg select,
+    .fg textarea {
       width: 100%;
       padding: 10px 12px;
       border: 1px solid #e5e7eb;
@@ -166,23 +437,45 @@
       font-size: 14px;
       background: white;
       color: #1a1a2e;
-      transition: border 0.2s;
+      transition: border .2s
     }
 
-    .form-group input:focus,
-    .form-group select:focus,
-    .form-group textarea:focus {
+    .fg input:focus,
+    .fg select:focus,
+    .fg textarea:focus {
       outline: none;
       border-color: #4f46e5;
-      box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+      box-shadow: 0 0 0 3px rgba(79, 70, 229, .1)
     }
 
-    .form-group textarea {
+    .fg textarea {
       height: 70px;
-      resize: vertical;
+      resize: vertical
     }
 
-    .btn-primary {
+    .cr {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 0
+    }
+
+    .cr input[type=checkbox] {
+      width: 18px;
+      height: 18px;
+      cursor: pointer
+    }
+
+    .cr label {
+      font-size: 14px;
+      color: #374151;
+      font-weight: 500;
+      text-transform: none;
+      letter-spacing: 0
+    }
+
+    /* BUTTONS */
+    .bp {
       width: 100%;
       padding: 12px;
       background: linear-gradient(135deg, #4f46e5, #7c3aed);
@@ -192,15 +485,20 @@
       font-size: 15px;
       font-weight: 600;
       cursor: pointer;
-      box-shadow: 0 2px 8px rgba(79, 70, 229, 0.3);
-      transition: all 0.2s;
+      box-shadow: 0 2px 8px rgba(79, 70, 229, .3);
+      transition: all .2s;
+      margin-top: 4px
     }
 
-    .btn-primary:hover {
-      transform: translateY(-1px);
+    .bp:hover {
+      transform: translateY(-1px)
     }
 
-    .btn-secondary {
+    .bp.m {
+      background: linear-gradient(135deg, #7c3aed, #a855f7)
+    }
+
+    .bs {
       width: 100%;
       padding: 10px;
       background: white;
@@ -211,72 +509,231 @@
       font-weight: 600;
       cursor: pointer;
       margin-top: 10px;
-      transition: all 0.2s;
+      transition: all .2s
     }
 
-    .btn-secondary:hover {
-      background: #ede9fe;
+    .bs:hover {
+      background: #ede9fe
     }
 
-    .btn-danger {
+    .bd {
       padding: 6px 12px;
       background: #fef2f2;
       color: #dc2626;
       border: 1px solid #fecaca;
       border-radius: 6px;
-      font-size: 13px;
-      cursor: pointer;
+      font-size: 12px;
+      cursor: pointer
     }
 
-    /* Tabs */
-    .tabs {
-      display: flex;
-      background: white;
-      border-bottom: 1px solid #e5e7eb;
-      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
-      overflow-x: auto;
+    /* ACCESS CODE */
+    .ac-box {
+      background: linear-gradient(135deg, #f5f3ff, #ede9fe);
+      border: 2px solid #c4b5fd;
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 14px;
+      text-align: center
     }
 
-    .tab-btn {
-      flex: 1;
-      min-width: 80px;
-      padding: 13px 8px;
-      border: none;
-      background: none;
-      font-size: 13px;
-      cursor: pointer;
-      color: #6b7280;
-      border-bottom: 3px solid transparent;
-      font-weight: 500;
-      white-space: nowrap;
-    }
-
-    .tab-btn.active {
-      color: #4f46e5;
-      border-bottom: 3px solid #4f46e5;
+    .ac-box h3 {
+      font-size: 15px;
       font-weight: 700;
+      color: #4f46e5;
+      margin-bottom: 12px
+    }
+
+    .ac-code {
+      font-size: 36px;
+      font-weight: 800;
+      color: #4f46e5;
+      letter-spacing: 8px;
+      font-family: monospace;
+      background: white;
+      border: 2px dashed #c4b5fd;
+      border-radius: 10px;
+      padding: 14px 20px;
+      margin: 0 0 12px;
+      display: block
+    }
+
+    .ac-hint {
+      font-size: 12px;
+      color: #6b7280
+    }
+
+    .ec-box {
       background: #fafafe;
+      border: 2px solid #c7d2fe;
+      border-radius: 12px;
+      padding: 24px;
+      text-align: center
     }
 
-    .page {
-      display: none;
+    .ec-box h3 {
+      font-size: 16px;
+      font-weight: 700;
+      color: #4f46e5;
+      margin-bottom: 8px
     }
 
-    .page.active {
-      display: block;
+    .ec-box p {
+      font-size: 13px;
+      color: #6b7280;
+      margin-bottom: 16px
     }
 
-    /* Mode/Toggle */
-    .mode-row {
+    .ci {
+      font-size: 24px;
+      font-weight: 700;
+      letter-spacing: 6px;
+      text-align: center;
+      font-family: monospace;
+      text-transform: uppercase;
+      border: 2px solid #c4b5fd;
+      border-radius: 8px;
+      padding: 12px;
+      width: 100%;
+      color: #4f46e5
+    }
+
+    .ci:focus {
+      outline: none;
+      border-color: #4f46e5;
+      box-shadow: 0 0 0 3px rgba(79, 70, 229, .1)
+    }
+
+    .ce {
+      font-size: 12px;
+      color: #dc2626;
+      margin-top: 8px;
+      min-height: 18px
+    }
+
+    /* SHARE TOGGLE */
+    .st {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #f9fafb;
+      border: 1px solid #e5e7eb;
+      border-radius: 10px;
+      padding: 14px 16px;
+      margin-bottom: 14px
+    }
+
+    .st .si h4 {
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 2px
+    }
+
+    .st .si p {
+      font-size: 12px;
+      color: #6b7280
+    }
+
+    .ts {
+      position: relative;
+      width: 48px;
+      height: 26px;
+      flex-shrink: 0
+    }
+
+    .ts input {
+      opacity: 0;
+      width: 0;
+      height: 0
+    }
+
+    .sl {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: #cbd5e1;
+      border-radius: 26px;
+      transition: .3s
+    }
+
+    .sl::before {
+      position: absolute;
+      content: "";
+      height: 20px;
+      width: 20px;
+      left: 3px;
+      bottom: 3px;
+      background: white;
+      border-radius: 50%;
+      transition: .3s
+    }
+
+    input:checked+.sl {
+      background: #4f46e5
+    }
+
+    input:checked+.sl::before {
+      transform: translateX(22px)
+    }
+
+    /* PERM TOGGLE */
+    .pt {
+      position: relative;
+      width: 40px;
+      height: 22px
+    }
+
+    .pt input {
+      opacity: 0;
+      width: 0;
+      height: 0
+    }
+
+    .ps {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: #cbd5e1;
+      border-radius: 22px;
+      transition: .3s
+    }
+
+    .ps::before {
+      position: absolute;
+      content: "";
+      height: 16px;
+      width: 16px;
+      left: 3px;
+      bottom: 3px;
+      background: white;
+      border-radius: 50%;
+      transition: .3s
+    }
+
+    input:checked+.ps {
+      background: #7c3aed
+    }
+
+    input:checked+.ps::before {
+      transform: translateX(18px)
+    }
+
+    /* SCAN */
+    .mr {
       display: flex;
       gap: 8px;
       margin-bottom: 16px;
       background: #f3f4f6;
       border-radius: 10px;
-      padding: 4px;
+      padding: 4px
     }
 
-    .mode-btn {
+    .mb {
       flex: 1;
       padding: 9px 8px;
       border: none;
@@ -286,23 +743,23 @@
       cursor: pointer;
       color: #6b7280;
       font-weight: 500;
-      transition: all 0.2s;
+      transition: all .2s
     }
 
-    .mode-btn.active {
+    .mb.active {
       background: white;
       color: #4f46e5;
       font-weight: 700;
-      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 1px 4px rgba(0, 0, 0, .1)
     }
 
-    .toggle-row {
+    .tr {
       display: flex;
       gap: 8px;
-      margin-bottom: 14px;
+      margin-bottom: 14px
     }
 
-    .toggle-btn {
+    .tb {
       flex: 1;
       padding: 8px;
       border: 1px solid #e5e7eb;
@@ -312,72 +769,35 @@
       cursor: pointer;
       color: #6b7280;
       font-weight: 500;
-      transition: all 0.2s;
+      transition: all .2s
     }
 
-    .toggle-btn.active {
+    .tb.active {
       background: #ede9fe;
       color: #4f46e5;
       border-color: #c4b5fd;
-      font-weight: 700;
+      font-weight: 700
     }
 
-    /* Upload */
-    .upload-box {
-      border: 2px dashed #c7d2fe;
-      border-radius: 10px;
-      padding: 28px 16px;
-      text-align: center;
-      cursor: pointer;
-      background: #fafafe;
-      transition: all 0.2s;
-    }
-
-    .upload-box:hover {
-      border-color: #4f46e5;
-      background: #ede9fe;
-    }
-
-    .upload-box input {
-      display: none;
-    }
-
-    .upload-box .icon {
-      font-size: 34px;
-      margin-bottom: 8px;
-    }
-
-    .upload-box p {
-      color: #6b7280;
-      font-size: 14px;
-    }
-
-    .upload-box .hint {
-      font-size: 12px;
-      color: #9ca3af;
-      margin-top: 4px;
-    }
-
-    /* Camera */
-    #scanner-box {
+    .sw {
       position: relative;
       border-radius: 10px;
       overflow: hidden;
-      background: #000;
+      background: #000
     }
 
     video {
       width: 100%;
       display: block;
       max-height: 260px;
-      object-fit: cover;
+      object-fit: cover
     }
 
     canvas {
-      display: none;
+      display: none
     }
 
-    .scan-frame {
+    .sf {
       position: absolute;
       top: 50%;
       left: 50%;
@@ -385,119 +805,124 @@
       width: 160px;
       height: 160px;
       border-radius: 10px;
-      box-shadow: 0 0 0 9999px rgba(0, 0, 0, 0.5);
+      box-shadow: 0 0 0 9999px rgba(0, 0, 0, .5)
     }
 
-    .scan-frame::before,
-    .scan-frame::after,
-    .scan-frame span::before,
-    .scan-frame span::after {
+    .sf::before,
+    .sf::after,
+    .sf span::before,
+    .sf span::after {
       content: '';
       position: absolute;
       width: 20px;
       height: 20px;
       border-color: #4f46e5;
-      border-style: solid;
+      border-style: solid
     }
 
-    .scan-frame::before {
+    .sf::before {
       top: 0;
       left: 0;
       border-width: 3px 0 0 3px;
-      border-radius: 4px 0 0 0;
+      border-radius: 4px 0 0 0
     }
 
-    .scan-frame::after {
+    .sf::after {
       top: 0;
       right: 0;
       border-width: 3px 3px 0 0;
-      border-radius: 0 4px 0 0;
+      border-radius: 0 4px 0 0
     }
 
-    .scan-frame span::before {
+    .sf span::before {
       bottom: 0;
       left: 0;
       border-width: 0 0 3px 3px;
-      border-radius: 0 0 0 4px;
+      border-radius: 0 0 0 4px
     }
 
-    .scan-frame span::after {
+    .sf span::after {
       bottom: 0;
       right: 0;
       border-width: 0 3px 3px 0;
-      border-radius: 0 0 4px 0;
+      border-radius: 0 0 4px 0
     }
 
-    .status-bar {
+    .stb {
       background: #ede9fe;
       border-left: 3px solid #4f46e5;
       border-radius: 0 6px 6px 0;
       padding: 9px 12px;
       font-size: 13px;
       color: #4338ca;
-      margin: 10px 0;
+      margin: 10px 0
     }
 
-    /* Result */
-    .result-card {
+    .stb.m {
+      background: #faf5ff;
+      border-color: #7c3aed;
+      color: #7c3aed
+    }
+
+    /* RESULT */
+    .rc {
       background: white;
       border-radius: 12px;
       padding: 18px;
       margin-top: 12px;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
-      border: 1px solid #e5e7eb;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, .08);
+      border: 1px solid #e5e7eb
     }
 
-    .result-banner {
+    .rb {
       text-align: center;
       font-size: 17px;
       font-weight: 700;
       padding: 12px;
       border-radius: 8px;
-      margin-bottom: 16px;
+      margin-bottom: 16px
     }
 
-    .result-banner.verified {
+    .rb.vf {
       background: #f0fdf4;
       color: #16a34a;
-      border: 1px solid #bbf7d0;
+      border: 1px solid #bbf7d0
     }
 
-    .result-banner.not-verified {
+    .rb.nv {
       background: #fef2f2;
       color: #dc2626;
-      border: 1px solid #fecaca;
+      border: 1px solid #fecaca
     }
 
-    .result-banner.pending {
+    .rb.pd {
       background: #fffbeb;
       color: #d97706;
-      border: 1px solid #fde68a;
+      border: 1px solid #fde68a
     }
 
-    .info-row {
+    .ir {
       display: flex;
       padding: 8px 0;
       border-bottom: 1px solid #f3f4f6;
-      font-size: 14px;
-      align-items: flex-start;
+      font-size: 14px
     }
 
-    .info-row:last-child {
-      border-bottom: none;
+    .ir:last-child {
+      border-bottom: none
     }
 
-    .info-label {
+    .il {
       color: #9ca3af;
       width: 120px;
       flex-shrink: 0;
-      font-size: 13px;
+      font-size: 13px
     }
 
-    .info-value {
+    .iv {
       color: #1a1a2e;
       font-weight: 500;
-      flex: 1;
+      flex: 1
     }
 
     .badge {
@@ -505,143 +930,152 @@
       padding: 3px 10px;
       border-radius: 12px;
       font-size: 12px;
-      font-weight: 600;
+      font-weight: 600
     }
 
     .badge.Verified {
       background: #f0fdf4;
       color: #16a34a;
-      border: 1px solid #bbf7d0;
+      border: 1px solid #bbf7d0
     }
 
     .badge.Pending {
       background: #fffbeb;
       color: #d97706;
-      border: 1px solid #fde68a;
+      border: 1px solid #fde68a
     }
 
     .badge.Rejected {
       background: #fef2f2;
       color: #dc2626;
-      border: 1px solid #fecaca;
+      border: 1px solid #fecaca
     }
 
-    /* Remark box */
-    .remark-box {
+    .rem-box {
       background: #fafafe;
       border: 1px solid #e0d9fe;
       border-radius: 10px;
       padding: 14px;
-      margin-top: 12px;
+      margin-top: 12px
     }
 
-    .remark-box label {
+    .rem-box label {
       display: block;
       font-size: 12px;
       color: #6b7280;
       margin-bottom: 6px;
       font-weight: 700;
-      text-transform: uppercase;
+      text-transform: uppercase
     }
 
-    .remark-box textarea {
+    .rem-box textarea {
       width: 100%;
       padding: 9px;
       border: 1px solid #e5e7eb;
       border-radius: 8px;
       font-size: 14px;
       height: 70px;
-      resize: vertical;
+      resize: vertical
     }
 
-    .remark-box textarea:focus {
-      outline: none;
-      border-color: #4f46e5;
-    }
-
-    /* Edit form */
-    .edit-form-box {
+    .ef-box {
       background: #fafafe;
       border: 1px solid #e0d9fe;
       border-radius: 10px;
       padding: 16px;
-      margin-top: 12px;
+      margin-top: 12px
     }
 
-    .edit-form-title {
+    .ef-title {
       font-size: 13px;
       font-weight: 700;
       color: #4f46e5;
-      margin-bottom: 14px;
+      margin-bottom: 14px
     }
 
-    /* Stats */
-    .stats-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 10px;
-      margin-bottom: 14px;
-    }
-
-    .stat-box {
-      background: linear-gradient(135deg, #ede9fe, #f5f3ff);
+    /* UPLOAD */
+    .ub {
+      border: 2px dashed #c7d2fe;
       border-radius: 10px;
-      padding: 14px;
+      padding: 28px 16px;
       text-align: center;
-      border: 1px solid #e0d9fe;
+      cursor: pointer;
+      background: #fafafe;
+      transition: all .2s
     }
 
-    .stat-box h3 {
-      font-size: 26px;
-      font-weight: 800;
-      color: #4f46e5;
+    .ub:hover {
+      border-color: #4f46e5;
+      background: #ede9fe
     }
 
-    .stat-box p {
-      font-size: 11px;
+    .ub input {
+      display: none
+    }
+
+    .ub .icon {
+      font-size: 34px;
+      margin-bottom: 8px
+    }
+
+    .ub p {
       color: #6b7280;
-      margin-top: 3px;
+      font-size: 14px
     }
 
-    .stat-box.green {
-      background: linear-gradient(135deg, #f0fdf4, #dcfce7);
-      border-color: #bbf7d0;
+    .ub .hint {
+      font-size: 12px;
+      color: #9ca3af;
+      margin-top: 4px
     }
 
-    .stat-box.green h3 {
+    .si-box {
+      background: #f0fdf4;
+      border: 1px solid #bbf7d0;
+      border-radius: 8px;
+      padding: 10px 14px;
+      margin-bottom: 14px;
+      display: none;
+      align-items: center;
+      gap: 8px
+    }
+
+    .si-box.show {
+      display: flex
+    }
+
+    .si-box span {
+      font-size: 13px;
       color: #16a34a;
+      font-weight: 600
     }
 
-    .stat-box.red {
-      background: linear-gradient(135deg, #fef2f2, #fee2e2);
-      border-color: #fecaca;
+    .si-box small {
+      font-size: 12px;
+      color: #6b7280;
+      margin-left: auto
     }
 
-    .stat-box.red h3 {
+    .sc {
+      background: none;
+      border: none;
       color: #dc2626;
+      cursor: pointer;
+      font-size: 16px
     }
 
-    .stat-box.yellow {
-      background: linear-gradient(135deg, #fffbeb, #fef9c3);
-      border-color: #fde68a;
-    }
-
-    .stat-box.yellow h3 {
-      color: #d97706;
-    }
-
-    /* Table */
-    .table-wrap {
+    /* TABLE */
+    .tw {
       overflow-x: auto;
       border-radius: 8px;
       max-height: 400px;
-      overflow-y: auto;
+      overflow-y: auto
     }
 
     table {
       width: 100%;
       border-collapse: collapse;
-      font-size: 13px;
+      font-size: 13px
     }
 
     thead th {
@@ -654,35 +1088,35 @@
       font-weight: 700;
       font-size: 12px;
       position: sticky;
-      top: 0;
+      top: 0
     }
 
     tbody td {
       padding: 9px 12px;
       border-bottom: 1px solid #f3f4f6;
-      color: #374151;
+      color: #374151
     }
 
     tbody tr:hover td {
-      background: #fafafe;
+      background: #fafafe
     }
 
-    /* Users list */
-    .user-item {
+    /* USERS */
+    .ui {
       display: flex;
       align-items: center;
-      padding: 10px 0;
+      padding: 12px 0;
       border-bottom: 1px solid #f3f4f6;
-      gap: 10px;
+      gap: 10px
     }
 
-    .user-item:last-child {
-      border-bottom: none;
+    .ui:last-child {
+      border-bottom: none
     }
 
-    .user-avatar {
-      width: 36px;
-      height: 36px;
+    .ua {
+      width: 38px;
+      height: 38px;
       border-radius: 50%;
       background: linear-gradient(135deg, #4f46e5, #7c3aed);
       color: white;
@@ -690,111 +1124,166 @@
       align-items: center;
       justify-content: center;
       font-weight: 700;
-      font-size: 14px;
-      flex-shrink: 0;
+      font-size: 15px;
+      flex-shrink: 0
     }
 
-    .user-name {
+    .un {
       font-weight: 600;
-      font-size: 14px;
+      font-size: 14px
     }
 
-    .user-role {
+    .um {
       font-size: 12px;
       color: #6b7280;
+      margin-top: 2px;
+      display: flex;
+      align-items: center;
+      gap: 6px
     }
 
-    .head-badge {
+    .hb {
       background: #f0fdf4;
       color: #16a34a;
       border: 1px solid #bbf7d0;
       padding: 2px 8px;
       border-radius: 10px;
       font-size: 11px;
-      font-weight: 600;
+      font-weight: 600
     }
 
-    .member-badge {
+    .mb2 {
       background: #eff6ff;
       color: #2563eb;
       border: 1px solid #bfdbfe;
       padding: 2px 8px;
       border-radius: 10px;
       font-size: 11px;
-      font-weight: 600;
+      font-weight: 600
     }
 
-    /* Sheet indicator */
-    .sheet-indicator {
+    /* COLLAPSE */
+    .cb {
+      width: 100%;
+      padding: 11px 14px;
+      background: #f5f3ff;
+      border: 1px solid #e0d9fe;
+      border-radius: 8px;
+      color: #4f46e5;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      text-align: left;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px
+    }
+
+    .cb.open .ar {
+      transform: rotate(180deg)
+    }
+
+    .ar {
+      transition: transform .2s;
+      display: inline-block
+    }
+
+    .cc {
+      display: none
+    }
+
+    .cc.open {
+      display: block
+    }
+
+    /* PERM INFO */
+    .pi {
+      display: flex;
+      padding: 8px 0;
+      border-bottom: 1px solid #f3f4f6;
+      font-size: 14px
+    }
+
+    .pi:last-child {
+      border-bottom: none
+    }
+
+    .pk {
+      color: #9ca3af;
+      width: 160px;
+      flex-shrink: 0;
+      font-size: 13px
+    }
+
+    .pv {
+      font-weight: 500;
+      flex: 1
+    }
+
+    /* STATUS BOXES */
+    .na-box {
+      background: #fef2f2;
+      border: 1px solid #fecaca;
+      border-radius: 10px;
+      padding: 20px;
+      text-align: center;
+      margin-bottom: 14px
+    }
+
+    .na-box h3 {
+      color: #dc2626;
+      font-size: 16px;
+      margin-bottom: 6px
+    }
+
+    .na-box p {
+      color: #6b7280;
+      font-size: 13px
+    }
+
+    .ok-box {
       background: #f0fdf4;
       border: 1px solid #bbf7d0;
-      border-radius: 8px;
-      padding: 10px 14px;
-      margin-bottom: 14px;
-      display: none;
-      align-items: center;
-      gap: 8px;
+      border-radius: 10px;
+      padding: 14px;
+      text-align: center;
+      margin-bottom: 14px
     }
 
-    .sheet-indicator.show {
-      display: flex;
-    }
-
-    .sheet-indicator span {
-      font-size: 13px;
+    .ok-box h3 {
       color: #16a34a;
-      font-weight: 600;
+      font-size: 15px;
+      margin-bottom: 4px
     }
 
-    .sheet-indicator small {
+    .ok-box p {
+      color: #6b7280;
+      font-size: 13px
+    }
+
+    /* MY SCANS */
+    .msc {
+      background: #fafafe;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      padding: 12px;
+      margin-bottom: 8px
+    }
+
+    .msc h4 {
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 6px
+    }
+
+    .msc p {
       font-size: 12px;
       color: #6b7280;
-      margin-left: auto;
+      margin-top: 3px
     }
 
-    .sheet-clear {
-      background: none;
-      border: none;
-      color: #dc2626;
-      cursor: pointer;
-      font-size: 16px;
-    }
-
-    .locked-msg {
-      text-align: center;
-      padding: 24px;
-      color: #9ca3af;
-    }
-
-    .locked-msg .lock-icon {
-      font-size: 32px;
-      margin-bottom: 8px;
-    }
-
-    .section-divider {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin: 4px 0 14px;
-    }
-
-    .section-divider span {
-      font-size: 12px;
-      color: #9ca3af;
-      white-space: nowrap;
-      font-weight: 600;
-      text-transform: uppercase;
-    }
-
-    .section-divider::before,
-    .section-divider::after {
-      content: '';
-      flex: 1;
-      height: 1px;
-      background: #e5e7eb;
-    }
-
-    .qr-preview {
+    .qp {
       width: 80px;
       height: 80px;
       object-fit: contain;
@@ -803,7 +1292,7 @@
       border: 1px solid #e5e7eb;
       border-radius: 8px;
       padding: 4px;
-      background: white;
+      background: white
     }
 
     .toast {
@@ -818,50 +1307,8 @@
       font-size: 14px;
       display: none;
       z-index: 9999;
-      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
-      white-space: nowrap;
-    }
-
-    .collapse-btn {
-      width: 100%;
-      padding: 11px 14px;
-      background: #f5f3ff;
-      border: 1px solid #e0d9fe;
-      border-radius: 8px;
-      color: #4f46e5;
-      font-size: 14px;
-      font-weight: 600;
-      cursor: pointer;
-      text-align: left;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      transition: all 0.2s;
-      margin-bottom: 8px;
-    }
-
-    .collapse-btn.open .arrow {
-      transform: rotate(180deg);
-    }
-
-    .arrow {
-      transition: transform 0.2s;
-      display: inline-block;
-    }
-
-    .collapsible-content {
-      display: none;
-    }
-
-    .collapsible-content.open {
-      display: block;
-    }
-
-    .no-access {
-      text-align: center;
-      padding: 30px;
-      color: #9ca3af;
-      font-size: 14px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, .2);
+      white-space: nowrap
     }
   </style>
 </head>
@@ -870,613 +1317,882 @@
 
   <!-- LOGIN PAGE -->
   <div id="login-page">
-    <div class="login-box">
-      <h2>📦 QRack</h2>
-      <p>Inventory Scanner — Login to continue</p>
-      <div class="login-error" id="login-error"></div>
-      <div class="form-group">
-        <label>Username</label>
-        <input type="text" id="login-username" placeholder="Enter username" />
+    <div class="login-wrap">
+      <div class="login-logo-area">
+        <span class="logo">📦</span>
+        <h1>QRack</h1>
+        <p>Inventory Scanner System</p>
       </div>
-      <div class="form-group">
-        <label>Password</label>
-        <input type="password" id="login-password" placeholder="Enter password" />
+
+      <!-- ROLE SELECTOR -->
+      <div class="role-selector">
+        <div class="role-card active" id="rc-head" onclick="selectRole('head')">
+          <span class="rc-icon">👑</span>
+          <div class="rc-title">Team Head</div>
+          <div class="rc-sub">Full access</div>
+        </div>
+        <div class="role-card" id="rc-member" onclick="selectRole('member')">
+          <span class="rc-icon">👷</span>
+          <div class="rc-title">Team Member</div>
+          <div class="rc-sub">Scan & verify</div>
+        </div>
       </div>
-      <button class="btn-primary" id="login-btn">Login</button>
-      <p style="text-align:center;font-size:12px;color:#9ca3af;margin-top:14px">Default: teamhead / admin123</p>
+
+      <div class="login-box">
+        <div class="login-box-title" id="lbt">👑 Team Head Login</div>
+
+        <!-- MEMBER TABS (only shown for member) -->
+        <div class="form-tabs" id="m-tabs" style="display:none">
+          <button class="form-tab active" id="ft-login">Login</button>
+          <button class="form-tab" id="ft-register">Register</button>
+        </div>
+
+        <div class="l-err" id="l-err"></div>
+        <div class="l-suc" id="l-suc"></div>
+
+        <!-- LOGIN FORM -->
+        <div id="lf">
+          <div class="fg"><label>Username</label><input type="text" id="l-u" placeholder="Enter username" /></div>
+          <div class="fg"><label>Password</label><input type="password" id="l-p" placeholder="Enter password" /></div>
+          <button class="bp" id="login-btn">🔐 Login</button>
+          <p id="l-hint" style="text-align:center;font-size:12px;color:#9ca3af;margin-top:12px">Default: teamhead /
+            admin123</p>
+        </div>
+
+        <!-- REGISTER FORM (member only) -->
+        <div id="rf" style="display:none">
+          <div class="fg"><label>Username</label><input type="text" id="r-u" placeholder="Choose username" /></div>
+          <div class="fg"><label>Password</label><input type="password" id="r-p" placeholder="Choose password" /></div>
+          <div class="fg"><label>Confirm Password</label><input type="password" id="r-p2"
+              placeholder="Confirm password" /></div>
+          <button class="bp m" id="register-btn">📝 Register as Member</button>
+          <p style="text-align:center;font-size:12px;color:#9ca3af;margin-top:10px">You'll need an access code from Team
+            Head to scan</p>
+        </div>
+      </div>
     </div>
   </div>
 
-  <!-- MAIN APP -->
-  <div id="main-app" style="display:none">
-    <header>
+  <!-- HEAD DASHBOARD -->
+  <div id="head-app" style="display:none">
+    <header class="hh">
       <h1>📦 QRack</h1>
       <div class="user-info">
-        <span id="header-username"></span>
-        <span class="role-badge" id="header-role"></span>
-        <button class="logout-btn" id="logout-btn">Logout</button>
+        <span id="h-un"></span>
+        <span class="role-badge">👑 Team Head</span>
+        <button class="logout-btn" id="h-lo">Logout</button>
       </div>
     </header>
-
-    <div class="tabs" id="main-tabs">
-      <button class="tab-btn active" id="tab-scan-btn">📷 Scan</button>
-      <button class="tab-btn" id="tab-report-btn" style="display:none">📊 Report</button>
-      <button class="tab-btn" id="tab-team-btn" style="display:none">👥 Team</button>
-      <button class="tab-btn" id="tab-excel-btn" style="display:none">📂 Excel</button>
+    <div class="nav-bar">
+      <button class="nav-btn ha" data-pg="hh" id="hn-hh">🏠 Home</button>
+      <button class="nav-btn" data-pg="hs" id="hn-hs">📷 Scan</button>
+      <button class="nav-btn" data-pg="hr" id="hn-hr">📊 Report</button>
+      <button class="nav-btn" data-pg="ht" id="hn-ht">👥 Team</button>
+      <button class="nav-btn" data-pg="he" id="hn-he">📂 Excel</button>
     </div>
 
-    <!-- SCAN PAGE -->
-    <div class="page active main" id="page-scan">
+    <!-- H HOME -->
+    <div class="page active" id="hh">
+      <div class="wc hd">
+        <h2 id="h-wlc">👋 Welcome!</h2>
+        <p>Manage your team, Excel sheet and view reports</p>
+      </div>
+      <div class="qs">
+        <div class="sb df">
+          <h3 id="qs-t">-</h3>
+          <p>Total Items</p>
+        </div>
+        <div class="sb df">
+          <h3 id="qs-s">-</h3>
+          <p>Scanned</p>
+        </div>
+        <div class="sb gn">
+          <h3 id="qs-v">-</h3>
+          <p>Verified</p>
+        </div>
+        <div class="sb rd">
+          <h3 id="qs-r">-</h3>
+          <p>Rejected</p>
+        </div>
+      </div>
       <div class="card">
-        <div class="card-title">📷 Scan QR Code</div>
-
-        <div class="mode-row" id="mode-row">
-          <button class="mode-btn active" id="mode-read-btn">🔍 Read</button>
-          <button class="mode-btn" id="mode-update-btn" style="display:none">✏️ Update</button>
-        </div>
-
-        <div class="toggle-row">
-          <button class="toggle-btn" id="cam-btn">📷 Camera</button>
-          <button class="toggle-btn active" id="file-btn">🖼️ Upload Image</button>
-        </div>
-
-        <div id="camera-box" style="display:none">
-          <div id="scanner-box">
-            <video id="video" autoplay playsinline></video>
-            <canvas id="canvas"></canvas>
-            <div class="scan-frame"><span></span></div>
-          </div>
-        </div>
-
-        <div id="file-box">
-          <div class="upload-box" id="qr-upload-zone">
-            <div class="icon">🖼️</div>
-            <p>Click to upload QR image</p>
-            <p class="hint">PNG, JPG supported</p>
-            <input type="file" id="qr-input" accept="image/*" />
-          </div>
-          <canvas id="file-canvas" style="display:none"></canvas>
-        </div>
-
-        <div class="status-bar" id="scan-status">Upload a QR image or use camera</div>
-        <div id="scan-result"></div>
+        <div class="ct">⚡ Quick Actions</div>
+        <button class="bp" id="qa-s" style="margin-bottom:8px">📷 Start Scanning</button>
+        <button class="bp" id="qa-r" style="margin-bottom:8px">📊 View Report</button>
+        <button class="bp" id="qa-t">👥 Manage Team</button>
       </div>
     </div>
 
-    <!-- REPORT PAGE (head only) -->
-    <div class="page main" id="page-report">
+    <!-- H SCAN -->
+    <div class="page" id="hs">
       <div class="card">
-        <div class="card-title">📊 Scan Report</div>
-        <div class="stats-grid">
-          <div class="stat-box">
-            <h3 id="r-total">0</h3>
-            <p>Total Items</p>
+        <div class="ct">📷 Scan QR Code</div>
+        <div class="mr">
+          <button class="mb active" id="h-rd">🔍 Read</button>
+          <button class="mb" id="h-up">✏️ Update</button>
+        </div>
+        <div class="tr">
+          <button class="tb" id="h-cb">📷 Camera</button>
+          <button class="tb active" id="h-fb">🖼️ Upload</button>
+        </div>
+        <div id="h-cambox" style="display:none">
+          <div class="sw"><video id="hv" autoplay playsinline></video><canvas id="hc"></canvas>
+            <div class="sf"><span></span></div>
           </div>
-          <div class="stat-box">
-            <h3 id="r-scanned">0</h3>
+        </div>
+        <div id="h-filebox">
+          <div class="ub" id="h-qrz">
+            <div class="icon">🖼️</div>
+            <p>Click to upload QR image</p>
+            <p class="hint">PNG, JPG</p><input type="file" id="h-qri" accept="image/*" />
+          </div>
+          <canvas id="h-fc" style="display:none"></canvas>
+        </div>
+        <div class="stb" id="h-st">Upload QR or use camera</div>
+        <div id="h-res"></div>
+      </div>
+    </div>
+
+    <!-- H REPORT -->
+    <div class="page" id="hr">
+      <div class="card">
+        <div class="ct">📊 Report Summary</div>
+        <div class="sg">
+          <div class="sb df">
+            <h3 id="r-t">0</h3>
+            <p>Total</p>
+          </div>
+          <div class="sb df">
+            <h3 id="r-s">0</h3>
             <p>Scanned</p>
           </div>
-          <div class="stat-box">
-            <h3 id="r-not-scanned">0</h3>
+          <div class="sb df">
+            <h3 id="r-n">0</h3>
             <p>Not Scanned</p>
           </div>
-          <div class="stat-box green">
-            <h3 id="r-verified">0</h3>
+          <div class="sb gn">
+            <h3 id="r-v">0</h3>
             <p>Verified</p>
           </div>
-          <div class="stat-box yellow">
-            <h3 id="r-pending">0</h3>
+          <div class="sb yw">
+            <h3 id="r-p">0</h3>
             <p>Pending</p>
           </div>
-          <div class="stat-box red">
-            <h3 id="r-rejected">0</h3>
+          <div class="sb rd">
+            <h3 id="r-r">0</h3>
             <p>Rejected</p>
           </div>
         </div>
-        <button class="btn-primary" id="download-report-btn">⬇️ Download Report (Excel)</button>
+        <button class="bp" id="dl-btn">⬇️ Download Report</button>
       </div>
-
       <div class="card">
-        <button class="collapse-btn" id="logs-toggle">
-          <span>📋 Scan Logs</span>
-          <span class="arrow">▼</span>
-        </button>
-        <div class="collapsible-content" id="logs-content">
-          <div class="table-wrap">
+        <button class="cb" id="lg-tog"><span>📋 Scan Logs — Who Scanned What</span><span class="ar">▼</span></button>
+        <div class="cc" id="lg-body">
+          <div class="tw">
             <table>
               <thead>
                 <tr>
                   <th>QR ID</th>
                   <th>Item</th>
                   <th>Scanned By</th>
-                  <th>Timestamp</th>
+                  <th>Time</th>
                   <th>Status</th>
                   <th>Remark</th>
                 </tr>
               </thead>
-              <tbody id="logs-tbody"></tbody>
+              <tbody id="lg-rows"></tbody>
             </table>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- TEAM PAGE (head only) -->
-    <div class="page main" id="page-team">
+    <!-- H TEAM -->
+    <div class="page" id="ht">
       <div class="card">
-        <div class="card-title">➕ Add Team Member</div>
-        <div class="form-group">
-          <label>Username</label>
-          <input type="text" id="new-username" placeholder="Enter username" />
-        </div>
-        <div class="form-group">
-          <label>Password</label>
-          <input type="password" id="new-password" placeholder="Enter password" />
-        </div>
-        <div class="form-group">
-          <label>Role</label>
-          <select id="new-role">
+        <div class="ct">➕ Add Team Member</div>
+        <div class="fg"><label>Username</label><input type="text" id="nu-n" placeholder="Username" /></div>
+        <div class="fg"><label>Password</label><input type="password" id="nu-p" placeholder="Password" /></div>
+        <div class="fg"><label>Role</label><select id="nu-r">
             <option value="member">Member</option>
             <option value="head">Team Head</option>
-          </select>
+          </select></div>
+        <div class="cr"><input type="checkbox" id="nu-e" /><label for="nu-e">Allow this member to edit items</label>
         </div>
-        <button class="btn-primary" id="add-user-btn">➕ Add Member</button>
+        <button class="bp" id="add-u-btn">➕ Add Member</button>
       </div>
-
       <div class="card">
-        <div class="card-title">👥 Team Members</div>
-        <div id="users-list"></div>
+        <div class="ct">👥 Team Members</div>
+        <div id="u-list"></div>
       </div>
     </div>
 
-    <!-- EXCEL PAGE (head only) -->
-    <div class="page main" id="page-excel">
+    <!-- H EXCEL -->
+    <div class="page" id="he">
       <div class="card">
-        <div class="card-title">📂 Upload Excel Sheet</div>
-        <div class="sheet-indicator" id="sheet-indicator">
-          <span>✅</span>
-          <span id="sheet-name">inventory.xlsx</span>
-          <small id="sheet-count"></small>
-          <button class="sheet-clear" id="sheet-clear-btn">✕</button>
+        <div class="ct">🔑 Access Code for Members</div>
+        <div class="ac-box">
+          <h3>Share this code with team members</h3>
+          <span class="ac-code" id="ac-code">--------</span>
+          <p class="ac-hint">Members enter this code to access the Excel sheet for scanning</p>
+          <button class="bp" id="regen-btn" style="margin-top:14px;max-width:220px">🔄 Regenerate Code</button>
         </div>
-        <div class="upload-box" id="excel-upload-zone">
-          <div class="icon">📊</div>
-          <p>Click to upload .xlsx file</p>
-          <p class="hint">Must include QR Code ID column</p>
-          <input type="file" id="excel-input" accept=".xlsx" />
+        <div class="st">
+          <div class="si">
+            <h4>🔗 Enable Member Access</h4>
+            <p>Toggle to allow/block members from using the code</p>
+          </div>
+          <label class="ts"><input type="checkbox" id="sh-tog" /><span class="sl"></span></label>
         </div>
       </div>
-
-      <div class="card" id="inventory-card" style="display:none">
-        <button class="collapse-btn" id="table-toggle">
-          <span>📋 Inventory List</span>
-          <span class="arrow">▼</span>
-        </button>
-        <div class="collapsible-content" id="table-content">
-          <div class="table-wrap">
+      <div class="card">
+        <div class="ct">📂 Upload Excel Sheet</div>
+        <div class="si-box" id="h-si"><span>✅</span><span id="h-sn"></span><small id="h-sc"></small><button class="sc"
+            id="h-scl">✕</button></div>
+        <div class="ub" id="h-ez">
+          <div class="icon">📊</div>
+          <p>Click to upload .xlsx file</p>
+          <p class="hint">Must include QR Code ID column</p><input type="file" id="h-ei" accept=".xlsx" />
+        </div>
+      </div>
+      <div class="card" id="h-ic" style="display:none">
+        <button class="cb" id="inv-tog"><span>📋 Inventory List</span><span class="ar">▼</span></button>
+        <div class="cc" id="inv-body">
+          <div class="tw">
             <table>
               <thead>
                 <tr>
                   <th>Serial</th>
-                  <th>Item Name</th>
+                  <th>Item</th>
                   <th>Value</th>
                   <th>Status</th>
                   <th>Date</th>
                   <th>QR ID</th>
                 </tr>
               </thead>
-              <tbody id="excel-tbody"></tbody>
+              <tbody id="inv-rows"></tbody>
             </table>
           </div>
         </div>
       </div>
     </div>
+  </div>
 
+  <!-- MEMBER DASHBOARD -->
+  <div id="member-app" style="display:none">
+    <header class="mh">
+      <h1>📦 QRack</h1>
+      <div class="user-info">
+        <span id="m-un"></span>
+        <span class="role-badge">👷 Member</span>
+        <button class="logout-btn" id="m-lo">Logout</button>
+      </div>
+    </header>
+    <div class="nav-bar">
+      <button class="nav-btn ma" data-pg="mh" id="mn-mh">🏠 Home</button>
+      <button class="nav-btn" data-pg="ms" id="mn-ms">📷 Scan</button>
+      <button class="nav-btn" data-pg="mhi" id="mn-mhi">📋 History</button>
+    </div>
+
+    <!-- M HOME -->
+    <div class="page active" id="mh">
+      <div class="wc md">
+        <h2 id="m-wlc">👋 Welcome!</h2>
+        <p>Scan QR codes and submit verification reports</p>
+      </div>
+      <div id="m-ex-st"></div>
+      <div class="card">
+        <div class="ct m">⚡ Quick Actions</div>
+        <button class="bp m" id="m-qa-s" style="margin-bottom:8px">📷 Start Scanning</button>
+        <button class="bp m" id="m-qa-h">📋 My Scan History</button>
+      </div>
+      <div class="card">
+        <div class="ct m">🔐 Your Permissions</div>
+        <div class="pi"><span class="pk">Scan QR Codes</span><span class="pv" style="color:#16a34a">✅ Allowed</span>
+        </div>
+        <div class="pi"><span class="pk">Add Remarks</span><span class="pv" style="color:#16a34a">✅ Allowed</span></div>
+        <div class="pi"><span class="pk">View Item Details</span><span class="pv" style="color:#16a34a">✅ Allowed</span>
+        </div>
+        <div class="pi"><span class="pk">Edit Items</span><span class="pv" id="m-ep">-</span></div>
+        <div class="pi"><span class="pk">Change Status</span><span class="pv" style="color:#dc2626">❌ Not Allowed</span>
+        </div>
+        <div class="pi"><span class="pk">Upload Excel</span><span class="pv" style="color:#dc2626">❌ Not Allowed</span>
+        </div>
+        <div class="pi"><span class="pk">Download Report</span><span class="pv" style="color:#dc2626">❌ Not
+            Allowed</span></div>
+      </div>
+    </div>
+
+    <!-- M SCAN -->
+    <div class="page" id="ms">
+      <div id="m-no-acc" style="display:none">
+        <div class="na-box">
+          <h3>🔒 Access Required</h3>
+          <p id="m-no-acc-msg">Ask your Team Head for the access code.</p>
+        </div>
+      </div>
+      <div id="m-code-area" style="display:none">
+        <div class="ec-box">
+          <h3>🔑 Enter Access Code</h3>
+          <p>Ask your Team Head for the 8-character access code</p>
+          <input class="ci" type="text" id="m-ci" placeholder="XXXXXXXX" maxlength="8" />
+          <div class="ce" id="m-ce"></div>
+          <button class="bp m" id="m-cv" style="margin-top:12px">✅ Verify & Unlock</button>
+        </div>
+      </div>
+      <div id="m-scan-area" style="display:none">
+        <div class="ok-box">
+          <h3>✅ Access Granted</h3>
+          <p>You can now scan and verify items</p>
+        </div>
+        <div class="card">
+          <div class="ct m">📷 Scan QR Code</div>
+          <div class="tr">
+            <button class="tb" id="m-cb">📷 Camera</button>
+            <button class="tb active" id="m-fb">🖼️ Upload</button>
+          </div>
+          <div id="m-cambox" style="display:none">
+            <div class="sw"><video id="mv" autoplay playsinline></video><canvas id="mc"></canvas>
+              <div class="sf"><span></span></div>
+            </div>
+          </div>
+          <div id="m-filebox">
+            <div class="ub" id="m-qrz">
+              <div class="icon">🖼️</div>
+              <p>Click to upload QR image</p>
+              <p class="hint">PNG, JPG</p><input type="file" id="m-qri" accept="image/*" />
+            </div>
+            <canvas id="m-fc" style="display:none"></canvas>
+          </div>
+          <div class="stb m" id="m-st">Upload QR or use camera</div>
+          <div id="m-res"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- M HISTORY -->
+    <div class="page" id="mhi">
+      <div class="card">
+        <div class="ct m">📋 My Scan History</div>
+        <div id="m-hist">
+          <p style="text-align:center;color:#9ca3af;padding:20px">No scans yet</p>
+        </div>
+      </div>
+    </div>
   </div>
 
   <div class="toast" id="toast"></div>
 
   <script>
-    let camStream = null, scanning = true;
-    let currentMode = 'read', currentMethod = 'file';
-    let currentUser = null;
-    const video = document.getElementById('video');
-    const canvas = document.getElementById('canvas');
-    const ctx = canvas.getContext('2d');
+    let cu = null, selRole = 'head';
+    let hMode = 'read', hMeth = 'file', mMeth = 'file';
+    let hCam = null, mCam = null, hSc = true, mSc = true;
+    let myScans = [], invMap = {};
 
-    // Check session on load
+    const hV = document.getElementById('hv'), hC = document.getElementById('hc'), hX = hC.getContext('2d');
+    const mV = document.getElementById('mv'), mC = document.getElementById('mc'), mX = mC.getContext('2d');
+
+    // SESSION CHECK
     window.addEventListener('load', async function () {
-      const res = await fetch('/me');
-      const data = await res.json();
-      if (data.logged_in) {
-        currentUser = data;
-        showApp(data);
-      }
-      // Check existing inventory
-      fetch('/items').then(r => r.json()).then(function (items) {
-        if (items && items.length > 0) {
-          document.getElementById('sheet-indicator').classList.add('show');
-          document.getElementById('sheet-name').textContent = 'inventory.xlsx';
-          document.getElementById('sheet-count').textContent = items.length + ' items';
-          document.getElementById('excel-upload-zone').style.display = 'none';
-        }
-      }).catch(function () { });
+      const r = await fetch('/me'); const d = await r.json();
+      if (d.logged_in) { cu = d; showDash(d); }
     });
 
-    // Login
-    document.getElementById('login-btn').addEventListener('click', async function () {
-      const username = document.getElementById('login-username').value.trim();
-      const password = document.getElementById('login-password').value.trim();
-      if (!username || !password) { showLoginError('Enter username and password'); return; }
-      const res = await fetch('/login', {
+    // ROLE SELECTOR
+    function selectRole(role) {
+      selRole = role;
+      document.getElementById('rc-head').classList.toggle('active', role === 'head');
+      document.getElementById('rc-member').classList.toggle('active', role === 'member');
+      document.getElementById('m-tabs').style.display = role === 'member' ? 'flex' : 'none';
+      document.getElementById('lbt').textContent = role === 'head' ? '👑 Team Head Login' : '👷 Team Member';
+      document.getElementById('lbt').className = 'login-box-title' + (role === 'member' ? ' m' : '');
+      document.getElementById('l-hint').style.display = role === 'head' ? 'block' : 'none';
+      document.getElementById('bp-color') && (document.getElementById('login-btn').className = role === 'member' ? 'bp m' : 'bp');
+      document.getElementById('login-btn').className = role === 'member' ? 'bp m' : 'bp';
+      clearMsg(); showLoginForm();
+    }
+
+    // FORM TABS (member)
+    document.getElementById('ft-login').addEventListener('click', function () {
+      this.classList.add('active'); document.getElementById('ft-register').classList.remove('active');
+      showLoginForm(); clearMsg();
+    });
+    document.getElementById('ft-register').addEventListener('click', function () {
+      this.classList.add('active'); document.getElementById('ft-login').classList.remove('active');
+      document.getElementById('lf').style.display = 'none'; document.getElementById('rf').style.display = 'block'; clearMsg();
+    });
+
+    function showLoginForm() {
+      document.getElementById('lf').style.display = 'block'; document.getElementById('rf').style.display = 'none';
+      document.getElementById('ft-login').classList.add('active'); document.getElementById('ft-register').classList.remove('active');
+    }
+
+    function clearMsg() { document.getElementById('l-err').style.display = 'none'; document.getElementById('l-suc').style.display = 'none'; }
+    function showErr(m) { const e = document.getElementById('l-err'); e.textContent = m; e.style.display = 'block'; }
+    function showSuc(m) { const e = document.getElementById('l-suc'); e.textContent = m; e.style.display = 'block'; }
+
+    // LOGIN
+    document.getElementById('login-btn').addEventListener('click', doLogin);
+    document.getElementById('l-p').addEventListener('keypress', function (e) { if (e.key === 'Enter') doLogin(); });
+
+    async function doLogin() {
+      const u = document.getElementById('l-u').value.trim(), p = document.getElementById('l-p').value.trim();
+      if (!u || !p) { showErr('Enter username and password'); return; }
+      const r = await fetch('/login', {
         method: 'POST', headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username, password })
+        body: JSON.stringify({ username: u, password: p, expected_role: selRole })
       });
-      const data = await res.json();
-      if (data.success) {
-        currentUser = data;
-        showApp(data);
-      } else {
-        showLoginError(data.error || 'Login failed');
-      }
-    });
-
-    document.getElementById('login-password').addEventListener('keypress', function (e) {
-      if (e.key === 'Enter') document.getElementById('login-btn').click();
-    });
-
-    function showLoginError(msg) {
-      const el = document.getElementById('login-error');
-      el.textContent = msg; el.style.display = 'block';
+      const d = await r.json();
+      if (d.success) { cu = d; showDash(d); }
+      else showErr(d.error || 'Login failed');
     }
 
-    function showApp(user) {
+    // REGISTER
+    document.getElementById('register-btn').addEventListener('click', async function () {
+      const u = document.getElementById('r-u').value.trim();
+      const p = document.getElementById('r-p').value.trim();
+      const p2 = document.getElementById('r-p2').value.trim();
+      if (!u || !p) { showErr('Fill all fields'); return; }
+      if (p !== p2) { showErr('Passwords do not match'); return; }
+      if (p.length < 4) { showErr('Password too short'); return; }
+      const r = await fetch('/register', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ username: u, password: p }) });
+      const d = await r.json();
+      if (d.success) { showSuc('✅ Registered! You can now login.'); document.getElementById('r-u').value = ''; document.getElementById('r-p').value = ''; document.getElementById('r-p2').value = ''; }
+      else showErr(d.error || 'Registration failed');
+    });
+
+    function showDash(u) {
       document.getElementById('login-page').style.display = 'none';
-      document.getElementById('main-app').style.display = 'block';
-      document.getElementById('header-username').textContent = '👤 ' + user.username;
-      document.getElementById('header-role').textContent = user.role === 'head' ? '⭐ Team Head' : '👷 Member';
-      // Show head-only tabs
-      if (user.role === 'head') {
-        document.getElementById('tab-report-btn').style.display = 'flex';
-        document.getElementById('tab-team-btn').style.display = 'flex';
-        document.getElementById('tab-excel-btn').style.display = 'flex';
-        document.getElementById('mode-update-btn').style.display = 'flex';
+      if (u.role === 'head') {
+        document.getElementById('head-app').style.display = 'block';
+        document.getElementById('h-un').textContent = '👤 ' + u.username;
+        document.getElementById('h-wlc').textContent = '👋 Welcome, ' + u.username + '!';
+        loadHHome(); loadAccessInfo(); loadExcelStatus();
+      } else {
+        document.getElementById('member-app').style.display = 'block';
+        document.getElementById('m-un').textContent = '👤 ' + u.username;
+        document.getElementById('m-wlc').textContent = '👋 Welcome, ' + u.username + '!';
+        document.getElementById('m-ep').textContent = u.can_edit ? '✅ Allowed (Head granted)' : '❌ Not Allowed';
+        document.getElementById('m-ep').style.color = u.can_edit ? '#16a34a' : '#dc2626';
+        loadMHome();
       }
-      setMethod('file');
     }
 
-    // Logout
-    document.getElementById('logout-btn').addEventListener('click', async function () {
-      await fetch('/logout', { method: 'POST' });
-      currentUser = null;
-      document.getElementById('main-app').style.display = 'none';
+    // LOGOUT
+    document.getElementById('h-lo').addEventListener('click', doLogout);
+    document.getElementById('m-lo').addEventListener('click', doLogout);
+    async function doLogout() {
+      await fetch('/logout', { method: 'POST' }); cu = null;
+      document.getElementById('head-app').style.display = 'none';
+      document.getElementById('member-app').style.display = 'none';
       document.getElementById('login-page').style.display = 'flex';
-      stopCam();
+      stopCams(); selectRole('head');
+    }
+    function stopCams() {
+      if (hCam) { hCam.getTracks().forEach(function (t) { t.stop(); }); hCam = null; }
+      if (mCam) { mCam.getTracks().forEach(function (t) { t.stop(); }); mCam = null; }
+    }
+
+    // HEAD NAV
+    document.querySelectorAll('#head-app .nav-btn').forEach(function (b) {
+      b.addEventListener('click', function () {
+        const pg = this.dataset.pg;
+        document.querySelectorAll('#head-app .page').forEach(function (p) { p.classList.remove('active'); });
+        document.querySelectorAll('#head-app .nav-btn').forEach(function (x) { x.classList.remove('ha'); });
+        document.getElementById(pg).classList.add('active'); this.classList.add('ha');
+        if (pg === 'hr') loadReport(); if (pg === 'ht') loadUsers();
+        if (pg !== 'hs' && hCam) { hCam.getTracks().forEach(function (t) { t.stop(); }); hCam = null; }
+      });
     });
 
-    // Tabs
-    document.getElementById('tab-scan-btn').addEventListener('click', function () { showTab('scan'); });
-    document.getElementById('tab-report-btn').addEventListener('click', function () { showTab('report'); loadReport(); });
-    document.getElementById('tab-team-btn').addEventListener('click', function () { showTab('team'); loadUsers(); });
-    document.getElementById('tab-excel-btn').addEventListener('click', function () { showTab('excel'); });
+    function goH(pg) {
+      document.querySelectorAll('#head-app .page').forEach(function (p) { p.classList.remove('active'); });
+      document.querySelectorAll('#head-app .nav-btn').forEach(function (x) { x.classList.remove('ha'); });
+      document.getElementById(pg).classList.add('active');
+      document.querySelector('#head-app .nav-btn[data-pg="' + pg + '"]').classList.add('ha');
+    }
+    document.getElementById('qa-s').addEventListener('click', function () { goH('hs'); });
+    document.getElementById('qa-r').addEventListener('click', function () { goH('hr'); loadReport(); });
+    document.getElementById('qa-t').addEventListener('click', function () { goH('ht'); loadUsers(); });
 
-    function showTab(tab) {
-      document.querySelectorAll('.page.main').forEach(function (p) { p.classList.remove('active'); });
-      document.querySelectorAll('.tab-btn').forEach(function (b) { b.classList.remove('active'); });
-      document.getElementById('page-' + tab).classList.add('active');
-      document.getElementById('tab-' + tab + '-btn').classList.add('active');
-      if (tab !== 'scan') stopCam();
+    // MEMBER NAV
+    document.querySelectorAll('#member-app .nav-btn').forEach(function (b) {
+      b.addEventListener('click', function () {
+        const pg = this.dataset.pg;
+        document.querySelectorAll('#member-app .page').forEach(function (p) { p.classList.remove('active'); });
+        document.querySelectorAll('#member-app .nav-btn').forEach(function (x) { x.classList.remove('ma'); });
+        document.getElementById(pg).classList.add('active'); this.classList.add('ma');
+        if (pg === 'ms') checkMAccess(); if (pg === 'mhi') renderHist();
+        if (pg !== 'ms' && mCam) { mCam.getTracks().forEach(function (t) { t.stop(); }); mCam = null; }
+      });
+    });
+
+    document.getElementById('m-qa-s').addEventListener('click', function () {
+      document.querySelectorAll('#member-app .page').forEach(function (p) { p.classList.remove('active'); });
+      document.querySelectorAll('#member-app .nav-btn').forEach(function (x) { x.classList.remove('ma'); });
+      document.getElementById('ms').classList.add('active');
+      document.getElementById('mn-ms').classList.add('ma');
+      checkMAccess();
+    });
+    document.getElementById('m-qa-h').addEventListener('click', function () {
+      document.querySelectorAll('#member-app .page').forEach(function (p) { p.classList.remove('active'); });
+      document.querySelectorAll('#member-app .nav-btn').forEach(function (x) { x.classList.remove('ma'); });
+      document.getElementById('mhi').classList.add('active');
+      document.getElementById('mn-mhi').classList.add('ma');
+      renderHist();
+    });
+
+    // HEAD HOME
+    async function loadHHome() {
+      try {
+        const r = await fetch('/report'); const d = await r.json();
+        if (!d.error) {
+          document.getElementById('qs-t').textContent = d.total;
+          document.getElementById('qs-s').textContent = d.scanned;
+          document.getElementById('qs-v').textContent = d.verified;
+          document.getElementById('qs-r').textContent = d.rejected;
+        }
+      } catch (e) { }
     }
 
-    // Mode
-    document.getElementById('mode-read-btn').addEventListener('click', function () { setMode('read'); });
-    document.getElementById('mode-update-btn').addEventListener('click', function () { setMode('update'); });
-
-    function setMode(mode) {
-      currentMode = mode;
-      document.getElementById('mode-read-btn').classList.toggle('active', mode === 'read');
-      document.getElementById('mode-update-btn').classList.toggle('active', mode === 'update');
-      clearResult();
-      setStatus(mode === 'read' ? 'Read mode — scan to view item' : 'Update mode — scan to edit item');
+    // ACCESS INFO
+    async function loadAccessInfo() {
+      const r = await fetch('/excel/access-info'); const d = await r.json();
+      document.getElementById('ac-code').textContent = d.access_code || '--------';
+      document.getElementById('sh-tog').checked = d.shared === 1;
     }
 
-    // Method
-    document.getElementById('cam-btn').addEventListener('click', function () { setMethod('camera'); });
-    document.getElementById('file-btn').addEventListener('click', function () { setMethod('file'); });
+    async function loadExcelStatus() {
+      const r = await fetch('/excel/status'); const d = await r.json();
+      if (d.available) {
+        document.getElementById('h-si').classList.add('show');
+        document.getElementById('h-sn').textContent = 'inventory.xlsx';
+        document.getElementById('h-sc').textContent = d.total_items + ' items';
+        document.getElementById('h-ez').style.display = 'none';
+        loadInv();
+      }
+    }
 
-    function setMethod(method) {
-      currentMethod = method;
-      document.getElementById('cam-btn').classList.toggle('active', method === 'camera');
-      document.getElementById('file-btn').classList.toggle('active', method === 'file');
-      document.getElementById('camera-box').style.display = method === 'camera' ? 'block' : 'none';
-      document.getElementById('file-box').style.display = method === 'file' ? 'block' : 'none';
-      clearResult();
-      if (method === 'camera') {
-        scanning = true;
-        navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } })
-          .then(function (s) { camStream = s; video.srcObject = s; video.play(); requestAnimationFrame(scanTick); setStatus('Point camera at QR code...'); })
-          .catch(function () { setStatus('Camera not available. Use Upload Image.'); });
+    // MEMBER HOME
+    async function loadMHome() {
+      const r = await fetch('/excel/status'); const d = await r.json();
+      const el = document.getElementById('m-ex-st');
+      if (!d.available) { el.innerHTML = '<div class="na-box"><h3>⚠️ No Excel Sheet</h3><p>Team Head has not uploaded any sheet yet.</p></div>'; }
+      else if (!d.shared) { el.innerHTML = '<div class="na-box"><h3>🔒 Access Not Enabled</h3><p>Team Head has not enabled member access yet.</p></div>'; }
+      else if (!d.has_access) { el.innerHTML = '<div class="ec-box"><h3>🔑 Enter Access Code</h3><p>Ask Team Head for the code to start scanning</p><input class="ci" type="text" id="hm-ci" placeholder="XXXXXXXX" maxlength="8"/><div class="ce" id="hm-ce"></div><button class="bp m" id="hm-cv" style="margin-top:12px">✅ Verify Code</button></div>'; attachHomeCv(); }
+      else { el.innerHTML = '<div class="ok-box"><h3>✅ Access Active</h3><p>' + d.total_items + ' items ready for scanning</p></div>'; }
+    }
+
+    function attachHomeCv() {
+      const btn = document.getElementById('hm-cv');
+      if (btn) {
+        btn.addEventListener('click', async function () {
+          const code = document.getElementById('hm-ci').value.trim().toUpperCase();
+          const r = await fetch('/verify-code', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ code: code }) });
+          const d = await r.json();
+          if (d.success) { cu.excel_access = true; showToast('✅ Access granted!'); loadMHome(); }
+          else { document.getElementById('hm-ce').textContent = d.error || 'Invalid code'; }
+        });
+      }
+    }
+
+    // CHECK MEMBER ACCESS
+    async function checkMAccess() {
+      const r = await fetch('/excel/status'); const d = await r.json();
+      document.getElementById('m-no-acc').style.display = 'none';
+      document.getElementById('m-code-area').style.display = 'none';
+      document.getElementById('m-scan-area').style.display = 'none';
+      if (!d.available || !d.shared) {
+        document.getElementById('m-no-acc').style.display = 'block';
+        document.getElementById('m-no-acc-msg').textContent = !d.available ? 'Team Head has not uploaded an Excel sheet yet.' : 'Team Head has not enabled member access yet.';
+      } else if (!d.has_access) {
+        document.getElementById('m-code-area').style.display = 'block';
       } else {
-        stopCam();
-        setStatus('Upload a QR image to scan');
+        document.getElementById('m-scan-area').style.display = 'block';
       }
     }
 
-    function stopCam() {
-      if (camStream) { camStream.getTracks().forEach(function (t) { t.stop(); }); camStream = null; }
-    }
+    // CODE VERIFY (SCAN PAGE)
+    document.getElementById('m-cv').addEventListener('click', async function () {
+      const code = document.getElementById('m-ci').value.trim().toUpperCase();
+      const r = await fetch('/verify-code', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ code: code }) });
+      const d = await r.json();
+      if (d.success) { cu.excel_access = true; showToast('✅ Access granted!'); checkMAccess(); loadMHome(); }
+      else { document.getElementById('m-ce').textContent = d.error || 'Invalid code'; }
+    });
 
-    function scanTick() {
-      if (currentMethod !== 'camera') return;
-      if (video.readyState === video.HAVE_ENOUGH_DATA && scanning) {
-        canvas.width = video.videoWidth; canvas.height = video.videoHeight;
-        ctx.drawImage(video, 0, 0);
-        const code = jsQR(ctx.getImageData(0, 0, canvas.width, canvas.height).data, canvas.width, canvas.height);
-        if (code) { scanning = false; setStatus('QR detected: ' + code.data); processQR(code.data); }
-      }
-      requestAnimationFrame(scanTick);
-    }
+    // SHARE TOGGLE
+    document.getElementById('sh-tog').addEventListener('change', async function () {
+      await fetch('/excel/share', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ shared: this.checked }) });
+      showToast(this.checked ? '✅ Member access enabled!' : '🔒 Member access disabled');
+    });
 
-    // QR image upload
-    document.getElementById('qr-upload-zone').addEventListener('click', function () { document.getElementById('qr-input').click(); });
-    document.getElementById('qr-input').addEventListener('change', function (e) {
-      const file = e.target.files[0]; if (!file) return;
-      setStatus('Reading QR...');
-      const reader = new FileReader();
-      reader.onload = function (ev) {
-        const img = new Image();
-        img.onload = function () {
-          const fc = document.getElementById('file-canvas');
-          fc.width = img.width; fc.height = img.height;
-          fc.getContext('2d').drawImage(img, 0, 0);
-          const code = jsQR(fc.getContext('2d').getImageData(0, 0, fc.width, fc.height).data, fc.width, fc.height);
-          if (code) {
-            setStatus('QR detected: ' + code.data);
-            document.getElementById('scan-result').innerHTML = '<img src="' + ev.target.result + '" class="qr-preview"/>';
-            processQR(code.data);
-          } else { setStatus('Could not read QR. Try clearer image.'); }
-        };
-        img.src = ev.target.result;
-      };
-      reader.readAsDataURL(file);
+    // REGENERATE CODE
+    document.getElementById('regen-btn').addEventListener('click', async function () {
+      if (!confirm('Regenerate code? Current code will stop working.')) return;
+      const r = await fetch('/excel/regenerate-code', { method: 'POST' });
+      const d = await r.json();
+      if (d.success) { document.getElementById('ac-code').textContent = d.code; showToast('✅ New code: ' + d.code); }
+    });
+
+    // EXCEL UPLOAD
+    document.getElementById('h-ez').addEventListener('click', function () { document.getElementById('h-ei').click(); });
+    document.getElementById('h-ei').addEventListener('change', async function (e) {
+      const f = e.target.files[0]; if (!f) return; showToast('⏳ Uploading...');
+      const fd = new FormData(); fd.append('file', f);
+      const r = await fetch('/upload-excel', { method: 'POST', body: fd });
+      const d = await r.json();
+      if (d.success) { document.getElementById('h-si').classList.add('show'); document.getElementById('h-sn').textContent = f.name; document.getElementById('h-sc').textContent = d.total_items + ' items'; document.getElementById('h-ez').style.display = 'none'; showToast('✅ ' + d.total_items + ' items loaded!'); loadInv(); }
+      else showToast('❌ ' + d.error);
       e.target.value = '';
     });
+    document.getElementById('h-scl').addEventListener('click', function () { document.getElementById('h-si').classList.remove('show'); document.getElementById('h-ez').style.display = 'block'; document.getElementById('h-ic').style.display = 'none'; });
 
-    async function processQR(qrId) {
-      const res = await fetch('/item/' + qrId);
-      if (!res.ok) {
-        document.getElementById('scan-result').innerHTML += '<div class="result-card"><p style="color:#dc2626;text-align:center;padding:10px">❌ Item not found: ' + qrId + '</p></div>';
-        addScanAgain(); return;
+    async function loadInv() {
+      const r = await fetch('/items'); const items = await r.json();
+      invMap = {};
+      items.forEach(function (i) { invMap[i['QR Code ID']] = i['Item Name']; });
+      document.getElementById('inv-rows').innerHTML = items.map(function (i) {
+        return '<tr><td>' + (i['Serial Number'] || '') + '</td><td>' + (i['Item Name'] || '') + '</td><td>' + (i['Value'] || '') + '</td><td><span class="badge ' + (i['Verification Status'] || '') + '">' + (i['Verification Status'] || '') + '</span></td><td>' + (i['Varied Date'] || '') + '</td><td style="font-size:12px;color:#6b7280">' + (i['QR Code ID'] || '') + '</td></tr>';
+      }).join('');
+      document.getElementById('h-ic').style.display = 'block';
+    }
+    document.getElementById('inv-tog').addEventListener('click', function () { this.classList.toggle('open'); document.getElementById('inv-body').classList.toggle('open'); });
+
+    // HEAD SCAN
+    document.getElementById('h-rd').addEventListener('click', function () { hMode = 'read'; this.classList.add('active'); document.getElementById('h-up').classList.remove('active'); document.getElementById('h-res').innerHTML = ''; setHSt('Read mode'); });
+    document.getElementById('h-up').addEventListener('click', function () { hMode = 'update'; this.classList.add('active'); document.getElementById('h-rd').classList.remove('active'); document.getElementById('h-res').innerHTML = ''; setHSt('Update mode'); });
+    document.getElementById('h-cb').addEventListener('click', function () { setHM('camera'); });
+    document.getElementById('h-fb').addEventListener('click', function () { setHM('file'); });
+
+    function setHM(m) {
+      hMeth = m;
+      document.getElementById('h-cb').classList.toggle('active', m === 'camera');
+      document.getElementById('h-fb').classList.toggle('active', m === 'file');
+      document.getElementById('h-cambox').style.display = m === 'camera' ? 'block' : 'none';
+      document.getElementById('h-filebox').style.display = m === 'file' ? 'block' : 'none';
+      document.getElementById('h-res').innerHTML = '';
+      if (m === 'camera') { hSc = true; navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } }).then(function (s) { hCam = s; hV.srcObject = s; hV.play(); requestAnimationFrame(hTick); setHSt('Point camera at QR...'); }).catch(function () { setHSt('Camera not available.'); }); }
+      else { if (hCam) { hCam.getTracks().forEach(function (t) { t.stop(); }); hCam = null; } setHSt('Upload a QR image'); }
+    }
+    function hTick() {
+      if (hMeth !== 'camera') return;
+      if (hV.readyState === hV.HAVE_ENOUGH_DATA && hSc) {
+        hC.width = hV.videoWidth; hC.height = hV.videoHeight; hX.drawImage(hV, 0, 0);
+        const code = jsQR(hX.getImageData(0, 0, hC.width, hC.height).data, hC.width, hC.height);
+        if (code) { hSc = false; setHSt('QR: ' + code.data); procH(code.data); }
       }
-      const item = await res.json();
-      if (currentMode === 'read') showReadCard(item);
-      else showEditForm(item);
+      requestAnimationFrame(hTick);
+    }
+    document.getElementById('h-qrz').addEventListener('click', function () { document.getElementById('h-qri').click(); });
+    document.getElementById('h-qri').addEventListener('change', function (e) {
+      const f = e.target.files[0]; if (!f) return; setHSt('Reading...');
+      const rd = new FileReader(); rd.onload = function (ev) {
+        const img = new Image(); img.onload = function () {
+          const fc = document.getElementById('h-fc'); fc.width = img.width; fc.height = img.height; fc.getContext('2d').drawImage(img, 0, 0);
+          const code = jsQR(fc.getContext('2d').getImageData(0, 0, fc.width, fc.height).data, fc.width, fc.height);
+          if (code) { setHSt('QR: ' + code.data); document.getElementById('h-res').innerHTML = '<img src="' + ev.target.result + '" class="qp"/>'; procH(code.data); }
+          else setHSt('Could not read QR.');
+        }; img.src = ev.target.result;
+      }; rd.readAsDataURL(f); e.target.value = '';
+    });
+
+    async function procH(qrId) {
+      const r = await fetch('/item/' + qrId);
+      if (!r.ok) { document.getElementById('h-res').innerHTML += '<div class="rc"><p style="color:#dc2626;text-align:center;padding:10px">❌ Not found: ' + qrId + '</p></div>'; addHA(); return; }
+      const item = await r.json();
+      if (hMode === 'read') showHR(item); else showHE(item);
     }
 
-    function showReadCard(item) {
-      const v = item['Verification Status'];
-      const bannerClass = v === 'Verified' ? 'verified' : v === 'Pending' ? 'pending' : 'not-verified';
-      const bannerText = v === 'Verified' ? '✅ VERIFIED' : v === 'Pending' ? '⏳ PENDING' : '❌ NOT VERIFIED';
-      const html = '<div class="result-card">'
-        + '<div class="result-banner ' + bannerClass + '">' + bannerText + '</div>'
-        + '<div class="info-row"><span class="info-label">Item Name</span><span class="info-value">' + (item['Item Name'] || '') + '</span></div>'
-        + '<div class="info-row"><span class="info-label">Serial No.</span><span class="info-value">' + (item['Serial Number'] || '') + '</span></div>'
-        + '<div class="info-row"><span class="info-label">Description</span><span class="info-value">' + (item['Description'] || '') + '</span></div>'
-        + '<div class="info-row"><span class="info-label">Value</span><span class="info-value">' + (item['Value'] || '') + '</span></div>'
-        + '<div class="info-row"><span class="info-label">Date</span><span class="info-value">' + (item['Varied Date'] || '') + '</span></div>'
-        + '<div class="info-row"><span class="info-label">Status</span><span class="info-value"><span class="badge ' + v + '">' + v + '</span></span></div>'
-        + (item['Last Scanned'] ? '<div class="info-row"><span class="info-label">Last Scanned</span><span class="info-value">' + item['Last Scanned'] + '</span></div>' : '')
-        + (item['Scanned By'] ? '<div class="info-row"><span class="info-label">Scanned By</span><span class="info-value">' + item['Scanned By'] + '</span></div>' : '')
-        + '</div>';
-      document.getElementById('scan-result').innerHTML += html;
-      // Remark box for all users
-      showRemarkBox(item['QR Code ID'], item);
-      addScanAgain();
+    function showHR(item) {
+      const v = item['Verification Status'] || '';
+      const bc = v === 'Verified' ? 'vf' : v === 'Pending' ? 'pd' : 'nv';
+      const bt = v === 'Verified' ? '✅ VERIFIED' : v === 'Pending' ? '⏳ PENDING' : '❌ NOT VERIFIED';
+      document.getElementById('h-res').innerHTML += '<div class="rc"><div class="rb ' + bc + '">' + bt + '</div>'
+        + '<div class="ir"><span class="il">Item Name</span><span class="iv">' + (item['Item Name'] || '') + '</span></div>'
+        + '<div class="ir"><span class="il">Serial No.</span><span class="iv">' + (item['Serial Number'] || '') + '</span></div>'
+        + '<div class="ir"><span class="il">Description</span><span class="iv">' + (item['Description'] || '') + '</span></div>'
+        + '<div class="ir"><span class="il">Value</span><span class="iv">' + (item['Value'] || '') + '</span></div>'
+        + '<div class="ir"><span class="il">Status</span><span class="iv"><span class="badge ' + v + '">' + v + '</span></span></div>'
+        + (item['Last Scanned'] ? '<div class="ir"><span class="il">Last Scanned</span><span class="iv">' + item['Last Scanned'] + '</span></div>' : '')
+        + (item['Scanned By'] ? '<div class="ir"><span class="il">Scanned By</span><span class="iv" style="color:#4f46e5;font-weight:700">👤 ' + item['Scanned By'] + '</span></div>' : '')
+        + '<div style="margin-top:12px"><button class="bp" id="h-en" style="max-width:160px;padding:9px;font-size:13px">✏️ Edit Item</button></div></div>';
+      document.getElementById('h-en').addEventListener('click', function () { hMode = 'update'; document.getElementById('h-res').innerHTML = ''; showHE(item); document.getElementById('h-up').classList.add('active'); document.getElementById('h-rd').classList.remove('active'); });
+      addHA();
     }
 
-    function showRemarkBox(qrId, item) {
-      const box = document.createElement('div');
-      box.className = 'remark-box';
-      box.innerHTML = '<label>📝 Add Remark</label>'
-        + '<textarea id="remark-input" placeholder="Enter remark for this scan..."></textarea>'
-        + '<button class="btn-primary" id="submit-remark-btn" style="margin-top:8px">✅ Submit Scan</button>';
-      document.getElementById('scan-result').appendChild(box);
-      document.getElementById('submit-remark-btn').addEventListener('click', async function () {
-        const remark = document.getElementById('remark-input').value;
-        await fetch('/scan-log/' + qrId, {
-          method: 'POST', headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ remark: remark })
-        });
-        showToast('✅ Scan logged successfully!');
-        box.innerHTML = '<p style="color:#16a34a;font-size:13px;text-align:center">✅ Scan submitted!</p>';
-        if (remark) {
-          document.getElementById('scan-result').insertAdjacentHTML('beforeend',
-            '<div class="info-row" style="background:#f5f3ff;border-radius:8px;padding:8px 12px;margin-top:8px"><span class="info-label">Your Remark</span><span class="info-value">' + remark + '</span></div>');
-        }
-      });
+    function showHE(item) {
+      const opts = ['Verified', 'Pending', 'Rejected'].map(function (s) { return '<option ' + (item['Verification Status'] === s ? 'selected' : '') + '>' + s + '</option>'; }).join('');
+      document.getElementById('h-res').innerHTML += '<div class="ef-box"><div class="ef-title">✏️ Editing: ' + (item['QR Code ID'] || '') + '</div>'
+        + '<div class="fg"><label>Item Name</label><input id="ef-n" value="' + (item['Item Name'] || '') + '"/></div>'
+        + '<div class="fg"><label>Description</label><textarea id="ef-d">' + (item['Description'] || '') + '</textarea></div>'
+        + '<div class="fg"><label>Value</label><input id="ef-v" value="' + (item['Value'] || '') + '"/></div>'
+        + '<div class="fg"><label>Verification Status</label><select id="ef-s">' + opts + '</select></div>'
+        + '<div class="fg"><label>Varied Date</label><input type="date" id="ef-dt" value="' + (item['Varied Date'] || '') + '"/></div>'
+        + '<div class="fg"><label>Remark</label><textarea id="ef-r" placeholder="Add remark..."></textarea></div>'
+        + '<button class="bp" id="ef-sv">💾 Save Changes</button></div>';
+      document.getElementById('ef-sv').addEventListener('click', function () { saveH(item['QR Code ID']); });
+      addHA();
     }
 
-    function showEditForm(item) {
-      const opts = ['Verified', 'Pending', 'Rejected'].map(function (s) {
-        return '<option ' + (item['Verification Status'] === s ? 'selected' : '') + '>' + s + '</option>';
-      }).join('');
-      const html = '<div class="edit-form-box">'
-        + '<div class="edit-form-title">✏️ Editing: ' + (item['QR Code ID'] || '') + '</div>'
-        + '<div class="form-group"><label>Item Name</label><input id="f-name" value="' + (item['Item Name'] || '') + '"/></div>'
-        + '<div class="form-group"><label>Description</label><textarea id="f-desc">' + (item['Description'] || '') + '</textarea></div>'
-        + '<div class="form-group"><label>Value</label><input id="f-value" value="' + (item['Value'] || '') + '"/></div>'
-        + '<div class="form-group"><label>Verification Status</label><select id="f-status">' + opts + '</select></div>'
-        + '<div class="form-group"><label>Varied Date</label><input type="date" id="f-date" value="' + (item['Varied Date'] || '') + '"/></div>'
-        + '<div class="form-group"><label>Remark</label><textarea id="f-remark" placeholder="Add remark..."></textarea></div>'
-        + '<button class="btn-primary" id="save-btn">💾 Save Changes</button>'
-        + '</div>';
-      document.getElementById('scan-result').innerHTML += html;
-      document.getElementById('save-btn').addEventListener('click', function () { submitUpdate(item['QR Code ID']); });
-      addScanAgain();
+    async function saveH(qrId) {
+      const d = { 'Item Name': document.getElementById('ef-n').value, 'Description': document.getElementById('ef-d').value, 'Value': document.getElementById('ef-v').value, 'Verification Status': document.getElementById('ef-s').value, 'Varied Date': document.getElementById('ef-dt').value, 'remark': document.getElementById('ef-r').value };
+      const r = await fetch('/item/' + qrId, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(d) });
+      if (r.ok) { showToast('✅ Item updated!'); loadInv(); } else showToast('❌ Failed');
     }
+    function addHA() { const b = document.createElement('button'); b.className = 'bs'; b.textContent = '🔄 Scan Again'; b.addEventListener('click', function () { hSc = true; document.getElementById('h-res').innerHTML = ''; setHSt('Ready'); }); document.getElementById('h-res').appendChild(b); }
+    function setHSt(m) { document.getElementById('h-st').textContent = m; }
 
-    async function submitUpdate(qrId) {
-      const data = {
-        'Item Name': document.getElementById('f-name').value,
-        'Description': document.getElementById('f-desc').value,
-        'Value': document.getElementById('f-value').value,
-        'Verification Status': document.getElementById('f-status').value,
-        'Varied Date': document.getElementById('f-date').value,
-        'remark': document.getElementById('f-remark').value
-      };
-      const res = await fetch('/item/' + qrId, {
-        method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data)
-      });
-      if (res.ok) showToast('✅ Item updated!');
-      else showToast('❌ Update failed.');
-    }
-
-    // Report
+    // REPORT
     async function loadReport() {
-      const res = await fetch('/report');
-      const data = await res.json();
-      if (data.error) return;
-      document.getElementById('r-total').textContent = data.total;
-      document.getElementById('r-scanned').textContent = data.scanned;
-      document.getElementById('r-not-scanned').textContent = data.not_scanned;
-      document.getElementById('r-verified').textContent = data.verified;
-      document.getElementById('r-pending').textContent = data.pending;
-      document.getElementById('r-rejected').textContent = data.rejected;
-
-      // Load inventory for item names
-      const invRes = await fetch('/items');
-      const inventory = await invRes.json();
-      const invMap = {};
-      inventory.forEach(function (item) { invMap[item['QR Code ID']] = item['Item Name']; });
-
-      document.getElementById('logs-tbody').innerHTML = data.logs.map(function (log) {
-        return '<tr>'
-          + '<td style="font-size:12px;color:#6b7280">' + log.qr_id + '</td>'
-          + '<td>' + (invMap[log.qr_id] || '-') + '</td>'
-          + '<td>' + log.scanned_by + '</td>'
-          + '<td style="font-size:12px">' + log.timestamp + '</td>'
-          + '<td><span class="badge ' + log.verification_status + '">' + log.verification_status + '</span></td>'
-          + '<td style="font-size:12px">' + (log.remark || '-') + '</td>'
-          + '</tr>';
+      const r = await fetch('/report'); const d = await r.json(); if (d.error) return;
+      document.getElementById('r-t').textContent = d.total; document.getElementById('r-s').textContent = d.scanned;
+      document.getElementById('r-n').textContent = d.not_scanned; document.getElementById('r-v').textContent = d.verified;
+      document.getElementById('r-p').textContent = d.pending; document.getElementById('r-r').textContent = d.rejected;
+      const ir = await fetch('/items'); const inv = await ir.json();
+      inv.forEach(function (i) { invMap[i['QR Code ID']] = i['Item Name']; });
+      document.getElementById('lg-rows').innerHTML = d.logs.map(function (l) {
+        return '<tr><td style="font-size:12px;color:#6b7280">' + l.qr_id + '</td><td>' + (invMap[l.qr_id] || '-') + '</td>'
+          + '<td style="font-weight:600;color:#4f46e5">👤 ' + l.scanned_by + '</td>'
+          + '<td style="font-size:12px">' + l.timestamp + '</td>'
+          + '<td><span class="badge ' + (l.verification_status || '') + '">' + l.verification_status + '</span></td>'
+          + '<td style="font-size:12px">' + (l.remark || '-') + '</td></tr>';
       }).join('');
     }
+    document.getElementById('dl-btn').addEventListener('click', function () { window.location.href = '/report/download'; });
+    document.getElementById('lg-tog').addEventListener('click', function () { this.classList.toggle('open'); document.getElementById('lg-body').classList.toggle('open'); });
 
-    document.getElementById('download-report-btn').addEventListener('click', function () {
-      window.location.href = '/report/download';
-    });
-
-    document.getElementById('logs-toggle').addEventListener('click', function () {
-      this.classList.toggle('open');
-      document.getElementById('logs-content').classList.toggle('open');
-    });
-
-    // Team
+    // TEAM
     async function loadUsers() {
-      const res = await fetch('/users');
-      const users = await res.json();
-      document.getElementById('users-list').innerHTML = users.map(function (u) {
-        return '<div class="user-item">'
-          + '<div class="user-avatar">' + u.username[0].toUpperCase() + '</div>'
-          + '<div style="flex:1"><div class="user-name">' + u.username + '</div>'
-          + '<div class="user-role"><span class="' + (u.role === 'head' ? 'head-badge' : 'member-badge') + '">' + u.role + '</span></div></div>'
-          + (u.role !== 'head' ? '<button class="btn-danger" data-id="' + u.id + '">Remove</button>' : '')
+      const r = await fetch('/users'); const users = await r.json();
+      document.getElementById('u-list').innerHTML = users.map(function (u) {
+        const ce = u.can_edit === 1 || u.can_edit === true;
+        return '<div class="ui"><div class="ua">' + u.username[0].toUpperCase() + '</div>'
+          + '<div style="flex:1"><div class="un">' + u.username + '</div>'
+          + '<div class="um"><span class="' + (u.role === 'head' ? 'hb' : 'mb2') + '">' + u.role + '</span>'
+          + (u.role !== 'head' ? '<span style="font-size:11px;color:#6b7280">Edit: ' + (ce ? '<span style="color:#16a34a">✅</span>' : '<span style="color:#dc2626">❌</span>') + '</span>' : '')
+          + '</div></div>'
+          + (u.role !== 'head' ? '<div style="display:flex;flex-direction:column;align-items:center;gap:4px"><span style="font-size:10px;color:#6b7280">Edit</span><label class="pt"><input type="checkbox" ' + (ce ? 'checked' : '') + ' data-id="' + u.id + '" class="pc"/><span class="ps"></span></label></div><button class="bd" data-id="' + u.id + '">Remove</button>' : '')
           + '</div>';
       }).join('');
-      document.querySelectorAll('.btn-danger[data-id]').forEach(function (btn) {
-        btn.addEventListener('click', async function () {
+      document.querySelectorAll('.pc').forEach(function (c) {
+        c.addEventListener('change', async function () {
+          await fetch('/users/' + this.dataset.id + '/permission', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ can_edit: this.checked }) });
+          showToast(this.checked ? '✅ Edit permission granted' : '🔒 Edit permission revoked');
+        });
+      });
+      document.querySelectorAll('.bd[data-id]').forEach(function (b) {
+        b.addEventListener('click', async function () {
           if (!confirm('Remove this member?')) return;
           await fetch('/users/' + this.dataset.id, { method: 'DELETE' });
-          loadUsers();
-          showToast('✅ Member removed!');
+          loadUsers(); showToast('✅ Member removed!');
         });
       });
     }
 
-    document.getElementById('add-user-btn').addEventListener('click', async function () {
-      const username = document.getElementById('new-username').value.trim();
-      const password = document.getElementById('new-password').value.trim();
-      const role = document.getElementById('new-role').value;
-      if (!username || !password) { showToast('❌ Fill all fields'); return; }
-      const res = await fetch('/users', {
-        method: 'POST', headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username, password, role })
+    document.getElementById('add-u-btn').addEventListener('click', async function () {
+      const u = document.getElementById('nu-n').value.trim(), p = document.getElementById('nu-p').value.trim();
+      const role = document.getElementById('nu-r').value, ce = document.getElementById('nu-e').checked;
+      if (!u || !p) { showToast('❌ Fill all fields'); return; }
+      const r = await fetch('/users', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ username: u, password: p, role: role, can_edit: ce }) });
+      const d = await r.json();
+      if (d.success) { showToast('✅ Member added!'); document.getElementById('nu-n').value = ''; document.getElementById('nu-p').value = ''; document.getElementById('nu-e').checked = false; loadUsers(); }
+      else showToast('❌ ' + d.error);
+    });
+
+    // MEMBER SCAN
+    document.getElementById('m-cb').addEventListener('click', function () { setMM('camera'); });
+    document.getElementById('m-fb').addEventListener('click', function () { setMM('file'); });
+
+    function setMM(m) {
+      mMeth = m;
+      document.getElementById('m-cb').classList.toggle('active', m === 'camera');
+      document.getElementById('m-fb').classList.toggle('active', m === 'file');
+      document.getElementById('m-cambox').style.display = m === 'camera' ? 'block' : 'none';
+      document.getElementById('m-filebox').style.display = m === 'file' ? 'block' : 'none';
+      document.getElementById('m-res').innerHTML = '';
+      if (m === 'camera') { mSc = true; navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } }).then(function (s) { mCam = s; mV.srcObject = s; mV.play(); requestAnimationFrame(mTick); setMSt('Point camera at QR...'); }).catch(function () { setMSt('Camera not available.'); }); }
+      else { if (mCam) { mCam.getTracks().forEach(function (t) { t.stop(); }); mCam = null; } setMSt('Upload a QR image'); }
+    }
+    function mTick() {
+      if (mMeth !== 'camera') return;
+      if (mV.readyState === mV.HAVE_ENOUGH_DATA && mSc) {
+        mC.width = mV.videoWidth; mC.height = mV.videoHeight; mX.drawImage(mV, 0, 0);
+        const code = jsQR(mX.getImageData(0, 0, mC.width, mC.height).data, mC.width, mC.height);
+        if (code) { mSc = false; setMSt('QR: ' + code.data); procM(code.data); }
+      }
+      requestAnimationFrame(mTick);
+    }
+    document.getElementById('m-qrz').addEventListener('click', function () { document.getElementById('m-qri').click(); });
+    document.getElementById('m-qri').addEventListener('change', function (e) {
+      const f = e.target.files[0]; if (!f) return; setMSt('Reading...');
+      const rd = new FileReader(); rd.onload = function (ev) {
+        const img = new Image(); img.onload = function () {
+          const fc = document.getElementById('m-fc'); fc.width = img.width; fc.height = img.height; fc.getContext('2d').drawImage(img, 0, 0);
+          const code = jsQR(fc.getContext('2d').getImageData(0, 0, fc.width, fc.height).data, fc.width, fc.height);
+          if (code) { setMSt('QR: ' + code.data); document.getElementById('m-res').innerHTML = '<img src="' + ev.target.result + '" class="qp"/>'; procM(code.data); }
+          else setMSt('Could not read QR.');
+        }; img.src = ev.target.result;
+      }; rd.readAsDataURL(f); e.target.value = '';
+    });
+
+    async function procM(qrId) {
+      const r = await fetch('/item/' + qrId);
+      if (!r.ok) { document.getElementById('m-res').innerHTML += '<div class="rc"><p style="color:#dc2626;text-align:center;padding:10px">❌ Not found: ' + qrId + '</p></div>'; addMA(); return; }
+      const item = await r.json();
+      showMR(item);
+    }
+
+    function showMR(item) {
+      const v = item['Verification Status'] || '';
+      const bc = v === 'Verified' ? 'vf' : v === 'Pending' ? 'pd' : 'nv';
+      const bt = v === 'Verified' ? '✅ VERIFIED' : v === 'Pending' ? '⏳ PENDING' : '❌ NOT VERIFIED';
+      document.getElementById('m-res').innerHTML += '<div class="rc"><div class="rb ' + bc + '">' + bt + '</div>'
+        + '<div class="ir"><span class="il">Item Name</span><span class="iv">' + (item['Item Name'] || '') + '</span></div>'
+        + '<div class="ir"><span class="il">Serial No.</span><span class="iv">' + (item['Serial Number'] || '') + '</span></div>'
+        + '<div class="ir"><span class="il">Description</span><span class="iv">' + (item['Description'] || '') + '</span></div>'
+        + '<div class="ir"><span class="il">Value</span><span class="iv">' + (item['Value'] || '') + '</span></div>'
+        + '<div class="ir"><span class="il">Status</span><span class="iv"><span class="badge ' + v + '">' + v + '</span></span></div>'
+        + (item['Last Scanned'] ? '<div class="ir"><span class="il">Last Scanned</span><span class="iv">' + item['Last Scanned'] + '</span></div>' : '')
+        + (item['Scanned By'] ? '<div class="ir"><span class="il">Scanned By</span><span class="iv" style="color:#7c3aed;font-weight:700">👤 ' + item['Scanned By'] + '</span></div>' : '')
+        + '</div>';
+      showMRem(item['QR Code ID'], item);
+      addMA();
+    }
+
+    function showMRem(qrId, item) {
+      const box = document.createElement('div'); box.className = 'rem-box';
+      box.innerHTML = '<label>📝 Add Remark</label><textarea id="m-rem" placeholder="Enter your remark for this scan..."></textarea><button class="bp m" id="m-sub" style="margin-top:8px">✅ Submit Scan</button>';
+      document.getElementById('m-res').appendChild(box);
+      document.getElementById('m-sub').addEventListener('click', async function () {
+        const rem = document.getElementById('m-rem').value;
+        await fetch('/scan-log/' + qrId, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ remark: rem }) });
+        myScans.unshift({ qr_id: qrId, item_name: item['Item Name'], status: item['Verification Status'], remark: rem, time: new Date().toLocaleString() });
+        showToast('✅ Scan submitted!');
+        box.innerHTML = '<p style="color:#16a34a;font-size:13px;text-align:center;padding:8px">✅ Scan submitted!</p>';
       });
-      const data = await res.json();
-      if (data.success) {
-        showToast('✅ Member added!');
-        document.getElementById('new-username').value = '';
-        document.getElementById('new-password').value = '';
-        loadUsers();
-      } else { showToast('❌ ' + data.error); }
-    });
+    }
 
-    // Excel
-    document.getElementById('excel-upload-zone').addEventListener('click', function () { document.getElementById('excel-input').click(); });
-    document.getElementById('excel-input').addEventListener('change', async function (e) {
-      const file = e.target.files[0]; if (!file) return;
-      showToast('⏳ Uploading...');
-      const formData = new FormData();
-      formData.append('file', file);
-      const res = await fetch('/upload-excel', { method: 'POST', body: formData });
-      const data = await res.json();
-      if (data.success) {
-        document.getElementById('sheet-indicator').classList.add('show');
-        document.getElementById('sheet-name').textContent = file.name;
-        document.getElementById('sheet-count').textContent = data.total_items + ' items';
-        document.getElementById('excel-upload-zone').style.display = 'none';
-        showToast('✅ ' + data.total_items + ' items loaded!');
-        loadTable();
-      } else { showToast('❌ ' + data.error); }
-      e.target.value = '';
-    });
+    function addMA() { const b = document.createElement('button'); b.className = 'bs'; b.textContent = '🔄 Scan Again'; b.addEventListener('click', function () { mSc = true; document.getElementById('m-res').innerHTML = ''; setMSt('Ready'); }); document.getElementById('m-res').appendChild(b); }
+    function setMSt(m) { document.getElementById('m-st').textContent = m; }
 
-    document.getElementById('sheet-clear-btn').addEventListener('click', function () {
-      document.getElementById('sheet-indicator').classList.remove('show');
-      document.getElementById('excel-upload-zone').style.display = 'block';
-      document.getElementById('inventory-card').style.display = 'none';
-    });
-
-    async function loadTable() {
-      const res = await fetch('/items');
-      const items = await res.json();
-      document.getElementById('excel-tbody').innerHTML = items.map(function (item) {
-        return '<tr>'
-          + '<td>' + (item['Serial Number'] || '') + '</td>'
-          + '<td>' + (item['Item Name'] || '') + '</td>'
-          + '<td>' + (item['Value'] || '') + '</td>'
-          + '<td><span class="badge ' + item['Verification Status'] + '">' + (item['Verification Status'] || '') + '</span></td>'
-          + '<td>' + (item['Varied Date'] || '') + '</td>'
-          + '<td style="font-size:12px;color:#6b7280">' + (item['QR Code ID'] || '') + '</td>'
-          + '</tr>';
+    function renderHist() {
+      const el = document.getElementById('m-hist');
+      if (!myScans.length) { el.innerHTML = '<p style="text-align:center;color:#9ca3af;padding:20px">No scans yet</p>'; return; }
+      el.innerHTML = myScans.map(function (s) {
+        return '<div class="msc"><h4>' + (s.item_name || s.qr_id) + '</h4><p>QR: ' + s.qr_id + '</p>'
+          + '<p>Status: <span class="badge ' + (s.status || '') + '">' + s.status + '</span></p>'
+          + (s.remark ? '<p>Remark: ' + s.remark + '</p>' : '')
+          + '<p style="font-size:11px;color:#9ca3af;margin-top:4px">' + s.time + '</p></div>';
       }).join('');
-      document.getElementById('inventory-card').style.display = 'block';
     }
 
-    document.getElementById('table-toggle').addEventListener('click', function () {
-      this.classList.toggle('open');
-      document.getElementById('table-content').classList.toggle('open');
-    });
-
-    function addScanAgain() {
-      const btn = document.createElement('button');
-      btn.className = 'btn-secondary';
-      btn.textContent = '🔄 Scan Again';
-      btn.addEventListener('click', resetScan);
-      document.getElementById('scan-result').appendChild(btn);
-    }
-
-    function resetScan() { scanning = true; clearResult(); setStatus('Ready to scan'); }
-    function clearResult() { document.getElementById('scan-result').innerHTML = ''; }
-    function setStatus(msg) { document.getElementById('scan-status').textContent = msg; }
-    function showToast(msg) {
-      const t = document.getElementById('toast');
-      t.textContent = msg; t.style.display = 'block';
+    function showToast(m) {
+      const t = document.getElementById('toast'); t.textContent = m; t.style.display = 'block';
       setTimeout(function () { t.style.display = 'none'; }, 3000);
     }
 
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('/static/sw.js').catch(function () { });
-    }
+    if ('serviceWorker' in navigator) { navigator.serviceWorker.register('/static/sw.js').catch(function () { }); }
   </script>
 </body>
 
