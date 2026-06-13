@@ -50,7 +50,7 @@ def login():
     user = get_user(data.get("username", ""))
     if user and user['password'] == hash_password(data.get("password", "")):
         if expected_role and user['role'] != expected_role:
-            return jsonify({"error": f"This account is not a {expected_role}"}), 401
+            return jsonify({"error": f"This account is not a {expected_role}. Please select correct role."}), 401
         session['username'] = user['username']
         session['role'] = user['role']
         session['can_edit'] = user['can_edit']
@@ -81,7 +81,7 @@ def register_head():
     if not u or not p:
         return jsonify({"error": "Fill all fields"}), 400
     if len(p) < 4:
-        return jsonify({"error": "Password too short"}), 400
+        return jsonify({"error": "Password too short (min 4)"}), 400
     if create_user(u, p, 'head', 1):
         return jsonify({"success": True})
     return jsonify({"error": "Username already exists"}), 400
@@ -108,6 +108,8 @@ def add_user():
     p = data.get("password", "").strip()
     if not u or not p:
         return jsonify({"error": "Fill all fields"}), 400
+    if len(p) < 4:
+        return jsonify({"error": "Password too short"}), 400
     if create_user(u, p, data.get("role", "member"), 1 if data.get("can_edit") else 0):
         return jsonify({"success": True})
     return jsonify({"error": "Username already exists"}), 400
@@ -150,8 +152,12 @@ def excel_status():
         df = load_data()
         role = session.get('role')
         has_access = role == 'head' or session.get('excel_access', False)
-        return jsonify({"available": True, "shared": info.get('shared', 0) == 1,
-                        "total_items": len(df), "has_access": has_access})
+        return jsonify({
+            "available": True,
+            "shared": info.get('shared', 0) == 1,
+            "total_items": len(df),
+            "has_access": has_access
+        })
     except:
         return jsonify({"available": False, "shared": False, "has_access": False})
 
@@ -213,7 +219,8 @@ def log_scan_only(qr_id):
         df.at[idx, 'Last Scanned'] = pd.Timestamp.now().strftime("%Y-%m-%d %H:%M:%S")
         df.at[idx, 'Scanned By'] = session['username']
         save_data(df)
-        log_scan(qr_id, session['username'], data.get("remark", ""), row.iloc[0].get("Verification Status", ""))
+        log_scan(qr_id, session['username'], data.get("remark", ""),
+                 row.iloc[0].get("Verification Status", ""))
         return jsonify({"success": True})
     except Exception as e:
         return jsonify({"error": str(e)}), 500
@@ -264,11 +271,39 @@ def get_report():
         logs = get_scan_logs()
         df = load_data()
         total = len(df)
-        return jsonify({"total": total, "scanned": len(logs),
-            "verified": sum(1 for l in logs if l['verification_status'] == 'Verified'),
-            "pending": sum(1 for l in logs if l['verification_status'] == 'Pending'),
-            "rejected": sum(1 for l in logs if l['verification_status'] == 'Rejected'),
-            "not_scanned": total - len(logs), "logs": logs})
+
+        # Get scans from Excel too
+        log_qr_ids = {l['qr_id'] for l in logs}
+        extra_logs = []
+
+        for _, row in df.iterrows():
+            scanned_by = str(row.get('Scanned By', '')).strip()
+            qr_id = str(row.get('QR Code ID', '')).strip()
+            last_scanned = str(row.get('Last Scanned', '')).strip()
+            if (scanned_by and scanned_by != 'nan' and
+                qr_id and qr_id != 'nan' and
+                qr_id not in log_qr_ids):
+                extra_logs.append({
+                    'id': None,
+                    'qr_id': qr_id,
+                    'scanned_by': scanned_by,
+                    'timestamp': last_scanned if last_scanned != 'nan' else '',
+                    'remark': '',
+                    'verification_status': str(row.get('Verification Status', '')).strip()
+                })
+
+        all_logs = logs + extra_logs
+        scanned = len(all_logs)
+        verified = sum(1 for l in all_logs if l['verification_status'] == 'Verified')
+        pending = sum(1 for l in all_logs if l['verification_status'] == 'Pending')
+        rejected = sum(1 for l in all_logs if l['verification_status'] == 'Rejected')
+
+        return jsonify({
+            "total": total, "scanned": scanned,
+            "verified": verified, "pending": pending,
+            "rejected": rejected, "not_scanned": total - scanned,
+            "logs": all_logs
+        })
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
@@ -278,22 +313,49 @@ def download_report():
     try:
         logs = get_scan_logs()
         df_inv = load_data() if os.path.exists(EXCEL_FILE) else pd.DataFrame()
+
+        # Merge Excel scans not in SQLite
+        log_qr_ids = {l['qr_id'] for l in logs}
+        extra_logs = []
+        for _, row in df_inv.iterrows():
+            scanned_by = str(row.get('Scanned By', '')).strip()
+            qr_id = str(row.get('QR Code ID', '')).strip()
+            if scanned_by and scanned_by != 'nan' and qr_id not in log_qr_ids:
+                extra_logs.append({
+                    'qr_id': qr_id,
+                    'scanned_by': scanned_by,
+                    'timestamp': str(row.get('Last Scanned', '')),
+                    'remark': '',
+                    'verification_status': str(row.get('Verification Status', ''))
+                })
+
+        all_logs = logs + extra_logs
         output = io.BytesIO()
+
         with pd.ExcelWriter(output, engine='xlsxwriter') as writer:
-            if not df_inv.empty and logs:
-                df_l = pd.DataFrame(logs)[['qr_id','scanned_by','timestamp','remark','verification_status']]
+            if not df_inv.empty and all_logs:
+                df_l = pd.DataFrame(all_logs)[['qr_id','scanned_by','timestamp','remark','verification_status']]
                 df_l.columns = ['QR Code ID','Scanned By','Scan Time','Remark','Scan Status']
-                pd.merge(df_inv, df_l, on='QR Code ID', how='left').to_excel(writer, sheet_name='Scan Report', index=False)
-            pd.DataFrame({'Status': ['Total','Scanned','Verified','Pending','Rejected','Not Scanned'],
-                'Count': [len(df_inv), len(logs),
-                    sum(1 for l in logs if l['verification_status']=='Verified'),
-                    sum(1 for l in logs if l['verification_status']=='Pending'),
-                    sum(1 for l in logs if l['verification_status']=='Rejected'),
-                    len(df_inv) - len(logs)]
+                df_merged = pd.merge(df_inv, df_l, on='QR Code ID', how='left')
+                df_merged.to_excel(writer, sheet_name='Scan Report', index=False)
+            elif not df_inv.empty:
+                df_inv.to_excel(writer, sheet_name='Scan Report', index=False)
+
+            total = len(df_inv)
+            scanned = len(all_logs)
+            pd.DataFrame({
+                'Status': ['Total Items','Scanned','Verified','Pending','Rejected','Not Scanned'],
+                'Count': [total, scanned,
+                    sum(1 for l in all_logs if l['verification_status']=='Verified'),
+                    sum(1 for l in all_logs if l['verification_status']=='Pending'),
+                    sum(1 for l in all_logs if l['verification_status']=='Rejected'),
+                    total - scanned]
             }).to_excel(writer, sheet_name='Summary', index=False)
+
         output.seek(0)
-        return send_file(output, mimetype='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
-                         as_attachment=True, download_name='QRack_Report.xlsx')
+        return send_file(output,
+            mimetype='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+            as_attachment=True, download_name='QRack_Report.xlsx')
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
