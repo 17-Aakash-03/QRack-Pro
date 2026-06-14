@@ -1285,14 +1285,14 @@
       white-space: nowrap
     }
 
-    /* Member info box on login */
     .member-info {
       background: rgba(255, 255, 255, .1);
       border: 1px solid rgba(255, 255, 255, .2);
       border-radius: 10px;
       padding: 14px;
       text-align: center;
-      color: white
+      color: white;
+      margin-top: 14px
     }
 
     .member-info p {
@@ -1318,8 +1318,6 @@
         <h1>QRack</h1>
         <p>Inventory Scanner System</p>
       </div>
-
-      <!-- ROLE SELECTOR -->
       <div class="role-selector">
         <div class="role-card active" id="rc-head" onclick="selectRole('head')">
           <span class="rc-icon">👑</span>
@@ -1332,20 +1330,15 @@
           <div class="rc-sub">Scan & verify</div>
         </div>
       </div>
-
       <div class="login-box">
         <div class="lbt" id="lbt">👑 Team Head</div>
-
-        <!-- HEAD TABS: Login + Register -->
         <div class="form-tabs" id="head-tabs">
           <button class="form-tab active" id="ht-login">Login</button>
           <button class="form-tab" id="ht-register">Register</button>
         </div>
-
         <div class="l-err" id="l-err"></div>
         <div class="l-suc" id="l-suc"></div>
-
-        <!-- LOGIN FORM (both roles) -->
+        <!-- LOGIN FORM -->
         <div id="lf">
           <div class="fg"><label>Username</label><input type="text" id="l-u" placeholder="Enter username" /></div>
           <div class="fg"><label>Password</label><input type="password" id="l-p" placeholder="Enter password" /></div>
@@ -1353,19 +1346,15 @@
           <p id="l-hint" style="text-align:center;font-size:12px;color:#9ca3af;margin-top:12px">Default head: teamhead /
             admin123</p>
         </div>
-
-        <!-- HEAD REGISTER FORM -->
+        <!-- HEAD REGISTER -->
         <div id="hrf" style="display:none">
           <div class="fg"><label>Username</label><input type="text" id="hr-u" placeholder="Choose username" /></div>
           <div class="fg"><label>Password</label><input type="password" id="hr-p" placeholder="Choose password" /></div>
           <div class="fg"><label>Confirm Password</label><input type="password" id="hr-p2"
               placeholder="Confirm password" /></div>
-          <button class="bp" id="head-register-btn">👑 Register as Team Head</button>
-          <p style="text-align:center;font-size:12px;color:#9ca3af;margin-top:10px">You will have full access to manage
-            team and inventory</p>
+          <button class="bp" id="head-reg-btn">👑 Register as Team Head</button>
         </div>
-
-        <!-- MEMBER INFO (no register, login only) -->
+        <!-- MEMBER INFO -->
         <div id="member-info-box" style="display:none">
           <div class="member-info">
             <p>🔑 Contact your Team Head to get login credentials</p>
@@ -1393,7 +1382,6 @@
       <button class="nav-btn" data-pg="ht">👥 Team</button>
       <button class="nav-btn" data-pg="he">📂 Excel</button>
     </div>
-
     <!-- H HOME -->
     <div class="page active" id="hh">
       <div class="wc hd">
@@ -1425,7 +1413,6 @@
         <button class="bp" id="qa-t">👥 Manage Team</button>
       </div>
     </div>
-
     <!-- H SCAN -->
     <div class="page" id="hs">
       <div class="card">
@@ -1455,7 +1442,6 @@
         <div id="h-res"></div>
       </div>
     </div>
-
     <!-- H REPORT -->
     <div class="page" id="hr">
       <div class="card">
@@ -1496,7 +1482,7 @@
               <thead>
                 <tr>
                   <th>QR ID</th>
-                  <th>Item</th>
+                  <th>Item Name</th>
                   <th>Scanned By</th>
                   <th>Time</th>
                   <th>Status</th>
@@ -1509,21 +1495,17 @@
         </div>
       </div>
     </div>
-
     <!-- H TEAM -->
     <div class="page" id="ht">
       <div class="card">
         <div class="ct">➕ Add Team Member</div>
-        <p style="font-size:13px;color:#6b7280;margin-bottom:14px">Create login credentials for your team members. Share
-          the username and password with them.</p>
+        <p style="font-size:13px;color:#6b7280;margin-bottom:14px">Create login credentials for your team members.</p>
         <div class="fg"><label>Username</label><input type="text" id="nu-n" placeholder="Member username" /></div>
         <div class="fg"><label>Password</label><input type="password" id="nu-p" placeholder="Member password" /></div>
-        <div class="fg"><label>Role</label>
-          <select id="nu-r">
+        <div class="fg"><label>Role</label><select id="nu-r">
             <option value="member">Member</option>
             <option value="head">Team Head</option>
-          </select>
-        </div>
+          </select></div>
         <div class="cr"><input type="checkbox" id="nu-e" /><label for="nu-e">Allow this member to edit items</label>
         </div>
         <button class="bp" id="add-u-btn">➕ Create Member Account</button>
@@ -1533,7 +1515,6 @@
         <div id="u-list"></div>
       </div>
     </div>
-
     <!-- H EXCEL -->
     <div class="page" id="he">
       <div class="card">
@@ -1541,7 +1522,7 @@
         <div class="ac-box">
           <h3>Share this code with team members</h3>
           <span class="ac-code" id="ac-code">--------</span>
-          <p class="ac-hint">Members enter this code to unlock Excel sheet scanning</p>
+          <p class="ac-hint">Members enter this code to unlock scanning</p>
           <button class="bp" id="regen-btn" style="margin-top:14px;max-width:220px">🔄 Regenerate Code</button>
         </div>
         <div class="st">
@@ -1600,7 +1581,6 @@
       <button class="nav-btn" data-pg="ms">📷 Scan</button>
       <button class="nav-btn" data-pg="mhi">📋 History</button>
     </div>
-
     <!-- M HOME -->
     <div class="page active" id="mh">
       <div class="wc md">
@@ -1625,11 +1605,8 @@
         </div>
         <div class="pi"><span class="pk">Upload Excel</span><span class="pv" style="color:#dc2626">❌ Not Allowed</span>
         </div>
-        <div class="pi"><span class="pk">Download Report</span><span class="pv" style="color:#dc2626">❌ Not
-            Allowed</span></div>
       </div>
     </div>
-
     <!-- M SCAN -->
     <div class="page" id="ms">
       <div id="m-no-acc" style="display:none">
@@ -1641,7 +1618,7 @@
       <div id="m-code-area" style="display:none">
         <div class="ec-box">
           <h3>🔑 Enter Access Code</h3>
-          <p>Ask your Team Head for the 8-character access code to start scanning</p>
+          <p>Ask your Team Head for the 8-character access code</p>
           <input class="ci" type="text" id="m-ci" placeholder="XXXXXXXX" maxlength="8" />
           <div class="ce" id="m-ce"></div>
           <button class="bp m" id="m-cv" style="margin-top:12px">✅ Verify & Unlock</button>
@@ -1650,10 +1627,17 @@
       <div id="m-scan-area" style="display:none">
         <div class="ok-box">
           <h3>✅ Access Granted</h3>
-          <p>You can now scan and verify items</p>
+          <p id="m-access-info">You can now scan and verify items</p>
         </div>
         <div class="card">
           <div class="ct m">📷 Scan QR Code</div>
+          <!-- Edit mode row — shown only if can_edit -->
+          <div id="m-mode-row" style="display:none">
+            <div class="mr">
+              <button class="mb active" id="m-rd">🔍 Read</button>
+              <button class="mb" id="m-ed">✏️ Edit</button>
+            </div>
+          </div>
           <div class="tr">
             <button class="tb" id="m-cb">📷 Camera</button>
             <button class="tb active" id="m-fb">🖼️ Upload</button>
@@ -1676,7 +1660,6 @@
         </div>
       </div>
     </div>
-
     <!-- M HISTORY -->
     <div class="page" id="mhi">
       <div class="card">
@@ -1692,13 +1675,15 @@
 
   <script>
     let cu = null, selRole = 'head';
-    let hMode = 'read', hMeth = 'file', mMeth = 'file';
+    let hMode = 'read', hMeth = 'file', mMode = 'read', mMeth = 'file';
     let hCam = null, mCam = null, hSc = true, mSc = true;
     let myScans = [], invMap = {};
+    let mCanEdit = false;
 
     const hV = document.getElementById('hv'), hC = document.getElementById('hc'), hX = hC.getContext('2d');
     const mV = document.getElementById('mv'), mC = document.getElementById('mc'), mX = mC.getContext('2d');
 
+    // SESSION CHECK
     window.addEventListener('load', async function () {
       const r = await fetch('/me'); const d = await r.json();
       if (d.logged_in) { cu = d; showDash(d); }
@@ -1718,25 +1703,10 @@
       clearMsg(); showLF();
     }
 
-    // HEAD TABS
-    document.getElementById('ht-login').addEventListener('click', function () {
-      this.classList.add('active'); document.getElementById('ht-register').classList.remove('active');
-      showLF(); clearMsg();
-    });
-    document.getElementById('ht-register').addEventListener('click', function () {
-      this.classList.add('active'); document.getElementById('ht-login').classList.remove('active');
-      document.getElementById('lf').style.display = 'none';
-      document.getElementById('hrf').style.display = 'block';
-      clearMsg();
-    });
+    document.getElementById('ht-login').addEventListener('click', function () { this.classList.add('active'); document.getElementById('ht-register').classList.remove('active'); showLF(); clearMsg(); });
+    document.getElementById('ht-register').addEventListener('click', function () { this.classList.add('active'); document.getElementById('ht-login').classList.remove('active'); document.getElementById('lf').style.display = 'none'; document.getElementById('hrf').style.display = 'block'; clearMsg(); });
 
-    function showLF() {
-      document.getElementById('lf').style.display = 'block';
-      document.getElementById('hrf').style.display = 'none';
-      document.getElementById('ht-login').classList.add('active');
-      document.getElementById('ht-register').classList.remove('active');
-    }
-
+    function showLF() { document.getElementById('lf').style.display = 'block'; document.getElementById('hrf').style.display = 'none'; document.getElementById('ht-login').classList.add('active'); document.getElementById('ht-register').classList.remove('active'); }
     function clearMsg() { document.getElementById('l-err').style.display = 'none'; document.getElementById('l-suc').style.display = 'none'; }
     function showErr(m) { const e = document.getElementById('l-err'); e.textContent = m; e.style.display = 'block'; }
     function showSuc(m) { const e = document.getElementById('l-suc'); e.textContent = m; e.style.display = 'block'; }
@@ -1752,25 +1722,21 @@
         body: JSON.stringify({ username: u, password: p, expected_role: selRole })
       });
       const d = await r.json();
-      if (d.success) { cu = d; showDash(d); }
-      else showErr(d.error || 'Login failed');
+      if (d.success) { cu = d; showDash(d); } else showErr(d.error || 'Login failed');
     }
 
     // HEAD REGISTER
-    document.getElementById('head-register-btn').addEventListener('click', async function () {
+    document.getElementById('head-reg-btn').addEventListener('click', async function () {
       const u = document.getElementById('hr-u').value.trim();
       const p = document.getElementById('hr-p').value.trim();
       const p2 = document.getElementById('hr-p2').value.trim();
       if (!u || !p) { showErr('Fill all fields'); return; }
       if (p !== p2) { showErr('Passwords do not match'); return; }
       if (p.length < 4) { showErr('Password too short (min 4)'); return; }
-      const r = await fetch('/register-head', {
-        method: 'POST', headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username: u, password: p })
-      });
+      const r = await fetch('/register-head', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ username: u, password: p }) });
       const d = await r.json();
-      if (d.success) { showSuc('✅ Team Head account created! You can now login.'); document.getElementById('hr-u').value = ''; document.getElementById('hr-p').value = ''; document.getElementById('hr-p2').value = ''; }
-      else showErr(d.error || 'Registration failed');
+      if (d.success) { showSuc('✅ Account created! You can now login.'); document.getElementById('hr-u').value = ''; document.getElementById('hr-p').value = ''; document.getElementById('hr-p2').value = ''; }
+      else showErr(d.error || 'Failed');
     });
 
     function showDash(u) {
@@ -1784,17 +1750,23 @@
         document.getElementById('member-app').style.display = 'block';
         document.getElementById('m-un').textContent = '👤 ' + u.username;
         document.getElementById('m-wlc').textContent = '👋 Welcome, ' + u.username + '!';
-        document.getElementById('m-ep').textContent = u.can_edit ? '✅ Allowed' : '❌ Not Allowed';
-        document.getElementById('m-ep').style.color = u.can_edit ? '#16a34a' : '#dc2626';
+        mCanEdit = u.can_edit === 1 || u.can_edit === true;
+        updateMemberPermUI();
         loadMHome();
       }
+    }
+
+    function updateMemberPermUI() {
+      document.getElementById('m-ep').textContent = mCanEdit ? '✅ Allowed' : '❌ Not Allowed';
+      document.getElementById('m-ep').style.color = mCanEdit ? '#16a34a' : '#dc2626';
+      document.getElementById('m-mode-row').style.display = mCanEdit ? 'block' : 'none';
     }
 
     // LOGOUT
     document.getElementById('h-lo').addEventListener('click', doLogout);
     document.getElementById('m-lo').addEventListener('click', doLogout);
     async function doLogout() {
-      await fetch('/logout', { method: 'POST' }); cu = null;
+      await fetch('/logout', { method: 'POST' }); cu = null; mCanEdit = false;
       document.getElementById('head-app').style.display = 'none';
       document.getElementById('member-app').style.display = 'none';
       document.getElementById('login-page').style.display = 'flex';
@@ -1860,7 +1832,6 @@
       } catch (e) { }
     }
 
-    // ACCESS INFO
     async function loadAccessInfo() {
       const r = await fetch('/excel/access-info'); const d = await r.json();
       document.getElementById('ac-code').textContent = d.access_code || '--------';
@@ -1880,18 +1851,18 @@
 
     // MEMBER HOME
     async function loadMHome() {
+      // Fetch fresh permissions
+      const pr = await fetch('/my-permissions'); const pd = await pr.json();
+      mCanEdit = pd.can_edit === 1 || pd.can_edit === true;
+      updateMemberPermUI();
+
       const r = await fetch('/excel/status'); const d = await r.json();
       const el = document.getElementById('m-ex-st');
       if (!d.available) { el.innerHTML = '<div class="na-box"><h3>⚠️ No Excel Sheet</h3><p>Team Head has not uploaded any sheet yet.</p></div>'; }
       else if (!d.shared) { el.innerHTML = '<div class="na-box"><h3>🔒 Access Not Enabled</h3><p>Team Head has not enabled member access yet.</p></div>'; }
-      else if (!d.has_access) { el.innerHTML = '<div class="ec-box"><h3>🔑 Enter Access Code</h3><p>Ask your Team Head for the access code</p><input class="ci" type="text" id="hm-ci" placeholder="XXXXXXXX" maxlength="8"/><div class="ce" id="hm-ce"></div><button class="bp m" id="hm-cv" style="margin-top:12px">✅ Verify Code</button></div>'; attachHmCv(); }
-      else { el.innerHTML = '<div class="ok-box"><h3>✅ Access Active</h3><p>' + d.total_items + ' items ready for scanning</p></div>'; }
-    }
-
-    function attachHmCv() {
-      const btn = document.getElementById('hm-cv');
-      if (btn) {
-        btn.addEventListener('click', async function () {
+      else if (!d.has_access) {
+        el.innerHTML = '<div class="ec-box"><h3>🔑 Enter Access Code</h3><p>Ask your Team Head for the access code</p><input class="ci" type="text" id="hm-ci" placeholder="XXXXXXXX" maxlength="8"/><div class="ce" id="hm-ce"></div><button class="bp m" id="hm-cv" style="margin-top:12px">✅ Verify Code</button></div>';
+        document.getElementById('hm-cv').addEventListener('click', async function () {
           const code = document.getElementById('hm-ci').value.trim().toUpperCase();
           const r = await fetch('/verify-code', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ code: code }) });
           const d = await r.json();
@@ -1899,9 +1870,15 @@
           else document.getElementById('hm-ce').textContent = d.error || 'Invalid code';
         });
       }
+      else { el.innerHTML = '<div class="ok-box"><h3>✅ Access Active</h3><p>' + d.total_items + ' items ready for scanning</p></div>'; }
     }
 
     async function checkMAccess() {
+      // Always fetch fresh permissions
+      const pr = await fetch('/my-permissions'); const pd = await pr.json();
+      mCanEdit = pd.can_edit === 1 || pd.can_edit === true;
+      updateMemberPermUI();
+
       const r = await fetch('/excel/status'); const d = await r.json();
       document.getElementById('m-no-acc').style.display = 'none';
       document.getElementById('m-code-area').style.display = 'none';
@@ -1913,9 +1890,11 @@
         document.getElementById('m-code-area').style.display = 'block';
       } else {
         document.getElementById('m-scan-area').style.display = 'block';
+        document.getElementById('m-access-info').textContent = d.total_items + ' items available' + (mCanEdit ? ' — Edit enabled' : '');
       }
     }
 
+    // CODE VERIFY
     document.getElementById('m-cv').addEventListener('click', async function () {
       const code = document.getElementById('m-ci').value.trim().toUpperCase();
       const r = await fetch('/verify-code', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ code: code }) });
@@ -1930,9 +1909,9 @@
       showToast(this.checked ? '✅ Member access enabled!' : '🔒 Member access disabled');
     });
 
-    // REGENERATE CODE
+    // REGEN CODE
     document.getElementById('regen-btn').addEventListener('click', async function () {
-      if (!confirm('Regenerate? Current code will stop working.')) return;
+      if (!confirm('Regenerate? Current code stops working.')) return;
       const r = await fetch('/excel/regenerate-code', { method: 'POST' });
       const d = await r.json();
       if (d.success) { document.getElementById('ac-code').textContent = d.code; showToast('✅ New code: ' + d.code); }
@@ -1993,14 +1972,18 @@
           const fc = document.getElementById('h-fc'); fc.width = img.width; fc.height = img.height; fc.getContext('2d').drawImage(img, 0, 0);
           const code = jsQR(fc.getContext('2d').getImageData(0, 0, fc.width, fc.height).data, fc.width, fc.height);
           if (code) { setHSt('QR: ' + code.data); document.getElementById('h-res').innerHTML = '<img src="' + ev.target.result + '" class="qp"/>'; procH(code.data); }
-          else setHSt('Could not read QR.');
+          else setHSt('Could not read QR. Try clearer image.');
         }; img.src = ev.target.result;
       }; rd.readAsDataURL(f); e.target.value = '';
     });
 
     async function procH(qrId) {
       const r = await fetch('/item/' + qrId);
-      if (!r.ok) { document.getElementById('h-res').innerHTML += '<div class="rc"><p style="color:#dc2626;text-align:center;padding:10px">❌ Not found: ' + qrId + '</p></div>'; addHA(); return; }
+      if (!r.ok) {
+        const err = await r.json();
+        document.getElementById('h-res').innerHTML += '<div class="rc"><p style="color:#dc2626;text-align:center;padding:10px">❌ ' + (err.error || 'Not found: ' + qrId) + '</p></div>';
+        addHA(); return;
+      }
       const item = await r.json();
       if (hMode === 'read') showHR(item); else showHE(item);
     }
@@ -2039,7 +2022,7 @@
     async function saveH(qrId) {
       const d = { 'Item Name': document.getElementById('ef-n').value, 'Description': document.getElementById('ef-d').value, 'Value': document.getElementById('ef-v').value, 'Verification Status': document.getElementById('ef-s').value, 'Varied Date': document.getElementById('ef-dt').value, 'remark': document.getElementById('ef-r').value };
       const r = await fetch('/item/' + qrId, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(d) });
-      if (r.ok) { showToast('✅ Item updated!'); loadInv(); } else showToast('❌ Failed');
+      if (r.ok) { showToast('✅ Item updated!'); loadInv(); } else { const e = await r.json(); showToast('❌ ' + (e.error || 'Failed')); }
     }
     function addHA() { const b = document.createElement('button'); b.className = 'bs'; b.textContent = '🔄 Scan Again'; b.addEventListener('click', function () { hSc = true; document.getElementById('h-res').innerHTML = ''; setHSt('Ready'); }); document.getElementById('h-res').appendChild(b); }
     function setHSt(m) { document.getElementById('h-st').textContent = m; }
@@ -2047,17 +2030,23 @@
     // REPORT
     async function loadReport() {
       const r = await fetch('/report'); const d = await r.json(); if (d.error) return;
-      document.getElementById('r-t').textContent = d.total; document.getElementById('r-s').textContent = d.scanned;
-      document.getElementById('r-n').textContent = d.not_scanned; document.getElementById('r-v').textContent = d.verified;
-      document.getElementById('r-p').textContent = d.pending; document.getElementById('r-r').textContent = d.rejected;
+      document.getElementById('r-t').textContent = d.total;
+      document.getElementById('r-s').textContent = d.scanned;
+      document.getElementById('r-n').textContent = d.not_scanned;
+      document.getElementById('r-v').textContent = d.verified;
+      document.getElementById('r-p').textContent = d.pending;
+      document.getElementById('r-r').textContent = d.rejected;
       const ir = await fetch('/items'); const inv = await ir.json();
       inv.forEach(function (i) { invMap[i['QR Code ID']] = i['Item Name']; });
       document.getElementById('lg-rows').innerHTML = d.logs.map(function (l) {
-        return '<tr><td style="font-size:12px;color:#6b7280">' + l.qr_id + '</td><td>' + (invMap[l.qr_id] || '-') + '</td>'
-          + '<td style="font-weight:600;color:#4f46e5">👤 ' + l.scanned_by + '</td>'
+        return '<tr>'
+          + '<td style="font-size:12px;color:#6b7280">' + l.qr_id + '</td>'
+          + '<td>' + (invMap[l.qr_id] || '-') + '</td>'
+          + '<td style="font-weight:700;color:#4f46e5">👤 ' + l.scanned_by + '</td>'
           + '<td style="font-size:12px">' + l.timestamp + '</td>'
           + '<td><span class="badge ' + (l.verification_status || '') + '">' + l.verification_status + '</span></td>'
-          + '<td style="font-size:12px">' + (l.remark || '-') + '</td></tr>';
+          + '<td style="font-size:12px">' + (l.remark || '-') + '</td>'
+          + '</tr>';
       }).join('');
     }
     document.getElementById('dl-btn').addEventListener('click', function () { window.location.href = '/report/download'; });
@@ -2073,11 +2062,29 @@
           + '<div class="um"><span class="' + (u.role === 'head' ? 'hb' : 'mb2') + '">' + u.role + '</span>'
           + (u.role !== 'head' ? '<span style="font-size:11px;color:#6b7280">Edit: ' + (ce ? '<span style="color:#16a34a">✅</span>' : '<span style="color:#dc2626">❌</span>') + '</span>' : '')
           + '</div></div>'
-          + (u.role !== 'head' ? '<div style="display:flex;flex-direction:column;align-items:center;gap:4px"><span style="font-size:10px;color:#6b7280">Edit</span><label class="pt"><input type="checkbox" ' + (ce ? 'checked' : '') + ' data-id="' + u.id + '" class="pc"/><span class="ps"></span></label></div><button class="bd" data-id="' + u.id + '">Remove</button>' : '')
+          + (u.role !== 'head'
+            ? '<div style="display:flex;flex-direction:column;align-items:center;gap:4px">'
+            + '<span style="font-size:10px;color:#6b7280">Edit</span>'
+            + '<label class="pt"><input type="checkbox" ' + (ce ? 'checked' : '') + ' data-id="' + u.id + '" class="pc"/><span class="ps"></span></label>'
+            + '</div>'
+            + '<button class="bd" data-id="' + u.id + '">Remove</button>'
+            : '')
           + '</div>';
       }).join('');
-      document.querySelectorAll('.pc').forEach(function (c) { c.addEventListener('change', async function () { await fetch('/users/' + this.dataset.id + '/permission', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ can_edit: this.checked }) }); showToast(this.checked ? '✅ Edit granted' : '🔒 Edit revoked'); }); });
-      document.querySelectorAll('.bd[data-id]').forEach(function (b) { b.addEventListener('click', async function () { if (!confirm('Remove member?')) return; await fetch('/users/' + this.dataset.id, { method: 'DELETE' }); loadUsers(); showToast('✅ Removed!'); }); });
+      document.querySelectorAll('.pc').forEach(function (c) {
+        c.addEventListener('change', async function () {
+          const res = await fetch('/users/' + this.dataset.id + '/permission', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ can_edit: this.checked }) });
+          const d = await res.json();
+          showToast(this.checked ? '✅ Edit permission granted' : '🔒 Edit permission revoked');
+        });
+      });
+      document.querySelectorAll('.bd[data-id]').forEach(function (b) {
+        b.addEventListener('click', async function () {
+          if (!confirm('Remove member?')) return;
+          await fetch('/users/' + this.dataset.id, { method: 'DELETE' });
+          loadUsers(); showToast('✅ Removed!');
+        });
+      });
     }
 
     document.getElementById('add-u-btn').addEventListener('click', async function () {
@@ -2090,9 +2097,12 @@
       else showToast('❌ ' + d.error);
     });
 
-    // MEMBER SCAN
+    // MEMBER SCAN MODE
+    document.getElementById('m-rd').addEventListener('click', function () { mMode = 'read'; this.classList.add('active'); document.getElementById('m-ed').classList.remove('active'); document.getElementById('m-res').innerHTML = ''; setMSt('Read mode'); });
+    document.getElementById('m-ed').addEventListener('click', function () { mMode = 'edit'; this.classList.add('active'); document.getElementById('m-rd').classList.remove('active'); document.getElementById('m-res').innerHTML = ''; setMSt('Edit mode'); });
     document.getElementById('m-cb').addEventListener('click', function () { setMM('camera'); });
     document.getElementById('m-fb').addEventListener('click', function () { setMM('file'); });
+
     function setMM(m) {
       mMeth = m;
       document.getElementById('m-cb').classList.toggle('active', m === 'camera');
@@ -2119,16 +2129,25 @@
         const img = new Image(); img.onload = function () {
           const fc = document.getElementById('m-fc'); fc.width = img.width; fc.height = img.height; fc.getContext('2d').drawImage(img, 0, 0);
           const code = jsQR(fc.getContext('2d').getImageData(0, 0, fc.width, fc.height).data, fc.width, fc.height);
-          if (code) { setMSt('QR: ' + code.data); document.getElementById('m-res').innerHTML = '<img src="' + ev.target.result + '" class="qp"/>'; procM(code.data); }
-          else setMSt('Could not read QR.');
+          if (code) {
+            setMSt('QR: ' + code.data);
+            document.getElementById('m-res').innerHTML = '<img src="' + ev.target.result + '" class="qp"/>';
+            procM(code.data);
+          } else setMSt('Could not read QR. Try a clearer image.');
         }; img.src = ev.target.result;
       }; rd.readAsDataURL(f); e.target.value = '';
     });
 
     async function procM(qrId) {
       const r = await fetch('/item/' + qrId);
-      if (!r.ok) { document.getElementById('m-res').innerHTML += '<div class="rc"><p style="color:#dc2626;text-align:center;padding:10px">❌ Not found: ' + qrId + '</p></div>'; addMA(); return; }
-      const item = await r.json(); showMR(item);
+      if (!r.ok) {
+        const err = await r.json();
+        document.getElementById('m-res').innerHTML += '<div class="rc"><p style="color:#dc2626;text-align:center;padding:10px">❌ ' + (err.error || 'Item not found: ' + qrId) + '</p></div>';
+        addMA(); return;
+      }
+      const item = await r.json();
+      if (mMode === 'edit' && mCanEdit) showME(item);
+      else showMR(item);
     }
 
     function showMR(item) {
@@ -2143,8 +2162,33 @@
         + '<div class="ir"><span class="il">Status</span><span class="iv"><span class="badge ' + v + '">' + v + '</span></span></div>'
         + (item['Last Scanned'] ? '<div class="ir"><span class="il">Last Scanned</span><span class="iv">' + item['Last Scanned'] + '</span></div>' : '')
         + (item['Scanned By'] ? '<div class="ir"><span class="il">Scanned By</span><span class="iv" style="color:#7c3aed;font-weight:700">👤 ' + item['Scanned By'] + '</span></div>' : '')
+        + (mCanEdit ? '<div style="margin-top:12px"><button class="bp m" id="m-en" style="max-width:160px;padding:9px;font-size:13px">✏️ Edit Item</button></div>' : '')
         + '</div>';
-      showMRem(item['QR Code ID'], item); addMA();
+      if (mCanEdit && document.getElementById('m-en')) {
+        document.getElementById('m-en').addEventListener('click', function () { mMode = 'edit'; document.getElementById('m-res').innerHTML = ''; showME(item); document.getElementById('m-ed').classList.add('active'); document.getElementById('m-rd').classList.remove('active'); });
+      }
+      showMRem(item['QR Code ID'], item);
+      addMA();
+    }
+
+    function showME(item) {
+      document.getElementById('m-res').innerHTML += '<div class="ef-box"><div class="ef-title" style="color:#7c3aed">✏️ Editing: ' + (item['QR Code ID'] || '') + '</div>'
+        + '<div class="fg"><label>Item Name</label><input id="mf-n" value="' + (item['Item Name'] || '') + '"/></div>'
+        + '<div class="fg"><label>Description</label><textarea id="mf-d">' + (item['Description'] || '') + '</textarea></div>'
+        + '<div class="fg"><label>Value</label><input id="mf-v" value="' + (item['Value'] || '') + '"/></div>'
+        + '<div class="fg"><label>Varied Date</label><input type="date" id="mf-dt" value="' + (item['Varied Date'] || '') + '"/></div>'
+        + '<div class="fg"><label>Remark</label><textarea id="mf-r" placeholder="Add remark..."></textarea></div>'
+        + '<p style="font-size:12px;color:#9ca3af;margin-bottom:8px">⚠️ Verification Status can only be changed by Team Head</p>'
+        + '<button class="bp m" id="mf-sv">💾 Save Changes</button></div>';
+      document.getElementById('mf-sv').addEventListener('click', function () { saveM(item['QR Code ID']); });
+      addMA();
+    }
+
+    async function saveM(qrId) {
+      const d = { 'Item Name': document.getElementById('mf-n').value, 'Description': document.getElementById('mf-d').value, 'Value': document.getElementById('mf-v').value, 'Varied Date': document.getElementById('mf-dt').value, 'remark': document.getElementById('mf-r').value };
+      const r = await fetch('/item/' + qrId, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(d) });
+      if (r.ok) { showToast('✅ Item updated!'); myScans.unshift({ qr_id: qrId, item_name: d['Item Name'], status: 'Updated', remark: d.remark, time: new Date().toLocaleString() }); }
+      else { const e = await r.json(); showToast('❌ ' + (e.error || 'Failed')); }
     }
 
     function showMRem(qrId, item) {
@@ -2153,10 +2197,12 @@
       document.getElementById('m-res').appendChild(box);
       document.getElementById('m-sub').addEventListener('click', async function () {
         const rem = document.getElementById('m-rem').value;
-        await fetch('/scan-log/' + qrId, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ remark: rem }) });
-        myScans.unshift({ qr_id: qrId, item_name: item['Item Name'], status: item['Verification Status'], remark: rem, time: new Date().toLocaleString() });
-        showToast('✅ Scan submitted!');
-        box.innerHTML = '<p style="color:#16a34a;font-size:13px;text-align:center;padding:8px">✅ Scan submitted!</p>';
+        const r = await fetch('/scan-log/' + qrId, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ remark: rem }) });
+        if (r.ok) {
+          myScans.unshift({ qr_id: qrId, item_name: item['Item Name'], status: item['Verification Status'], remark: rem, time: new Date().toLocaleString() });
+          showToast('✅ Scan submitted!');
+          box.innerHTML = '<p style="color:#16a34a;font-size:13px;text-align:center;padding:8px">✅ Scan submitted by ' + cu.username + '!</p>';
+        } else showToast('❌ Failed to submit');
       });
     }
 
@@ -2167,10 +2213,12 @@
       const el = document.getElementById('m-hist');
       if (!myScans.length) { el.innerHTML = '<p style="text-align:center;color:#9ca3af;padding:20px">No scans yet</p>'; return; }
       el.innerHTML = myScans.map(function (s) {
-        return '<div class="msc"><h4>' + (s.item_name || s.qr_id) + '</h4><p>QR: ' + s.qr_id + '</p>'
+        return '<div class="msc"><h4>' + (s.item_name || s.qr_id) + '</h4>'
+          + '<p>QR: ' + s.qr_id + '</p>'
           + '<p>Status: <span class="badge ' + (s.status || '') + '">' + s.status + '</span></p>'
           + (s.remark ? '<p>Remark: ' + s.remark + '</p>' : '')
-          + '<p style="font-size:11px;color:#9ca3af;margin-top:4px">' + s.time + '</p></div>';
+          + '<p style="font-size:11px;color:#9ca3af;margin-top:4px">' + s.time + '</p>'
+          + '</div>';
       }).join('');
     }
 

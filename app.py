@@ -69,9 +69,30 @@ def logout():
 def me():
     if 'username' not in session:
         return jsonify({"logged_in": False})
-    return jsonify({"logged_in": True, "username": session['username'],
-                    "role": session['role'], "can_edit": session.get('can_edit', 0),
-                    "excel_access": session.get('excel_access', False)})
+    # Always fetch fresh can_edit from DB
+    user = get_user(session['username'])
+    if user:
+        session['can_edit'] = user['can_edit']
+    return jsonify({
+        "logged_in": True,
+        "username": session['username'],
+        "role": session['role'],
+        "can_edit": session.get('can_edit', 0),
+        "excel_access": session.get('excel_access', False)
+    })
+
+@app.route("/my-permissions")
+@login_required
+def my_permissions():
+    # Always fetch fresh permissions from DB
+    user = get_user(session['username'])
+    if user:
+        session['can_edit'] = user['can_edit']
+        return jsonify({
+            "can_edit": user['can_edit'],
+            "role": user['role']
+        })
+    return jsonify({"can_edit": 0, "role": "member"})
 
 @app.route("/register-head", methods=["POST"])
 def register_head():
@@ -123,8 +144,9 @@ def remove_user(uid):
 @app.route("/users/<int:uid>/permission", methods=["POST"])
 @head_required
 def update_perm(uid):
-    update_user_permission(uid, 1 if request.json.get("can_edit") else 0)
-    return jsonify({"success": True})
+    can_edit = 1 if request.json.get("can_edit") else 0
+    update_user_permission(uid, can_edit)
+    return jsonify({"success": True, "can_edit": can_edit})
 
 @app.route("/excel/share", methods=["POST"])
 @head_required
@@ -152,14 +174,19 @@ def excel_status():
         df = load_data()
         role = session.get('role')
         has_access = role == 'head' or session.get('excel_access', False)
+        # Refresh can_edit from DB
+        user = get_user(session['username'])
+        can_edit = user['can_edit'] if user else 0
+        session['can_edit'] = can_edit
         return jsonify({
             "available": True,
             "shared": info.get('shared', 0) == 1,
             "total_items": len(df),
-            "has_access": has_access
+            "has_access": has_access,
+            "can_edit": can_edit
         })
     except:
-        return jsonify({"available": False, "shared": False, "has_access": False})
+        return jsonify({"available": False, "shared": False, "has_access": False, "can_edit": 0})
 
 @app.route("/item/<qr_id>", methods=["GET"])
 @login_required
@@ -184,7 +211,9 @@ def update_item(qr_id):
         data = request.json
         remark = data.pop("remark", "")
         role = session.get('role')
-        can_edit = session.get('can_edit', 0)
+        # Always fetch fresh can_edit from DB
+        user = get_user(session['username'])
+        can_edit = user['can_edit'] if user else 0
         if role != 'head' and not can_edit:
             return jsonify({"error": "No edit permission"}), 403
         df = load_data()
@@ -264,40 +293,45 @@ def serve_qr(qr_id):
         return "Not found", 404
     return send_file(path, mimetype="image/png")
 
+def get_all_logs():
+    """Get logs from both SQLite and Excel, merged"""
+    logs = get_scan_logs()
+    log_qr_ids = {l['qr_id'] for l in logs}
+    extra_logs = []
+    if os.path.exists(EXCEL_FILE):
+        try:
+            df = load_data()
+            for _, row in df.iterrows():
+                scanned_by = str(row.get('Scanned By', '')).strip()
+                qr_id = str(row.get('QR Code ID', '')).strip()
+                last_scanned = str(row.get('Last Scanned', '')).strip()
+                status = str(row.get('Verification Status', '')).strip()
+                if (scanned_by and scanned_by != 'nan' and
+                    qr_id and qr_id != 'nan' and
+                    qr_id not in log_qr_ids):
+                    extra_logs.append({
+                        'id': None,
+                        'qr_id': qr_id,
+                        'scanned_by': scanned_by,
+                        'timestamp': last_scanned if last_scanned != 'nan' else '',
+                        'remark': '',
+                        'verification_status': status if status != 'nan' else ''
+                    })
+        except:
+            pass
+    return logs + extra_logs
+
 @app.route("/report")
 @head_required
 def get_report():
     try:
-        logs = get_scan_logs()
+        all_logs = get_all_logs()
         df = load_data()
         total = len(df)
-
-        # Get scans from Excel too
-        log_qr_ids = {l['qr_id'] for l in logs}
-        extra_logs = []
-
-        for _, row in df.iterrows():
-            scanned_by = str(row.get('Scanned By', '')).strip()
-            qr_id = str(row.get('QR Code ID', '')).strip()
-            last_scanned = str(row.get('Last Scanned', '')).strip()
-            if (scanned_by and scanned_by != 'nan' and
-                qr_id and qr_id != 'nan' and
-                qr_id not in log_qr_ids):
-                extra_logs.append({
-                    'id': None,
-                    'qr_id': qr_id,
-                    'scanned_by': scanned_by,
-                    'timestamp': last_scanned if last_scanned != 'nan' else '',
-                    'remark': '',
-                    'verification_status': str(row.get('Verification Status', '')).strip()
-                })
-
-        all_logs = logs + extra_logs
         scanned = len(all_logs)
         verified = sum(1 for l in all_logs if l['verification_status'] == 'Verified')
         pending = sum(1 for l in all_logs if l['verification_status'] == 'Pending')
         rejected = sum(1 for l in all_logs if l['verification_status'] == 'Rejected')
-
         return jsonify({
             "total": total, "scanned": scanned,
             "verified": verified, "pending": pending,
@@ -311,36 +345,16 @@ def get_report():
 @head_required
 def download_report():
     try:
-        logs = get_scan_logs()
+        all_logs = get_all_logs()
         df_inv = load_data() if os.path.exists(EXCEL_FILE) else pd.DataFrame()
-
-        # Merge Excel scans not in SQLite
-        log_qr_ids = {l['qr_id'] for l in logs}
-        extra_logs = []
-        for _, row in df_inv.iterrows():
-            scanned_by = str(row.get('Scanned By', '')).strip()
-            qr_id = str(row.get('QR Code ID', '')).strip()
-            if scanned_by and scanned_by != 'nan' and qr_id not in log_qr_ids:
-                extra_logs.append({
-                    'qr_id': qr_id,
-                    'scanned_by': scanned_by,
-                    'timestamp': str(row.get('Last Scanned', '')),
-                    'remark': '',
-                    'verification_status': str(row.get('Verification Status', ''))
-                })
-
-        all_logs = logs + extra_logs
         output = io.BytesIO()
-
         with pd.ExcelWriter(output, engine='xlsxwriter') as writer:
             if not df_inv.empty and all_logs:
                 df_l = pd.DataFrame(all_logs)[['qr_id','scanned_by','timestamp','remark','verification_status']]
                 df_l.columns = ['QR Code ID','Scanned By','Scan Time','Remark','Scan Status']
-                df_merged = pd.merge(df_inv, df_l, on='QR Code ID', how='left')
-                df_merged.to_excel(writer, sheet_name='Scan Report', index=False)
+                pd.merge(df_inv, df_l, on='QR Code ID', how='left').to_excel(writer, sheet_name='Scan Report', index=False)
             elif not df_inv.empty:
                 df_inv.to_excel(writer, sheet_name='Scan Report', index=False)
-
             total = len(df_inv)
             scanned = len(all_logs)
             pd.DataFrame({
@@ -351,7 +365,6 @@ def download_report():
                     sum(1 for l in all_logs if l['verification_status']=='Rejected'),
                     total - scanned]
             }).to_excel(writer, sheet_name='Summary', index=False)
-
         output.seek(0)
         return send_file(output,
             mimetype='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
