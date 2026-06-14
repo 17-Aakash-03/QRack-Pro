@@ -120,7 +120,7 @@
       font-size: 16px;
       font-weight: 700;
       color: #4f46e5;
-      margin-bottom: 20px;
+      margin-bottom: 16px;
       text-align: center
     }
 
@@ -133,7 +133,7 @@
       background: #f3f4f6;
       border-radius: 8px;
       padding: 4px;
-      margin-bottom: 20px;
+      margin-bottom: 16px;
       gap: 4px
     }
 
@@ -143,7 +143,7 @@
       border: none;
       border-radius: 6px;
       background: transparent;
-      font-size: 13px;
+      font-size: 12px;
       cursor: pointer;
       color: #6b7280;
       font-weight: 500;
@@ -163,7 +163,7 @@
       padding: 10px;
       border-radius: 8px;
       font-size: 13px;
-      margin-bottom: 14px;
+      margin-bottom: 12px;
       display: none;
       text-align: center
     }
@@ -174,7 +174,7 @@
       padding: 10px;
       border-radius: 8px;
       font-size: 13px;
-      margin-bottom: 14px;
+      margin-bottom: 12px;
       display: none;
       text-align: center
     }
@@ -236,11 +236,11 @@
 
     .nav-btn {
       flex: 1;
-      min-width: 60px;
-      padding: 12px 6px;
+      min-width: 55px;
+      padding: 12px 4px;
       border: none;
       background: none;
-      font-size: 12px;
+      font-size: 11px;
       cursor: pointer;
       color: #6b7280;
       border-bottom: 3px solid transparent;
@@ -484,6 +484,12 @@
       background: linear-gradient(135deg, #7c3aed, #a855f7)
     }
 
+    .bp.sm {
+      padding: 9px 12px;
+      font-size: 13px;
+      width: auto
+    }
+
     .bs {
       width: 100%;
       padding: 10px;
@@ -512,6 +518,15 @@
       cursor: pointer
     }
 
+    .forgot-link {
+      text-align: center;
+      margin-top: 10px;
+      font-size: 13px;
+      color: #4f46e5;
+      cursor: pointer;
+      text-decoration: underline
+    }
+
     .ac-box {
       background: linear-gradient(135deg, #f5f3ff, #ede9fe);
       border: 2px solid #c4b5fd;
@@ -529,17 +544,18 @@
     }
 
     .ac-code {
-      font-size: 36px;
+      font-size: 32px;
       font-weight: 800;
       color: #4f46e5;
-      letter-spacing: 8px;
+      letter-spacing: 6px;
       font-family: monospace;
       background: white;
       border: 2px dashed #c4b5fd;
       border-radius: 10px;
-      padding: 14px 20px;
+      padding: 12px 16px;
       margin: 0 0 12px;
-      display: block
+      display: block;
+      word-break: break-all
     }
 
     .ac-hint {
@@ -569,9 +585,9 @@
     }
 
     .ci {
-      font-size: 24px;
+      font-size: 22px;
       font-weight: 700;
-      letter-spacing: 6px;
+      letter-spacing: 4px;
       text-align: center;
       font-family: monospace;
       text-transform: uppercase;
@@ -1085,7 +1101,8 @@
       align-items: center;
       padding: 12px 0;
       border-bottom: 1px solid #f3f4f6;
-      gap: 10px
+      gap: 8px;
+      flex-wrap: wrap
     }
 
     .ui:last-child {
@@ -1093,8 +1110,8 @@
     }
 
     .ua {
-      width: 38px;
-      height: 38px;
+      width: 36px;
+      height: 36px;
       border-radius: 50%;
       background: linear-gradient(135deg, #4f46e5, #7c3aed);
       color: white;
@@ -1102,7 +1119,7 @@
       align-items: center;
       justify-content: center;
       font-weight: 700;
-      font-size: 15px;
+      font-size: 14px;
       flex-shrink: 0
     }
 
@@ -1112,12 +1129,13 @@
     }
 
     .um {
-      font-size: 12px;
+      font-size: 11px;
       color: #6b7280;
       margin-top: 2px;
       display: flex;
       align-items: center;
-      gap: 6px
+      gap: 4px;
+      flex-wrap: wrap
     }
 
     .hb {
@@ -1138,6 +1156,14 @@
       border-radius: 10px;
       font-size: 11px;
       font-weight: 600
+    }
+
+    .user-actions {
+      display: flex;
+      gap: 6px;
+      align-items: center;
+      margin-left: auto;
+      flex-wrap: wrap
     }
 
     .cb {
@@ -1282,10 +1308,61 @@
       display: none;
       z-index: 9999;
       box-shadow: 0 4px 16px rgba(0, 0, 0, .2);
-      white-space: nowrap
+      white-space: nowrap;
+      max-width: 90vw;
+      text-align: center
     }
 
-    .member-info {
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, .5);
+      z-index: 888;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 16px
+    }
+
+    .modal-overlay.show {
+      display: flex
+    }
+
+    .modal {
+      background: white;
+      border-radius: 16px;
+      padding: 24px;
+      width: 100%;
+      max-width: 380px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, .2)
+    }
+
+    .modal h3 {
+      font-size: 18px;
+      font-weight: 700;
+      color: #4f46e5;
+      margin-bottom: 16px;
+      text-align: center
+    }
+
+    .modal h3.m {
+      color: #7c3aed
+    }
+
+    .modal-close {
+      float: right;
+      background: none;
+      border: none;
+      font-size: 20px;
+      cursor: pointer;
+      color: #6b7280;
+      margin-top: -4px
+    }
+
+    .member-info-box {
       background: rgba(255, 255, 255, .1);
       border: 1px solid rgba(255, 255, 255, .2);
       border-radius: 10px;
@@ -1295,13 +1372,13 @@
       margin-top: 14px
     }
 
-    .member-info p {
+    .member-info-box p {
       font-size: 13px;
       opacity: .9;
       margin-bottom: 4px
     }
 
-    .member-info small {
+    .member-info-box small {
       font-size: 12px;
       opacity: .7
     }
@@ -1309,6 +1386,24 @@
 </head>
 
 <body>
+
+  <!-- RESET PASSWORD PAGE (shown if token in URL) -->
+  <div id="reset-page"
+    style="display:none;min-height:100vh;align-items:center;justify-content:center;background:linear-gradient(135deg,#4f46e5,#7c3aed);padding:16px">
+    <div
+      style="background:white;border-radius:16px;padding:28px;width:100%;max-width:380px;box-shadow:0 8px 32px rgba(0,0,0,.2)">
+      <div style="text-align:center;margin-bottom:20px"><span style="font-size:48px">📦</span>
+        <h2 style="color:#4f46e5;margin-top:8px">Reset Password</h2>
+      </div>
+      <div class="l-err" id="rp-err"></div>
+      <div class="l-suc" id="rp-suc"></div>
+      <div class="fg"><label>New Password</label><input type="password" id="rp-pass" placeholder="Enter new password" />
+      </div>
+      <div class="fg"><label>Confirm Password</label><input type="password" id="rp-pass2"
+          placeholder="Confirm new password" /></div>
+      <button class="bp" id="rp-btn">🔐 Reset Password</button>
+    </div>
+  </div>
 
   <!-- LOGIN PAGE -->
   <div id="login-page">
@@ -1343,12 +1438,14 @@
           <div class="fg"><label>Username</label><input type="text" id="l-u" placeholder="Enter username" /></div>
           <div class="fg"><label>Password</label><input type="password" id="l-p" placeholder="Enter password" /></div>
           <button class="bp" id="login-btn">🔐 Login</button>
-          <p id="l-hint" style="text-align:center;font-size:12px;color:#9ca3af;margin-top:12px">Default head: teamhead /
+          <p id="l-hint" style="text-align:center;font-size:12px;color:#9ca3af;margin-top:10px">Default head: teamhead /
             admin123</p>
+          <p class="forgot-link" id="forgot-link">Forgot password?</p>
         </div>
         <!-- HEAD REGISTER -->
         <div id="hrf" style="display:none">
           <div class="fg"><label>Username</label><input type="text" id="hr-u" placeholder="Choose username" /></div>
+          <div class="fg"><label>Email</label><input type="email" id="hr-e" placeholder="Your email address" /></div>
           <div class="fg"><label>Password</label><input type="password" id="hr-p" placeholder="Choose password" /></div>
           <div class="fg"><label>Confirm Password</label><input type="password" id="hr-p2"
               placeholder="Confirm password" /></div>
@@ -1356,11 +1453,38 @@
         </div>
         <!-- MEMBER INFO -->
         <div id="member-info-box" style="display:none">
-          <div class="member-info">
+          <div class="member-info-box">
             <p>🔑 Contact your Team Head to get login credentials</p>
             <small>Members are created by Team Head only</small>
           </div>
         </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FORGOT PASSWORD MODAL -->
+  <div class="modal-overlay" id="forgot-modal">
+    <div class="modal">
+      <button class="modal-close" id="forgot-close">✕</button>
+      <h3 id="forgot-title">🔑 Forgot Password</h3>
+      <div class="l-err" id="f-err"></div>
+      <div class="l-suc" id="f-suc"></div>
+      <div id="f-head-form">
+        <p style="font-size:13px;color:#6b7280;margin-bottom:14px">Enter your username and email to receive a reset
+          link.</p>
+        <div class="fg"><label>Username</label><input type="text" id="f-user" placeholder="Your username" /></div>
+        <div class="fg"><label>Email</label><input type="email" id="f-email" placeholder="Your registered email" />
+        </div>
+        <button class="bp" id="f-send-btn">📧 Send Reset Link</button>
+      </div>
+      <div id="f-member-form" style="display:none">
+        <p style="font-size:13px;color:#6b7280;margin-bottom:14px">Enter your username OR email. Your Team Head will be
+          notified to reset your password.</p>
+        <div class="fg"><label>Username (optional)</label><input type="text" id="f-m-user"
+            placeholder="Your username" /></div>
+        <div class="fg"><label>Email (optional)</label><input type="email" id="f-m-email" placeholder="Your email" />
+        </div>
+        <button class="bp m" id="f-m-send-btn">📧 Send Request</button>
       </div>
     </div>
   </div>
@@ -1371,7 +1495,7 @@
       <h1>📦 QRack</h1>
       <div class="user-info">
         <span id="h-un"></span>
-        <span class="role-badge">👑 Team Head</span>
+        <span class="role-badge">👑 Head</span>
         <button class="logout-btn" id="h-lo">Logout</button>
       </div>
     </header>
@@ -1417,14 +1541,10 @@
     <div class="page" id="hs">
       <div class="card">
         <div class="ct">📷 Scan QR Code</div>
-        <div class="mr">
-          <button class="mb active" id="h-rd">🔍 Read</button>
-          <button class="mb" id="h-up">✏️ Update</button>
-        </div>
-        <div class="tr">
-          <button class="tb" id="h-cb">📷 Camera</button>
-          <button class="tb active" id="h-fb">🖼️ Upload</button>
-        </div>
+        <div class="mr"><button class="mb active" id="h-rd">🔍 Read</button><button class="mb" id="h-up">✏️
+            Update</button></div>
+        <div class="tr"><button class="tb" id="h-cb">📷 Camera</button><button class="tb active" id="h-fb">🖼️
+            Upload</button></div>
         <div id="h-cambox" style="display:none">
           <div class="sw"><video id="hv" autoplay playsinline></video><canvas id="hc"></canvas>
             <div class="sf"><span></span></div>
@@ -1435,8 +1555,7 @@
             <div class="icon">🖼️</div>
             <p>Click to upload QR image</p>
             <p class="hint">PNG, JPG</p><input type="file" id="h-qri" accept="image/*" />
-          </div>
-          <canvas id="h-fc" style="display:none"></canvas>
+          </div><canvas id="h-fc" style="display:none"></canvas>
         </div>
         <div class="stb" id="h-st">Upload QR or use camera</div>
         <div id="h-res"></div>
@@ -1482,7 +1601,7 @@
               <thead>
                 <tr>
                   <th>QR ID</th>
-                  <th>Item Name</th>
+                  <th>Item</th>
                   <th>Scanned By</th>
                   <th>Time</th>
                   <th>Status</th>
@@ -1499,8 +1618,9 @@
     <div class="page" id="ht">
       <div class="card">
         <div class="ct">➕ Add Team Member</div>
-        <p style="font-size:13px;color:#6b7280;margin-bottom:14px">Create login credentials for your team members.</p>
         <div class="fg"><label>Username</label><input type="text" id="nu-n" placeholder="Member username" /></div>
+        <div class="fg"><label>Email (optional)</label><input type="email" id="nu-e-mail"
+            placeholder="Member email — for notifications" /></div>
         <div class="fg"><label>Password</label><input type="password" id="nu-p" placeholder="Member password" /></div>
         <div class="fg"><label>Role</label><select id="nu-r">
             <option value="member">Member</option>
@@ -1598,8 +1718,6 @@
         <div class="pi"><span class="pk">Scan QR Codes</span><span class="pv" style="color:#16a34a">✅ Allowed</span>
         </div>
         <div class="pi"><span class="pk">Add Remarks</span><span class="pv" style="color:#16a34a">✅ Allowed</span></div>
-        <div class="pi"><span class="pk">View Item Details</span><span class="pv" style="color:#16a34a">✅ Allowed</span>
-        </div>
         <div class="pi"><span class="pk">Edit Items</span><span class="pv" id="m-ep">-</span></div>
         <div class="pi"><span class="pk">Change Status</span><span class="pv" style="color:#dc2626">❌ Not Allowed</span>
         </div>
@@ -1631,17 +1749,12 @@
         </div>
         <div class="card">
           <div class="ct m">📷 Scan QR Code</div>
-          <!-- Edit mode row — shown only if can_edit -->
           <div id="m-mode-row" style="display:none">
-            <div class="mr">
-              <button class="mb active" id="m-rd">🔍 Read</button>
-              <button class="mb" id="m-ed">✏️ Edit</button>
-            </div>
+            <div class="mr"><button class="mb active" id="m-rd">🔍 Read</button><button class="mb" id="m-ed">✏️
+                Edit</button></div>
           </div>
-          <div class="tr">
-            <button class="tb" id="m-cb">📷 Camera</button>
-            <button class="tb active" id="m-fb">🖼️ Upload</button>
-          </div>
+          <div class="tr"><button class="tb" id="m-cb">📷 Camera</button><button class="tb active" id="m-fb">🖼️
+              Upload</button></div>
           <div id="m-cambox" style="display:none">
             <div class="sw"><video id="mv" autoplay playsinline></video><canvas id="mc"></canvas>
               <div class="sf"><span></span></div>
@@ -1652,8 +1765,7 @@
               <div class="icon">🖼️</div>
               <p>Click to upload QR image</p>
               <p class="hint">PNG, JPG</p><input type="file" id="m-qri" accept="image/*" />
-            </div>
-            <canvas id="m-fc" style="display:none"></canvas>
+            </div><canvas id="m-fc" style="display:none"></canvas>
           </div>
           <div class="stb m" id="m-st">Upload QR or use camera</div>
           <div id="m-res"></div>
@@ -1671,22 +1783,62 @@
     </div>
   </div>
 
+  <!-- CHANGE PASSWORD MODAL -->
+  <div class="modal-overlay" id="chpw-modal">
+    <div class="modal">
+      <button class="modal-close" id="chpw-close">✕</button>
+      <h3>🔑 Change Password</h3>
+      <p style="font-size:13px;color:#6b7280;margin-bottom:14px" id="chpw-user-label"></p>
+      <div class="l-err" id="chpw-err"></div>
+      <div class="l-suc" id="chpw-suc"></div>
+      <div class="fg"><label>New Password</label><input type="password" id="chpw-pass"
+          placeholder="Enter new password" /></div>
+      <div class="fg"><label>Confirm Password</label><input type="password" id="chpw-pass2"
+          placeholder="Confirm new password" /></div>
+      <button class="bp" id="chpw-btn">💾 Update Password</button>
+    </div>
+  </div>
+
   <div class="toast" id="toast"></div>
 
   <script>
     let cu = null, selRole = 'head';
     let hMode = 'read', hMeth = 'file', mMode = 'read', mMeth = 'file';
     let hCam = null, mCam = null, hSc = true, mSc = true;
-    let myScans = [], invMap = {};
-    let mCanEdit = false;
+    let myScans = [], invMap = {}, mCanEdit = false;
+    let chpwUserId = null, resetToken = '';
 
     const hV = document.getElementById('hv'), hC = document.getElementById('hc'), hX = hC.getContext('2d');
     const mV = document.getElementById('mv'), mC = document.getElementById('mc'), mX = mC.getContext('2d');
 
-    // SESSION CHECK
+    // CHECK FOR RESET TOKEN IN URL
     window.addEventListener('load', async function () {
+      const params = new URLSearchParams(window.location.search);
+      const token = params.get('token');
+      if (token) {
+        resetToken = token;
+        document.getElementById('login-page').style.display = 'none';
+        document.getElementById('reset-page').style.display = 'flex';
+        return;
+      }
       const r = await fetch('/me'); const d = await r.json();
       if (d.logged_in) { cu = d; showDash(d); }
+    });
+
+    // RESET PASSWORD PAGE
+    document.getElementById('rp-btn').addEventListener('click', async function () {
+      const p = document.getElementById('rp-pass').value.trim();
+      const p2 = document.getElementById('rp-pass2').value.trim();
+      const err = document.getElementById('rp-err');
+      const suc = document.getElementById('rp-suc');
+      err.style.display = 'none'; suc.style.display = 'none';
+      if (!p || !p2) { err.textContent = 'Fill all fields'; err.style.display = 'block'; return; }
+      if (p !== p2) { err.textContent = 'Passwords do not match'; err.style.display = 'block'; return; }
+      if (p.length < 4) { err.textContent = 'Password too short'; err.style.display = 'block'; return; }
+      const r = await fetch('/reset-password', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ token: resetToken, password: p }) });
+      const d = await r.json();
+      if (d.success) { suc.textContent = '✅ ' + d.message + ' Redirecting to login...'; suc.style.display = 'block'; setTimeout(function () { window.location.href = '/'; }, 2000); }
+      else { err.textContent = d.error || 'Failed'; err.style.display = 'block'; }
     });
 
     // ROLE SELECTOR
@@ -1700,16 +1852,50 @@
       document.getElementById('member-info-box').style.display = role === 'member' ? 'block' : 'none';
       document.getElementById('l-hint').style.display = role === 'head' ? 'block' : 'none';
       document.getElementById('login-btn').className = role === 'member' ? 'bp m' : 'bp';
+      document.getElementById('forgot-title').textContent = role === 'head' ? '🔑 Forgot Password (Head)' : '🔑 Forgot Password (Member)';
+      document.getElementById('f-head-form').style.display = role === 'head' ? 'block' : 'none';
+      document.getElementById('f-member-form').style.display = role === 'member' ? 'block' : 'none';
       clearMsg(); showLF();
     }
 
     document.getElementById('ht-login').addEventListener('click', function () { this.classList.add('active'); document.getElementById('ht-register').classList.remove('active'); showLF(); clearMsg(); });
     document.getElementById('ht-register').addEventListener('click', function () { this.classList.add('active'); document.getElementById('ht-login').classList.remove('active'); document.getElementById('lf').style.display = 'none'; document.getElementById('hrf').style.display = 'block'; clearMsg(); });
-
     function showLF() { document.getElementById('lf').style.display = 'block'; document.getElementById('hrf').style.display = 'none'; document.getElementById('ht-login').classList.add('active'); document.getElementById('ht-register').classList.remove('active'); }
     function clearMsg() { document.getElementById('l-err').style.display = 'none'; document.getElementById('l-suc').style.display = 'none'; }
     function showErr(m) { const e = document.getElementById('l-err'); e.textContent = m; e.style.display = 'block'; }
     function showSuc(m) { const e = document.getElementById('l-suc'); e.textContent = m; e.style.display = 'block'; }
+
+    // FORGOT PASSWORD
+    document.getElementById('forgot-link').addEventListener('click', function () {
+      document.getElementById('f-err').style.display = 'none';
+      document.getElementById('f-suc').style.display = 'none';
+      document.getElementById('forgot-modal').classList.add('show');
+    });
+    document.getElementById('forgot-close').addEventListener('click', function () { document.getElementById('forgot-modal').classList.remove('show'); });
+
+    document.getElementById('f-send-btn').addEventListener('click', async function () {
+      const user = document.getElementById('f-user').value.trim();
+      const email = document.getElementById('f-email').value.trim();
+      const err = document.getElementById('f-err'); const suc = document.getElementById('f-suc');
+      err.style.display = 'none'; suc.style.display = 'none';
+      if (!user || !email) { err.textContent = 'Enter username and email'; err.style.display = 'block'; return; }
+      const r = await fetch('/forgot-password', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ role: 'head', username: user, email: email }) });
+      const d = await r.json();
+      if (d.success) { suc.textContent = '✅ ' + d.message; suc.style.display = 'block'; }
+      else { err.textContent = d.error || 'Failed'; err.style.display = 'block'; }
+    });
+
+    document.getElementById('f-m-send-btn').addEventListener('click', async function () {
+      const user = document.getElementById('f-m-user').value.trim();
+      const email = document.getElementById('f-m-email').value.trim();
+      const err = document.getElementById('f-err'); const suc = document.getElementById('f-suc');
+      err.style.display = 'none'; suc.style.display = 'none';
+      if (!user && !email) { err.textContent = 'Enter username or email'; err.style.display = 'block'; return; }
+      const r = await fetch('/forgot-password', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ role: 'member', username: user, email: email }) });
+      const d = await r.json();
+      if (d.success) { suc.textContent = '✅ ' + d.message; suc.style.display = 'block'; }
+      else { err.textContent = d.error || 'Failed'; err.style.display = 'block'; }
+    });
 
     // LOGIN
     document.getElementById('login-btn').addEventListener('click', doLogin);
@@ -1717,10 +1903,7 @@
     async function doLogin() {
       const u = document.getElementById('l-u').value.trim(), p = document.getElementById('l-p').value.trim();
       if (!u || !p) { showErr('Enter username and password'); return; }
-      const r = await fetch('/login', {
-        method: 'POST', headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username: u, password: p, expected_role: selRole })
-      });
+      const r = await fetch('/login', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ username: u, password: p, expected_role: selRole }) });
       const d = await r.json();
       if (d.success) { cu = d; showDash(d); } else showErr(d.error || 'Login failed');
     }
@@ -1728,14 +1911,15 @@
     // HEAD REGISTER
     document.getElementById('head-reg-btn').addEventListener('click', async function () {
       const u = document.getElementById('hr-u').value.trim();
+      const e = document.getElementById('hr-e').value.trim();
       const p = document.getElementById('hr-p').value.trim();
       const p2 = document.getElementById('hr-p2').value.trim();
-      if (!u || !p) { showErr('Fill all fields'); return; }
+      if (!u || !e || !p) { showErr('Fill all fields'); return; }
       if (p !== p2) { showErr('Passwords do not match'); return; }
       if (p.length < 4) { showErr('Password too short (min 4)'); return; }
-      const r = await fetch('/register-head', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ username: u, password: p }) });
+      const r = await fetch('/register-head', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ username: u, password: p, email: e }) });
       const d = await r.json();
-      if (d.success) { showSuc('✅ Account created! You can now login.'); document.getElementById('hr-u').value = ''; document.getElementById('hr-p').value = ''; document.getElementById('hr-p2').value = ''; }
+      if (d.success) { showSuc('✅ Account created! You can now login.'); document.getElementById('hr-u').value = ''; document.getElementById('hr-e').value = ''; document.getElementById('hr-p').value = ''; document.getElementById('hr-p2').value = ''; }
       else showErr(d.error || 'Failed');
     });
 
@@ -1751,12 +1935,11 @@
         document.getElementById('m-un').textContent = '👤 ' + u.username;
         document.getElementById('m-wlc').textContent = '👋 Welcome, ' + u.username + '!';
         mCanEdit = u.can_edit === 1 || u.can_edit === true;
-        updateMemberPermUI();
-        loadMHome();
+        updateMPerms(); loadMHome();
       }
     }
 
-    function updateMemberPermUI() {
+    function updateMPerms() {
       document.getElementById('m-ep').textContent = mCanEdit ? '✅ Allowed' : '❌ Not Allowed';
       document.getElementById('m-ep').style.color = mCanEdit ? '#16a34a' : '#dc2626';
       document.getElementById('m-mode-row').style.display = mCanEdit ? 'block' : 'none';
@@ -1851,11 +2034,8 @@
 
     // MEMBER HOME
     async function loadMHome() {
-      // Fetch fresh permissions
       const pr = await fetch('/my-permissions'); const pd = await pr.json();
-      mCanEdit = pd.can_edit === 1 || pd.can_edit === true;
-      updateMemberPermUI();
-
+      mCanEdit = pd.can_edit === 1 || pd.can_edit === true; updateMPerms();
       const r = await fetch('/excel/status'); const d = await r.json();
       const el = document.getElementById('m-ex-st');
       if (!d.available) { el.innerHTML = '<div class="na-box"><h3>⚠️ No Excel Sheet</h3><p>Team Head has not uploaded any sheet yet.</p></div>'; }
@@ -1869,16 +2049,12 @@
           if (d.success) { cu.excel_access = true; showToast('✅ Access granted!'); loadMHome(); }
           else document.getElementById('hm-ce').textContent = d.error || 'Invalid code';
         });
-      }
-      else { el.innerHTML = '<div class="ok-box"><h3>✅ Access Active</h3><p>' + d.total_items + ' items ready for scanning</p></div>'; }
+      } else { el.innerHTML = '<div class="ok-box"><h3>✅ Access Active</h3><p>' + d.total_items + ' items ready for scanning</p></div>'; }
     }
 
     async function checkMAccess() {
-      // Always fetch fresh permissions
       const pr = await fetch('/my-permissions'); const pd = await pr.json();
-      mCanEdit = pd.can_edit === 1 || pd.can_edit === true;
-      updateMemberPermUI();
-
+      mCanEdit = pd.can_edit === 1 || pd.can_edit === true; updateMPerms();
       const r = await fetch('/excel/status'); const d = await r.json();
       document.getElementById('m-no-acc').style.display = 'none';
       document.getElementById('m-code-area').style.display = 'none';
@@ -1890,11 +2066,10 @@
         document.getElementById('m-code-area').style.display = 'block';
       } else {
         document.getElementById('m-scan-area').style.display = 'block';
-        document.getElementById('m-access-info').textContent = d.total_items + ' items available' + (mCanEdit ? ' — Edit enabled' : '');
+        document.getElementById('m-access-info').textContent = d.total_items + ' items' + (mCanEdit ? ' — Edit enabled' : '');
       }
     }
 
-    // CODE VERIFY
     document.getElementById('m-cv').addEventListener('click', async function () {
       const code = document.getElementById('m-ci').value.trim().toUpperCase();
       const r = await fetch('/verify-code', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ code: code }) });
@@ -1972,18 +2147,14 @@
           const fc = document.getElementById('h-fc'); fc.width = img.width; fc.height = img.height; fc.getContext('2d').drawImage(img, 0, 0);
           const code = jsQR(fc.getContext('2d').getImageData(0, 0, fc.width, fc.height).data, fc.width, fc.height);
           if (code) { setHSt('QR: ' + code.data); document.getElementById('h-res').innerHTML = '<img src="' + ev.target.result + '" class="qp"/>'; procH(code.data); }
-          else setHSt('Could not read QR. Try clearer image.');
+          else setHSt('Could not read QR.');
         }; img.src = ev.target.result;
       }; rd.readAsDataURL(f); e.target.value = '';
     });
 
     async function procH(qrId) {
       const r = await fetch('/item/' + qrId);
-      if (!r.ok) {
-        const err = await r.json();
-        document.getElementById('h-res').innerHTML += '<div class="rc"><p style="color:#dc2626;text-align:center;padding:10px">❌ ' + (err.error || 'Not found: ' + qrId) + '</p></div>';
-        addHA(); return;
-      }
+      if (!r.ok) { const err = await r.json(); document.getElementById('h-res').innerHTML += '<div class="rc"><p style="color:#dc2626;text-align:center;padding:10px">❌ ' + (err.error || 'Not found') + '</p></div>'; addHA(); return; }
       const item = await r.json();
       if (hMode === 'read') showHR(item); else showHE(item);
     }
@@ -2000,7 +2171,7 @@
         + '<div class="ir"><span class="il">Status</span><span class="iv"><span class="badge ' + v + '">' + v + '</span></span></div>'
         + (item['Last Scanned'] ? '<div class="ir"><span class="il">Last Scanned</span><span class="iv">' + item['Last Scanned'] + '</span></div>' : '')
         + (item['Scanned By'] ? '<div class="ir"><span class="il">Scanned By</span><span class="iv" style="color:#4f46e5;font-weight:700">👤 ' + item['Scanned By'] + '</span></div>' : '')
-        + '<div style="margin-top:12px"><button class="bp" id="h-en" style="max-width:160px;padding:9px;font-size:13px">✏️ Edit Item</button></div></div>';
+        + '<div style="margin-top:12px"><button class="bp sm" id="h-en">✏️ Edit Item</button></div></div>';
       document.getElementById('h-en').addEventListener('click', function () { hMode = 'update'; document.getElementById('h-res').innerHTML = ''; showHE(item); document.getElementById('h-up').classList.add('active'); document.getElementById('h-rd').classList.remove('active'); });
       addHA();
     }
@@ -2030,23 +2201,17 @@
     // REPORT
     async function loadReport() {
       const r = await fetch('/report'); const d = await r.json(); if (d.error) return;
-      document.getElementById('r-t').textContent = d.total;
-      document.getElementById('r-s').textContent = d.scanned;
-      document.getElementById('r-n').textContent = d.not_scanned;
-      document.getElementById('r-v').textContent = d.verified;
-      document.getElementById('r-p').textContent = d.pending;
-      document.getElementById('r-r').textContent = d.rejected;
+      document.getElementById('r-t').textContent = d.total; document.getElementById('r-s').textContent = d.scanned;
+      document.getElementById('r-n').textContent = d.not_scanned; document.getElementById('r-v').textContent = d.verified;
+      document.getElementById('r-p').textContent = d.pending; document.getElementById('r-r').textContent = d.rejected;
       const ir = await fetch('/items'); const inv = await ir.json();
       inv.forEach(function (i) { invMap[i['QR Code ID']] = i['Item Name']; });
       document.getElementById('lg-rows').innerHTML = d.logs.map(function (l) {
-        return '<tr>'
-          + '<td style="font-size:12px;color:#6b7280">' + l.qr_id + '</td>'
-          + '<td>' + (invMap[l.qr_id] || '-') + '</td>'
+        return '<tr><td style="font-size:12px;color:#6b7280">' + l.qr_id + '</td><td>' + (invMap[l.qr_id] || '-') + '</td>'
           + '<td style="font-weight:700;color:#4f46e5">👤 ' + l.scanned_by + '</td>'
           + '<td style="font-size:12px">' + l.timestamp + '</td>'
           + '<td><span class="badge ' + (l.verification_status || '') + '">' + l.verification_status + '</span></td>'
-          + '<td style="font-size:12px">' + (l.remark || '-') + '</td>'
-          + '</tr>';
+          + '<td style="font-size:12px">' + (l.remark || '-') + '</td></tr>';
       }).join('');
     }
     document.getElementById('dl-btn').addEventListener('click', function () { window.location.href = '/report/download'; });
@@ -2057,28 +2222,46 @@
       const r = await fetch('/users'); const users = await r.json();
       document.getElementById('u-list').innerHTML = users.map(function (u) {
         const ce = u.can_edit === 1 || u.can_edit === true;
-        return '<div class="ui"><div class="ua">' + u.username[0].toUpperCase() + '</div>'
-          + '<div style="flex:1"><div class="un">' + u.username + '</div>'
-          + '<div class="um"><span class="' + (u.role === 'head' ? 'hb' : 'mb2') + '">' + u.role + '</span>'
-          + (u.role !== 'head' ? '<span style="font-size:11px;color:#6b7280">Edit: ' + (ce ? '<span style="color:#16a34a">✅</span>' : '<span style="color:#dc2626">❌</span>') + '</span>' : '')
-          + '</div></div>'
+        return '<div class="ui">'
+          + '<div class="ua">' + u.username[0].toUpperCase() + '</div>'
+          + '<div style="flex:1;min-width:0">'
+          + '<div class="un">' + u.username + '</div>'
+          + '<div class="um">'
+          + '<span class="' + (u.role === 'head' ? 'hb' : 'mb2') + '">' + u.role + '</span>'
+          + (u.email ? '<span style="color:#9ca3af">' + u.email + '</span>' : '')
+          + (u.role !== 'head' ? '<span>Edit: ' + (ce ? '<span style="color:#16a34a">✅</span>' : '<span style="color:#dc2626">❌</span>') + '</span>' : '')
+          + '</div>'
+          + '</div>'
+          + '<div class="user-actions">'
           + (u.role !== 'head'
-            ? '<div style="display:flex;flex-direction:column;align-items:center;gap:4px">'
-            + '<span style="font-size:10px;color:#6b7280">Edit</span>'
-            + '<label class="pt"><input type="checkbox" ' + (ce ? 'checked' : '') + ' data-id="' + u.id + '" class="pc"/><span class="ps"></span></label>'
-            + '</div>'
-            + '<button class="bd" data-id="' + u.id + '">Remove</button>'
+            ? '<label class="pt"><input type="checkbox" ' + (ce ? 'checked' : '') + ' data-id="' + u.id + '" class="pc"/><span class="ps"></span></label>'
+            + '<button class="bd chpw-btn" data-id="' + u.id + '" data-name="' + u.username + '">🔑</button>'
+            + '<button class="bd" data-id="' + u.id + '" class="rm-btn">✕</button>'
             : '')
+          + '</div>'
           + '</div>';
       }).join('');
+
       document.querySelectorAll('.pc').forEach(function (c) {
         c.addEventListener('change', async function () {
-          const res = await fetch('/users/' + this.dataset.id + '/permission', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ can_edit: this.checked }) });
-          const d = await res.json();
-          showToast(this.checked ? '✅ Edit permission granted' : '🔒 Edit permission revoked');
+          await fetch('/users/' + this.dataset.id + '/permission', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ can_edit: this.checked }) });
+          showToast(this.checked ? '✅ Edit granted' : '🔒 Edit revoked');
         });
       });
-      document.querySelectorAll('.bd[data-id]').forEach(function (b) {
+
+      document.querySelectorAll('.chpw-btn').forEach(function (b) {
+        b.addEventListener('click', function () {
+          chpwUserId = this.dataset.id;
+          document.getElementById('chpw-user-label').textContent = 'Changing password for: ' + this.dataset.name;
+          document.getElementById('chpw-pass').value = '';
+          document.getElementById('chpw-pass2').value = '';
+          document.getElementById('chpw-err').style.display = 'none';
+          document.getElementById('chpw-suc').style.display = 'none';
+          document.getElementById('chpw-modal').classList.add('show');
+        });
+      });
+
+      document.querySelectorAll('.bd[data-id]:not(.chpw-btn)').forEach(function (b) {
         b.addEventListener('click', async function () {
           if (!confirm('Remove member?')) return;
           await fetch('/users/' + this.dataset.id, { method: 'DELETE' });
@@ -2088,16 +2271,39 @@
     }
 
     document.getElementById('add-u-btn').addEventListener('click', async function () {
-      const u = document.getElementById('nu-n').value.trim(), p = document.getElementById('nu-p').value.trim();
-      const role = document.getElementById('nu-r').value, ce = document.getElementById('nu-e').checked;
-      if (!u || !p) { showToast('❌ Fill all fields'); return; }
-      const r = await fetch('/users', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ username: u, password: p, role: role, can_edit: ce }) });
+      const u = document.getElementById('nu-n').value.trim();
+      const email = document.getElementById('nu-e-mail').value.trim();
+      const p = document.getElementById('nu-p').value.trim();
+      const role = document.getElementById('nu-r').value;
+      const ce = document.getElementById('nu-e').checked;
+      if (!u || !p) { showToast('❌ Fill username and password'); return; }
+      const r = await fetch('/users', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ username: u, password: p, role: role, can_edit: ce, email: email || null }) });
       const d = await r.json();
-      if (d.success) { showToast('✅ Member account created!'); document.getElementById('nu-n').value = ''; document.getElementById('nu-p').value = ''; document.getElementById('nu-e').checked = false; loadUsers(); }
-      else showToast('❌ ' + d.error);
+      if (d.success) {
+        showToast('✅ Member created!' + (email ? ' Welcome email sent!' : ''));
+        document.getElementById('nu-n').value = ''; document.getElementById('nu-e-mail').value = '';
+        document.getElementById('nu-p').value = ''; document.getElementById('nu-e').checked = false;
+        loadUsers();
+      } else showToast('❌ ' + d.error);
     });
 
-    // MEMBER SCAN MODE
+    // CHANGE PASSWORD MODAL
+    document.getElementById('chpw-close').addEventListener('click', function () { document.getElementById('chpw-modal').classList.remove('show'); });
+    document.getElementById('chpw-btn').addEventListener('click', async function () {
+      const p = document.getElementById('chpw-pass').value.trim();
+      const p2 = document.getElementById('chpw-pass2').value.trim();
+      const err = document.getElementById('chpw-err'); const suc = document.getElementById('chpw-suc');
+      err.style.display = 'none'; suc.style.display = 'none';
+      if (!p || !p2) { err.textContent = 'Fill all fields'; err.style.display = 'block'; return; }
+      if (p !== p2) { err.textContent = 'Passwords do not match'; err.style.display = 'block'; return; }
+      if (p.length < 4) { err.textContent = 'Password too short'; err.style.display = 'block'; return; }
+      const r = await fetch('/users/' + chpwUserId + '/password', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ password: p }) });
+      const d = await r.json();
+      if (d.success) { suc.textContent = '✅ Password updated! Email sent if member has email.'; suc.style.display = 'block'; setTimeout(function () { document.getElementById('chpw-modal').classList.remove('show'); }, 2000); }
+      else { err.textContent = d.error || 'Failed'; err.style.display = 'block'; }
+    });
+
+    // MEMBER SCAN
     document.getElementById('m-rd').addEventListener('click', function () { mMode = 'read'; this.classList.add('active'); document.getElementById('m-ed').classList.remove('active'); document.getElementById('m-res').innerHTML = ''; setMSt('Read mode'); });
     document.getElementById('m-ed').addEventListener('click', function () { mMode = 'edit'; this.classList.add('active'); document.getElementById('m-rd').classList.remove('active'); document.getElementById('m-res').innerHTML = ''; setMSt('Edit mode'); });
     document.getElementById('m-cb').addEventListener('click', function () { setMM('camera'); });
@@ -2129,25 +2335,17 @@
         const img = new Image(); img.onload = function () {
           const fc = document.getElementById('m-fc'); fc.width = img.width; fc.height = img.height; fc.getContext('2d').drawImage(img, 0, 0);
           const code = jsQR(fc.getContext('2d').getImageData(0, 0, fc.width, fc.height).data, fc.width, fc.height);
-          if (code) {
-            setMSt('QR: ' + code.data);
-            document.getElementById('m-res').innerHTML = '<img src="' + ev.target.result + '" class="qp"/>';
-            procM(code.data);
-          } else setMSt('Could not read QR. Try a clearer image.');
+          if (code) { setMSt('QR: ' + code.data); document.getElementById('m-res').innerHTML = '<img src="' + ev.target.result + '" class="qp"/>'; procM(code.data); }
+          else setMSt('Could not read QR. Try clearer image.');
         }; img.src = ev.target.result;
       }; rd.readAsDataURL(f); e.target.value = '';
     });
 
     async function procM(qrId) {
       const r = await fetch('/item/' + qrId);
-      if (!r.ok) {
-        const err = await r.json();
-        document.getElementById('m-res').innerHTML += '<div class="rc"><p style="color:#dc2626;text-align:center;padding:10px">❌ ' + (err.error || 'Item not found: ' + qrId) + '</p></div>';
-        addMA(); return;
-      }
+      if (!r.ok) { const err = await r.json(); document.getElementById('m-res').innerHTML += '<div class="rc"><p style="color:#dc2626;text-align:center;padding:10px">❌ ' + (err.error || 'Item not found') + '</p></div>'; addMA(); return; }
       const item = await r.json();
-      if (mMode === 'edit' && mCanEdit) showME(item);
-      else showMR(item);
+      if (mMode === 'edit' && mCanEdit) showME(item); else showMR(item);
     }
 
     function showMR(item) {
@@ -2162,13 +2360,12 @@
         + '<div class="ir"><span class="il">Status</span><span class="iv"><span class="badge ' + v + '">' + v + '</span></span></div>'
         + (item['Last Scanned'] ? '<div class="ir"><span class="il">Last Scanned</span><span class="iv">' + item['Last Scanned'] + '</span></div>' : '')
         + (item['Scanned By'] ? '<div class="ir"><span class="il">Scanned By</span><span class="iv" style="color:#7c3aed;font-weight:700">👤 ' + item['Scanned By'] + '</span></div>' : '')
-        + (mCanEdit ? '<div style="margin-top:12px"><button class="bp m" id="m-en" style="max-width:160px;padding:9px;font-size:13px">✏️ Edit Item</button></div>' : '')
+        + (mCanEdit ? '<div style="margin-top:12px"><button class="bp m sm" id="m-en">✏️ Edit Item</button></div>' : '')
         + '</div>';
       if (mCanEdit && document.getElementById('m-en')) {
         document.getElementById('m-en').addEventListener('click', function () { mMode = 'edit'; document.getElementById('m-res').innerHTML = ''; showME(item); document.getElementById('m-ed').classList.add('active'); document.getElementById('m-rd').classList.remove('active'); });
       }
-      showMRem(item['QR Code ID'], item);
-      addMA();
+      showMRem(item['QR Code ID'], item); addMA();
     }
 
     function showME(item) {
@@ -2198,11 +2395,8 @@
       document.getElementById('m-sub').addEventListener('click', async function () {
         const rem = document.getElementById('m-rem').value;
         const r = await fetch('/scan-log/' + qrId, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ remark: rem }) });
-        if (r.ok) {
-          myScans.unshift({ qr_id: qrId, item_name: item['Item Name'], status: item['Verification Status'], remark: rem, time: new Date().toLocaleString() });
-          showToast('✅ Scan submitted!');
-          box.innerHTML = '<p style="color:#16a34a;font-size:13px;text-align:center;padding:8px">✅ Scan submitted by ' + cu.username + '!</p>';
-        } else showToast('❌ Failed to submit');
+        if (r.ok) { myScans.unshift({ qr_id: qrId, item_name: item['Item Name'], status: item['Verification Status'], remark: rem, time: new Date().toLocaleString() }); showToast('✅ Scan submitted!'); box.innerHTML = '<p style="color:#16a34a;font-size:13px;text-align:center;padding:8px">✅ Submitted by ' + cu.username + '!</p>'; }
+        else showToast('❌ Failed');
       });
     }
 
@@ -2213,18 +2407,13 @@
       const el = document.getElementById('m-hist');
       if (!myScans.length) { el.innerHTML = '<p style="text-align:center;color:#9ca3af;padding:20px">No scans yet</p>'; return; }
       el.innerHTML = myScans.map(function (s) {
-        return '<div class="msc"><h4>' + (s.item_name || s.qr_id) + '</h4>'
-          + '<p>QR: ' + s.qr_id + '</p>'
-          + '<p>Status: <span class="badge ' + (s.status || '') + '">' + s.status + '</span></p>'
-          + (s.remark ? '<p>Remark: ' + s.remark + '</p>' : '')
-          + '<p style="font-size:11px;color:#9ca3af;margin-top:4px">' + s.time + '</p>'
-          + '</div>';
+        return '<div class="msc"><h4>' + (s.item_name || s.qr_id) + '</h4><p>QR: ' + s.qr_id + '</p><p>Status: <span class="badge ' + (s.status || '') + '">' + s.status + '</span></p>' + (s.remark ? '<p>Remark: ' + s.remark + '</p>' : '') + '<p style="font-size:11px;color:#9ca3af;margin-top:4px">' + s.time + '</p></div>';
       }).join('');
     }
 
     function showToast(m) {
       const t = document.getElementById('toast'); t.textContent = m; t.style.display = 'block';
-      setTimeout(function () { t.style.display = 'none'; }, 3000);
+      setTimeout(function () { t.style.display = 'none'; }, 3500);
     }
 
     if ('serviceWorker' in navigator) { navigator.serviceWorker.register('/static/sw.js').catch(function () { }); }

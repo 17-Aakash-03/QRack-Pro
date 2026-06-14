@@ -19,7 +19,9 @@ def init_db():
             username TEXT UNIQUE NOT NULL,
             password TEXT NOT NULL,
             role TEXT NOT NULL DEFAULT 'member',
-            can_edit INTEGER DEFAULT 0
+            can_edit INTEGER DEFAULT 0,
+            email TEXT,
+            reset_token TEXT
         );
         CREATE TABLE IF NOT EXISTS scan_logs (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -36,21 +38,28 @@ def init_db():
             shared_at DATETIME
         );
     ''')
-    try:
-        c.execute("ALTER TABLE users ADD COLUMN can_edit INTEGER DEFAULT 0")
-    except: pass
-    try:
-        c.execute("ALTER TABLE excel_access ADD COLUMN access_code TEXT")
-    except: pass
+    # Add columns if not exist
+    for col in [
+        "ALTER TABLE users ADD COLUMN email TEXT",
+        "ALTER TABLE users ADD COLUMN reset_token TEXT",
+        "ALTER TABLE users ADD COLUMN can_edit INTEGER DEFAULT 0",
+        "ALTER TABLE excel_access ADD COLUMN access_code TEXT"
+    ]:
+        try:
+            c.execute(col)
+        except: pass
+
     row = c.execute("SELECT * FROM excel_access").fetchone()
     if not row:
         code = gen_code()
         c.execute("INSERT INTO excel_access (shared, access_code) VALUES (0, ?)", (code,))
-    head = c.execute("SELECT * FROM users WHERE role='head'").fetchone()
+
+    head = c.execute("SELECT * FROM users WHERE username='teamhead'").fetchone()
     if not head:
         pwd = hashlib.sha256("admin123".encode()).hexdigest()
-        c.execute("INSERT INTO users (username, password, role, can_edit) VALUES (?, ?, ?, ?)",
-                  ("teamhead", pwd, "head", 1))
+        c.execute("INSERT INTO users (username, password, role, can_edit, email) VALUES (?, ?, ?, ?, ?)",
+                  ("teamhead", pwd, "head", 1, "aakashkumarjha241@gmail.com"))
+
     conn.commit()
     conn.close()
 
@@ -66,11 +75,23 @@ def get_user(username):
     conn.close()
     return u
 
-def create_user(username, password, role='member', can_edit=0):
+def get_user_by_email(email):
+    conn = get_db()
+    u = conn.execute("SELECT * FROM users WHERE email=?", (email,)).fetchone()
+    conn.close()
+    return u
+
+def get_user_by_token(token):
+    conn = get_db()
+    u = conn.execute("SELECT * FROM users WHERE reset_token=?", (token,)).fetchone()
+    conn.close()
+    return u
+
+def create_user(username, password, role='member', can_edit=0, email=None):
     conn = get_db()
     try:
-        conn.execute("INSERT INTO users (username, password, role, can_edit) VALUES (?, ?, ?, ?)",
-                     (username, hash_password(password), role, can_edit))
+        conn.execute("INSERT INTO users (username, password, role, can_edit, email) VALUES (?, ?, ?, ?, ?)",
+                     (username, hash_password(password), role, can_edit, email))
         conn.commit()
         conn.close()
         return True
@@ -81,6 +102,30 @@ def create_user(username, password, role='member', can_edit=0):
 def update_user_permission(uid, can_edit):
     conn = get_db()
     conn.execute("UPDATE users SET can_edit=? WHERE id=?", (can_edit, uid))
+    conn.commit()
+    conn.close()
+
+def update_user_password(uid, new_password):
+    conn = get_db()
+    conn.execute("UPDATE users SET password=? WHERE id=?", (hash_password(new_password), uid))
+    conn.commit()
+    conn.close()
+
+def update_user_email(uid, email):
+    conn = get_db()
+    conn.execute("UPDATE users SET email=? WHERE id=?", (email, uid))
+    conn.commit()
+    conn.close()
+
+def set_reset_token(uid, token):
+    conn = get_db()
+    conn.execute("UPDATE users SET reset_token=? WHERE id=?", (token, uid))
+    conn.commit()
+    conn.close()
+
+def clear_reset_token(uid):
+    conn = get_db()
+    conn.execute("UPDATE users SET reset_token=NULL WHERE id=?", (uid,))
     conn.commit()
     conn.close()
 
@@ -104,7 +149,7 @@ def get_scan_logs():
 
 def get_all_users():
     conn = get_db()
-    users = conn.execute("SELECT id,username,role,can_edit FROM users").fetchall()
+    users = conn.execute("SELECT id,username,role,can_edit,email FROM users").fetchall()
     conn.close()
     return [dict(u) for u in users]
 

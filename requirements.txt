@@ -5,5 +5,5 @@ qrcode[pil]
 faker
 werkzeug
 gunicorn
-flask-login
+flask-mail
 xlsxwriter
