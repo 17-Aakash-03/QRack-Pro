@@ -179,6 +179,33 @@
       text-align: center
     }
 
+    /* Password field */
+    .pw-wrap {
+      position: relative
+    }
+
+    .pw-wrap input {
+      padding-right: 44px
+    }
+
+    .pw-eye {
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 18px;
+      color: #9ca3af;
+      padding: 0;
+      line-height: 1
+    }
+
+    .pw-eye:hover {
+      color: #4f46e5
+    }
+
     header {
       color: white;
       padding: 14px 20px;
@@ -444,7 +471,7 @@
       display: flex;
       align-items: center;
       gap: 8px;
-      padding: 8px 0
+      padding: 6px 0
     }
 
     .cr input[type=checkbox] {
@@ -485,9 +512,10 @@
     }
 
     .bp.sm {
-      padding: 9px 12px;
-      font-size: 13px;
-      width: auto
+      padding: 8px 12px;
+      font-size: 12px;
+      width: auto;
+      margin-top: 0
     }
 
     .bs {
@@ -509,12 +537,22 @@
     }
 
     .bd {
-      padding: 6px 12px;
+      padding: 5px 10px;
       background: #fef2f2;
       color: #dc2626;
       border: 1px solid #fecaca;
       border-radius: 6px;
-      font-size: 12px;
+      font-size: 11px;
+      cursor: pointer
+    }
+
+    .btn-icon {
+      padding: 5px 8px;
+      background: #f5f3ff;
+      color: #4f46e5;
+      border: 1px solid #e0d9fe;
+      border-radius: 6px;
+      font-size: 13px;
       cursor: pointer
     }
 
@@ -544,7 +582,7 @@
     }
 
     .ac-code {
-      font-size: 32px;
+      font-size: 28px;
       font-weight: 800;
       color: #4f46e5;
       letter-spacing: 6px;
@@ -680,8 +718,8 @@
 
     .pt {
       position: relative;
-      width: 40px;
-      height: 22px
+      width: 36px;
+      height: 20px
     }
 
     .pt input {
@@ -698,15 +736,15 @@
       right: 0;
       bottom: 0;
       background: #cbd5e1;
-      border-radius: 22px;
+      border-radius: 20px;
       transition: .3s
     }
 
     .ps::before {
       position: absolute;
       content: "";
-      height: 16px;
-      width: 16px;
+      height: 14px;
+      width: 14px;
       left: 3px;
       bottom: 3px;
       background: white;
@@ -719,7 +757,12 @@
     }
 
     input:checked+.ps::before {
-      transform: translateX(18px)
+      transform: translateX(16px)
+    }
+
+    /* Green toggle for excel access */
+    .pt.excel input:checked+.ps {
+      background: #16a34a
     }
 
     .mr {
@@ -1096,17 +1139,23 @@
       background: #fafafe
     }
 
+    /* User item */
     .ui {
-      display: flex;
-      align-items: center;
-      padding: 12px 0;
-      border-bottom: 1px solid #f3f4f6;
-      gap: 8px;
-      flex-wrap: wrap
+      background: #fafafe;
+      border: 1px solid #e5e7eb;
+      border-radius: 10px;
+      padding: 12px;
+      margin-bottom: 8px
     }
 
     .ui:last-child {
-      border-bottom: none
+      margin-bottom: 0
+    }
+
+    .ui-top {
+      display: flex;
+      align-items: center;
+      gap: 8px
     }
 
     .ua {
@@ -1128,14 +1177,17 @@
       font-size: 14px
     }
 
-    .um {
+    .ue {
       font-size: 11px;
-      color: #6b7280;
-      margin-top: 2px;
+      color: #9ca3af
+    }
+
+    .ui-badges {
       display: flex;
       align-items: center;
       gap: 4px;
-      flex-wrap: wrap
+      flex-wrap: wrap;
+      margin-top: 2px
     }
 
     .hb {
@@ -1158,12 +1210,22 @@
       font-weight: 600
     }
 
-    .user-actions {
+    .ui-actions {
+      margin-top: 10px;
+      padding-top: 10px;
+      border-top: 1px solid #e5e7eb;
       display: flex;
-      gap: 6px;
       align-items: center;
-      margin-left: auto;
+      gap: 8px;
       flex-wrap: wrap
+    }
+
+    .toggle-label {
+      font-size: 11px;
+      color: #6b7280;
+      display: flex;
+      align-items: center;
+      gap: 6px
     }
 
     .cb {
@@ -1337,7 +1399,9 @@
       padding: 24px;
       width: 100%;
       max-width: 380px;
-      box-shadow: 0 8px 32px rgba(0, 0, 0, .2)
+      box-shadow: 0 8px 32px rgba(0, 0, 0, .2);
+      max-height: 90vh;
+      overflow-y: auto
     }
 
     .modal h3 {
@@ -1346,10 +1410,6 @@
       color: #4f46e5;
       margin-bottom: 16px;
       text-align: center
-    }
-
-    .modal h3.m {
-      color: #7c3aed
     }
 
     .modal-close {
@@ -1382,14 +1442,23 @@
       font-size: 12px;
       opacity: .7
     }
+
+    /* Reset page */
+    #reset-page {
+      min-height: 100vh;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #4f46e5, #7c3aed);
+      padding: 16px
+    }
   </style>
 </head>
 
 <body>
 
-  <!-- RESET PASSWORD PAGE (shown if token in URL) -->
-  <div id="reset-page"
-    style="display:none;min-height:100vh;align-items:center;justify-content:center;background:linear-gradient(135deg,#4f46e5,#7c3aed);padding:16px">
+  <!-- RESET PASSWORD PAGE -->
+  <div id="reset-page">
     <div
       style="background:white;border-radius:16px;padding:28px;width:100%;max-width:380px;box-shadow:0 8px 32px rgba(0,0,0,.2)">
       <div style="text-align:center;margin-bottom:20px"><span style="font-size:48px">📦</span>
@@ -1397,10 +1466,14 @@
       </div>
       <div class="l-err" id="rp-err"></div>
       <div class="l-suc" id="rp-suc"></div>
-      <div class="fg"><label>New Password</label><input type="password" id="rp-pass" placeholder="Enter new password" />
+      <div class="fg"><label>New Password</label>
+        <div class="pw-wrap"><input type="password" id="rp-pass" placeholder="Enter new password" /><button
+            class="pw-eye" onclick="togglePw('rp-pass',this)">👁️</button></div>
       </div>
-      <div class="fg"><label>Confirm Password</label><input type="password" id="rp-pass2"
-          placeholder="Confirm new password" /></div>
+      <div class="fg"><label>Confirm Password</label>
+        <div class="pw-wrap"><input type="password" id="rp-pass2" placeholder="Confirm new password" /><button
+            class="pw-eye" onclick="togglePw('rp-pass2',this)">👁️</button></div>
+      </div>
       <button class="bp" id="rp-btn">🔐 Reset Password</button>
     </div>
   </div>
@@ -1436,7 +1509,10 @@
         <!-- LOGIN FORM -->
         <div id="lf">
           <div class="fg"><label>Username</label><input type="text" id="l-u" placeholder="Enter username" /></div>
-          <div class="fg"><label>Password</label><input type="password" id="l-p" placeholder="Enter password" /></div>
+          <div class="fg"><label>Password</label>
+            <div class="pw-wrap"><input type="password" id="l-p" placeholder="Enter password" /><button class="pw-eye"
+                onclick="togglePw('l-p',this)">👁️</button></div>
+          </div>
           <button class="bp" id="login-btn">🔐 Login</button>
           <p id="l-hint" style="text-align:center;font-size:12px;color:#9ca3af;margin-top:10px">Default head: teamhead /
             admin123</p>
@@ -1446,9 +1522,14 @@
         <div id="hrf" style="display:none">
           <div class="fg"><label>Username</label><input type="text" id="hr-u" placeholder="Choose username" /></div>
           <div class="fg"><label>Email</label><input type="email" id="hr-e" placeholder="Your email address" /></div>
-          <div class="fg"><label>Password</label><input type="password" id="hr-p" placeholder="Choose password" /></div>
-          <div class="fg"><label>Confirm Password</label><input type="password" id="hr-p2"
-              placeholder="Confirm password" /></div>
+          <div class="fg"><label>Password</label>
+            <div class="pw-wrap"><input type="password" id="hr-p" placeholder="Choose password" /><button class="pw-eye"
+                onclick="togglePw('hr-p',this)">👁️</button></div>
+          </div>
+          <div class="fg"><label>Confirm Password</label>
+            <div class="pw-wrap"><input type="password" id="hr-p2" placeholder="Confirm password" /><button
+                class="pw-eye" onclick="togglePw('hr-p2',this)">👁️</button></div>
+          </div>
           <button class="bp" id="head-reg-btn">👑 Register as Team Head</button>
         </div>
         <!-- MEMBER INFO -->
@@ -1470,16 +1551,14 @@
       <div class="l-err" id="f-err"></div>
       <div class="l-suc" id="f-suc"></div>
       <div id="f-head-form">
-        <p style="font-size:13px;color:#6b7280;margin-bottom:14px">Enter your username and email to receive a reset
-          link.</p>
+        <p style="font-size:13px;color:#6b7280;margin-bottom:14px">Enter username and email to receive reset link.</p>
         <div class="fg"><label>Username</label><input type="text" id="f-user" placeholder="Your username" /></div>
-        <div class="fg"><label>Email</label><input type="email" id="f-email" placeholder="Your registered email" />
-        </div>
+        <div class="fg"><label>Email</label><input type="email" id="f-email" placeholder="Registered email" /></div>
         <button class="bp" id="f-send-btn">📧 Send Reset Link</button>
       </div>
       <div id="f-member-form" style="display:none">
-        <p style="font-size:13px;color:#6b7280;margin-bottom:14px">Enter your username OR email. Your Team Head will be
-          notified to reset your password.</p>
+        <p style="font-size:13px;color:#6b7280;margin-bottom:14px">Enter username OR email. Team Head will be notified.
+        </p>
         <div class="fg"><label>Username (optional)</label><input type="text" id="f-m-user"
             placeholder="Your username" /></div>
         <div class="fg"><label>Email (optional)</label><input type="email" id="f-m-email" placeholder="Your email" />
@@ -1493,11 +1572,8 @@
   <div id="head-app" style="display:none">
     <header class="hh">
       <h1>📦 QRack</h1>
-      <div class="user-info">
-        <span id="h-un"></span>
-        <span class="role-badge">👑 Head</span>
-        <button class="logout-btn" id="h-lo">Logout</button>
-      </div>
+      <div class="user-info"><span id="h-un"></span><span class="role-badge">👑 Head</span><button class="logout-btn"
+          id="h-lo">Logout</button></div>
     </header>
     <div class="nav-bar">
       <button class="nav-btn ha" data-pg="hh">🏠 Home</button>
@@ -1619,20 +1695,26 @@
       <div class="card">
         <div class="ct">➕ Add Team Member</div>
         <div class="fg"><label>Username</label><input type="text" id="nu-n" placeholder="Member username" /></div>
-        <div class="fg"><label>Email (optional)</label><input type="email" id="nu-e-mail"
-            placeholder="Member email — for notifications" /></div>
-        <div class="fg"><label>Password</label><input type="password" id="nu-p" placeholder="Member password" /></div>
+        <div class="fg"><label>Email (optional)</label><input type="email" id="nu-email" placeholder="Member email" />
+        </div>
+        <div class="fg"><label>Password</label>
+          <div class="pw-wrap"><input type="password" id="nu-p" placeholder="Member password" /><button class="pw-eye"
+              onclick="togglePw('nu-p',this)">👁️</button></div>
+        </div>
         <div class="fg"><label>Role</label><select id="nu-r">
             <option value="member">Member</option>
             <option value="head">Team Head</option>
           </select></div>
-        <div class="cr"><input type="checkbox" id="nu-e" /><label for="nu-e">Allow this member to edit items</label>
-        </div>
-        <button class="bp" id="add-u-btn">➕ Create Member Account</button>
+        <div class="cr"><input type="checkbox" id="nu-e" /><label for="nu-e">✏️ Allow to edit items</label></div>
+        <div class="cr"><input type="checkbox" id="nu-xa" /><label for="nu-xa">📊 Allow Excel access (no code
+            needed)</label></div>
+        <button class="bp" id="add-u-btn" style="margin-top:12px">➕ Create Member Account</button>
       </div>
       <div class="card">
         <div class="ct">👥 Team Members</div>
-        <div id="u-list"></div>
+        <div id="u-list">
+          <p style="text-align:center;color:#9ca3af;padding:20px">Loading...</p>
+        </div>
       </div>
     </div>
     <!-- H EXCEL -->
@@ -1642,13 +1724,13 @@
         <div class="ac-box">
           <h3>Share this code with team members</h3>
           <span class="ac-code" id="ac-code">--------</span>
-          <p class="ac-hint">Members enter this code to unlock scanning</p>
+          <p class="ac-hint">Members without direct access can use this code</p>
           <button class="bp" id="regen-btn" style="margin-top:14px;max-width:220px">🔄 Regenerate Code</button>
         </div>
         <div class="st">
           <div class="si">
-            <h4>🔗 Enable Member Access</h4>
-            <p>Toggle to allow/block members from scanning</p>
+            <h4>🔗 Global Member Access</h4>
+            <p>Enable access code for all members at once</p>
           </div>
           <label class="ts"><input type="checkbox" id="sh-tog" /><span class="sl"></span></label>
         </div>
@@ -1690,11 +1772,8 @@
   <div id="member-app" style="display:none">
     <header class="mh">
       <h1>📦 QRack</h1>
-      <div class="user-info">
-        <span id="m-un"></span>
-        <span class="role-badge">👷 Member</span>
-        <button class="logout-btn" id="m-lo">Logout</button>
-      </div>
+      <div class="user-info"><span id="m-un"></span><span class="role-badge">👷 Member</span><button class="logout-btn"
+          id="m-lo">Logout</button></div>
     </header>
     <div class="nav-bar">
       <button class="nav-btn ma" data-pg="mh">🏠 Home</button>
@@ -1718,6 +1797,7 @@
         <div class="pi"><span class="pk">Scan QR Codes</span><span class="pv" style="color:#16a34a">✅ Allowed</span>
         </div>
         <div class="pi"><span class="pk">Add Remarks</span><span class="pv" style="color:#16a34a">✅ Allowed</span></div>
+        <div class="pi"><span class="pk">Excel Access</span><span class="pv" id="m-xp">-</span></div>
         <div class="pi"><span class="pk">Edit Items</span><span class="pv" id="m-ep">-</span></div>
         <div class="pi"><span class="pk">Change Status</span><span class="pv" style="color:#dc2626">❌ Not Allowed</span>
         </div>
@@ -1788,13 +1868,17 @@
     <div class="modal">
       <button class="modal-close" id="chpw-close">✕</button>
       <h3>🔑 Change Password</h3>
-      <p style="font-size:13px;color:#6b7280;margin-bottom:14px" id="chpw-user-label"></p>
+      <p style="font-size:13px;color:#6b7280;margin-bottom:14px" id="chpw-label"></p>
       <div class="l-err" id="chpw-err"></div>
       <div class="l-suc" id="chpw-suc"></div>
-      <div class="fg"><label>New Password</label><input type="password" id="chpw-pass"
-          placeholder="Enter new password" /></div>
-      <div class="fg"><label>Confirm Password</label><input type="password" id="chpw-pass2"
-          placeholder="Confirm new password" /></div>
+      <div class="fg"><label>New Password</label>
+        <div class="pw-wrap"><input type="password" id="chpw-p" placeholder="Enter new password" /><button
+            class="pw-eye" onclick="togglePw('chpw-p',this)">👁️</button></div>
+      </div>
+      <div class="fg"><label>Confirm Password</label>
+        <div class="pw-wrap"><input type="password" id="chpw-p2" placeholder="Confirm password" /><button class="pw-eye"
+            onclick="togglePw('chpw-p2',this)">👁️</button></div>
+      </div>
       <button class="bp" id="chpw-btn">💾 Update Password</button>
     </div>
   </div>
@@ -1805,13 +1889,20 @@
     let cu = null, selRole = 'head';
     let hMode = 'read', hMeth = 'file', mMode = 'read', mMeth = 'file';
     let hCam = null, mCam = null, hSc = true, mSc = true;
-    let myScans = [], invMap = {}, mCanEdit = false;
-    let chpwUserId = null, resetToken = '';
+    let myScans = [], invMap = {}, mCanEdit = false, mCanAccess = false;
+    let chpwUid = null, resetToken = '';
 
     const hV = document.getElementById('hv'), hC = document.getElementById('hc'), hX = hC.getContext('2d');
     const mV = document.getElementById('mv'), mC = document.getElementById('mc'), mX = mC.getContext('2d');
 
-    // CHECK FOR RESET TOKEN IN URL
+    // SHOW/HIDE PASSWORD
+    function togglePw(id, btn) {
+      const inp = document.getElementById(id);
+      if (inp.type === 'password') { inp.type = 'text'; btn.textContent = '🙈'; }
+      else { inp.type = 'password'; btn.textContent = '👁️'; }
+    }
+
+    // CHECK RESET TOKEN
     window.addEventListener('load', async function () {
       const params = new URLSearchParams(window.location.search);
       const token = params.get('token');
@@ -1825,19 +1916,18 @@
       if (d.logged_in) { cu = d; showDash(d); }
     });
 
-    // RESET PASSWORD PAGE
+    // RESET PASSWORD
     document.getElementById('rp-btn').addEventListener('click', async function () {
       const p = document.getElementById('rp-pass').value.trim();
       const p2 = document.getElementById('rp-pass2').value.trim();
-      const err = document.getElementById('rp-err');
-      const suc = document.getElementById('rp-suc');
+      const err = document.getElementById('rp-err'); const suc = document.getElementById('rp-suc');
       err.style.display = 'none'; suc.style.display = 'none';
       if (!p || !p2) { err.textContent = 'Fill all fields'; err.style.display = 'block'; return; }
       if (p !== p2) { err.textContent = 'Passwords do not match'; err.style.display = 'block'; return; }
       if (p.length < 4) { err.textContent = 'Password too short'; err.style.display = 'block'; return; }
       const r = await fetch('/reset-password', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ token: resetToken, password: p }) });
       const d = await r.json();
-      if (d.success) { suc.textContent = '✅ ' + d.message + ' Redirecting to login...'; suc.style.display = 'block'; setTimeout(function () { window.location.href = '/'; }, 2000); }
+      if (d.success) { suc.textContent = '✅ ' + d.message + ' Redirecting...'; suc.style.display = 'block'; setTimeout(function () { window.location.href = '/'; }, 2000); }
       else { err.textContent = d.error || 'Failed'; err.style.display = 'block'; }
     });
 
@@ -1867,12 +1957,10 @@
 
     // FORGOT PASSWORD
     document.getElementById('forgot-link').addEventListener('click', function () {
-      document.getElementById('f-err').style.display = 'none';
-      document.getElementById('f-suc').style.display = 'none';
+      document.getElementById('f-err').style.display = 'none'; document.getElementById('f-suc').style.display = 'none';
       document.getElementById('forgot-modal').classList.add('show');
     });
     document.getElementById('forgot-close').addEventListener('click', function () { document.getElementById('forgot-modal').classList.remove('show'); });
-
     document.getElementById('f-send-btn').addEventListener('click', async function () {
       const user = document.getElementById('f-user').value.trim();
       const email = document.getElementById('f-email').value.trim();
@@ -1884,7 +1972,6 @@
       if (d.success) { suc.textContent = '✅ ' + d.message; suc.style.display = 'block'; }
       else { err.textContent = d.error || 'Failed'; err.style.display = 'block'; }
     });
-
     document.getElementById('f-m-send-btn').addEventListener('click', async function () {
       const user = document.getElementById('f-m-user').value.trim();
       const email = document.getElementById('f-m-email').value.trim();
@@ -1916,10 +2003,10 @@
       const p2 = document.getElementById('hr-p2').value.trim();
       if (!u || !e || !p) { showErr('Fill all fields'); return; }
       if (p !== p2) { showErr('Passwords do not match'); return; }
-      if (p.length < 4) { showErr('Password too short (min 4)'); return; }
+      if (p.length < 4) { showErr('Password too short'); return; }
       const r = await fetch('/register-head', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ username: u, password: p, email: e }) });
       const d = await r.json();
-      if (d.success) { showSuc('✅ Account created! You can now login.'); document.getElementById('hr-u').value = ''; document.getElementById('hr-e').value = ''; document.getElementById('hr-p').value = ''; document.getElementById('hr-p2').value = ''; }
+      if (d.success) { showSuc('✅ Account created! Login now.'); document.getElementById('hr-u').value = ''; document.getElementById('hr-e').value = ''; document.getElementById('hr-p').value = ''; document.getElementById('hr-p2').value = ''; }
       else showErr(d.error || 'Failed');
     });
 
@@ -1935,6 +2022,7 @@
         document.getElementById('m-un').textContent = '👤 ' + u.username;
         document.getElementById('m-wlc').textContent = '👋 Welcome, ' + u.username + '!';
         mCanEdit = u.can_edit === 1 || u.can_edit === true;
+        mCanAccess = u.can_access_excel === 1 || u.can_access_excel === true || u.excel_access === true;
         updateMPerms(); loadMHome();
       }
     }
@@ -1942,6 +2030,8 @@
     function updateMPerms() {
       document.getElementById('m-ep').textContent = mCanEdit ? '✅ Allowed' : '❌ Not Allowed';
       document.getElementById('m-ep').style.color = mCanEdit ? '#16a34a' : '#dc2626';
+      document.getElementById('m-xp').textContent = mCanAccess ? '✅ Direct Access' : '🔑 Code Required';
+      document.getElementById('m-xp').style.color = mCanAccess ? '#16a34a' : '#d97706';
       document.getElementById('m-mode-row').style.display = mCanEdit ? 'block' : 'none';
     }
 
@@ -1949,7 +2039,7 @@
     document.getElementById('h-lo').addEventListener('click', doLogout);
     document.getElementById('m-lo').addEventListener('click', doLogout);
     async function doLogout() {
-      await fetch('/logout', { method: 'POST' }); cu = null; mCanEdit = false;
+      await fetch('/logout', { method: 'POST' }); cu = null; mCanEdit = false; mCanAccess = false;
       document.getElementById('head-app').style.display = 'none';
       document.getElementById('member-app').style.display = 'none';
       document.getElementById('login-page').style.display = 'flex';
@@ -1967,7 +2057,8 @@
         document.querySelectorAll('#head-app .page').forEach(function (p) { p.classList.remove('active'); });
         document.querySelectorAll('#head-app .nav-btn').forEach(function (x) { x.classList.remove('ha'); });
         document.getElementById(pg).classList.add('active'); this.classList.add('ha');
-        if (pg === 'hr') loadReport(); if (pg === 'ht') loadUsers();
+        if (pg === 'hr') loadReport();
+        if (pg === 'ht') loadUsers();
         if (pg !== 'hs' && hCam) { hCam.getTracks().forEach(function (t) { t.stop(); }); hCam = null; }
       });
     });
@@ -2035,38 +2126,46 @@
     // MEMBER HOME
     async function loadMHome() {
       const pr = await fetch('/my-permissions'); const pd = await pr.json();
-      mCanEdit = pd.can_edit === 1 || pd.can_edit === true; updateMPerms();
+      mCanEdit = pd.can_edit === 1 || pd.can_edit === true;
+      mCanAccess = pd.can_access_excel === 1 || pd.can_access_excel === true || pd.excel_access === true;
+      updateMPerms();
       const r = await fetch('/excel/status'); const d = await r.json();
       const el = document.getElementById('m-ex-st');
       if (!d.available) { el.innerHTML = '<div class="na-box"><h3>⚠️ No Excel Sheet</h3><p>Team Head has not uploaded any sheet yet.</p></div>'; }
+      else if (d.has_access) { el.innerHTML = '<div class="ok-box"><h3>✅ Excel Access Active</h3><p>' + d.total_items + ' items ready for scanning</p></div>'; }
       else if (!d.shared) { el.innerHTML = '<div class="na-box"><h3>🔒 Access Not Enabled</h3><p>Team Head has not enabled member access yet.</p></div>'; }
-      else if (!d.has_access) {
+      else {
         el.innerHTML = '<div class="ec-box"><h3>🔑 Enter Access Code</h3><p>Ask your Team Head for the access code</p><input class="ci" type="text" id="hm-ci" placeholder="XXXXXXXX" maxlength="8"/><div class="ce" id="hm-ce"></div><button class="bp m" id="hm-cv" style="margin-top:12px">✅ Verify Code</button></div>';
         document.getElementById('hm-cv').addEventListener('click', async function () {
           const code = document.getElementById('hm-ci').value.trim().toUpperCase();
           const r = await fetch('/verify-code', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ code: code }) });
           const d = await r.json();
-          if (d.success) { cu.excel_access = true; showToast('✅ Access granted!'); loadMHome(); }
+          if (d.success) { mCanAccess = true; showToast('✅ Access granted!'); loadMHome(); }
           else document.getElementById('hm-ce').textContent = d.error || 'Invalid code';
         });
-      } else { el.innerHTML = '<div class="ok-box"><h3>✅ Access Active</h3><p>' + d.total_items + ' items ready for scanning</p></div>'; }
+      }
     }
 
     async function checkMAccess() {
       const pr = await fetch('/my-permissions'); const pd = await pr.json();
-      mCanEdit = pd.can_edit === 1 || pd.can_edit === true; updateMPerms();
+      mCanEdit = pd.can_edit === 1 || pd.can_edit === true;
+      mCanAccess = pd.can_access_excel === 1 || pd.can_access_excel === true || pd.excel_access === true;
+      updateMPerms();
       const r = await fetch('/excel/status'); const d = await r.json();
       document.getElementById('m-no-acc').style.display = 'none';
       document.getElementById('m-code-area').style.display = 'none';
       document.getElementById('m-scan-area').style.display = 'none';
-      if (!d.available || !d.shared) {
+      if (!d.available) {
         document.getElementById('m-no-acc').style.display = 'block';
-        document.getElementById('m-no-msg').textContent = !d.available ? 'Team Head has not uploaded an Excel sheet yet.' : 'Team Head has not enabled member access yet.';
-      } else if (!d.has_access) {
-        document.getElementById('m-code-area').style.display = 'block';
-      } else {
+        document.getElementById('m-no-msg').textContent = 'Team Head has not uploaded an Excel sheet yet.';
+      } else if (d.has_access) {
         document.getElementById('m-scan-area').style.display = 'block';
         document.getElementById('m-access-info').textContent = d.total_items + ' items' + (mCanEdit ? ' — Edit enabled' : '');
+      } else if (!d.shared) {
+        document.getElementById('m-no-acc').style.display = 'block';
+        document.getElementById('m-no-msg').textContent = 'Team Head has not enabled member access yet.';
+      } else {
+        document.getElementById('m-code-area').style.display = 'block';
       }
     }
 
@@ -2074,14 +2173,14 @@
       const code = document.getElementById('m-ci').value.trim().toUpperCase();
       const r = await fetch('/verify-code', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ code: code }) });
       const d = await r.json();
-      if (d.success) { cu.excel_access = true; showToast('✅ Access granted!'); checkMAccess(); loadMHome(); }
+      if (d.success) { mCanAccess = true; showToast('✅ Access granted!'); checkMAccess(); loadMHome(); }
       else document.getElementById('m-ce').textContent = d.error || 'Invalid code';
     });
 
     // SHARE TOGGLE
     document.getElementById('sh-tog').addEventListener('change', async function () {
       await fetch('/excel/share', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ shared: this.checked }) });
-      showToast(this.checked ? '✅ Member access enabled!' : '🔒 Member access disabled');
+      showToast(this.checked ? '✅ Global access enabled!' : '🔒 Global access disabled');
     });
 
     // REGEN CODE
@@ -2113,6 +2212,119 @@
       document.getElementById('h-ic').style.display = 'block';
     }
     document.getElementById('inv-tog').addEventListener('click', function () { this.classList.toggle('open'); document.getElementById('inv-body').classList.toggle('open'); });
+
+    // ADD MEMBER — FIXED
+    document.getElementById('add-u-btn').addEventListener('click', async function () {
+      const u = document.getElementById('nu-n').value.trim();
+      const p = document.getElementById('nu-p').value.trim();
+      const email = document.getElementById('nu-email').value.trim();
+      const role = document.getElementById('nu-r').value;
+      const can_edit = document.getElementById('nu-e').checked;
+      const can_access_excel = document.getElementById('nu-xa').checked;
+      if (!u || !p) { showToast('❌ Username and password required'); return; }
+      if (p.length < 4) { showToast('❌ Password too short (min 4)'); return; }
+      const r = await fetch('/users', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username: u, password: p, email: email || null, role: role, can_edit: can_edit, can_access_excel: can_access_excel })
+      });
+      const d = await r.json();
+      if (d.success) {
+        showToast('✅ Member created!' + (email ? ' Email sent!' : ''));
+        document.getElementById('nu-n').value = '';
+        document.getElementById('nu-p').value = '';
+        document.getElementById('nu-email').value = '';
+        document.getElementById('nu-e').checked = false;
+        document.getElementById('nu-xa').checked = false;
+        loadUsers();
+      } else {
+        showToast('❌ ' + d.error);
+      }
+    });
+
+    // LOAD USERS
+    async function loadUsers() {
+      const r = await fetch('/users'); const users = await r.json();
+      if (!users.length) { document.getElementById('u-list').innerHTML = '<p style="text-align:center;color:#9ca3af;padding:20px">No members yet</p>'; return; }
+      document.getElementById('u-list').innerHTML = users.map(function (u) {
+        const ce = u.can_edit === 1 || u.can_edit === true;
+        const ca = u.can_access_excel === 1 || u.can_access_excel === true;
+        return '<div class="ui">'
+          + '<div class="ui-top">'
+          + '<div class="ua">' + u.username[0].toUpperCase() + '</div>'
+          + '<div style="flex:1;min-width:0">'
+          + '<div class="un">' + u.username + '</div>'
+          + (u.email ? '<div class="ue">' + u.email + '</div>' : '')
+          + '<div class="ui-badges">'
+          + '<span class="' + (u.role === 'head' ? 'hb' : 'mb2') + '">' + u.role + '</span>'
+          + (u.role !== 'head' ? '<span style="font-size:10px;color:#6b7280">Edit: ' + (ce ? '✅' : '❌') + '</span>' : '')
+          + (u.role !== 'head' ? '<span style="font-size:10px;color:#6b7280">Excel: ' + (ca ? '✅' : '🔑') + '</span>' : '')
+          + '</div>'
+          + '</div>'
+          + '</div>'
+          + (u.role !== 'head' ?
+            '<div class="ui-actions">'
+            + '<span class="toggle-label"><label class="pt"><input type="checkbox" ' + (ce ? 'checked' : '') + ' data-id="' + u.id + '" class="pc"/><span class="ps"></span></label>✏️ Edit</span>'
+            + '<span class="toggle-label"><label class="pt excel"><input type="checkbox" ' + (ca ? 'checked' : '') + ' data-id="' + u.id + '" class="xc"/><span class="ps"></span></label>📊 Excel</span>'
+            + '<button class="btn-icon chpw-btn" data-id="' + u.id + '" data-name="' + u.username + '">🔑 Password</button>'
+            + '<button class="bd rm-btn" data-id="' + u.id + '">✕ Remove</button>'
+            + '</div>'
+            : '')
+          + '</div>';
+      }).join('');
+
+      // Edit toggle
+      document.querySelectorAll('.pc').forEach(function (c) {
+        c.addEventListener('change', async function () {
+          const r = await fetch('/users/' + this.dataset.id + '/permission', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ can_edit: this.checked }) });
+          showToast(this.checked ? '✅ Edit permission granted' : '🔒 Edit permission revoked');
+        });
+      });
+
+      // Excel access toggle
+      document.querySelectorAll('.xc').forEach(function (c) {
+        c.addEventListener('change', async function () {
+          const r = await fetch('/users/' + this.dataset.id + '/excel-access', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ can_access: this.checked }) });
+          showToast(this.checked ? '✅ Excel access granted — member can scan directly' : '🔒 Excel access revoked');
+        });
+      });
+
+      // Change password
+      document.querySelectorAll('.chpw-btn').forEach(function (b) {
+        b.addEventListener('click', function () {
+          chpwUid = this.dataset.id;
+          document.getElementById('chpw-label').textContent = 'Changing password for: ' + this.dataset.name;
+          document.getElementById('chpw-p').value = ''; document.getElementById('chpw-p2').value = '';
+          document.getElementById('chpw-err').style.display = 'none'; document.getElementById('chpw-suc').style.display = 'none';
+          document.getElementById('chpw-modal').classList.add('show');
+        });
+      });
+
+      // Remove
+      document.querySelectorAll('.rm-btn').forEach(function (b) {
+        b.addEventListener('click', async function () {
+          if (!confirm('Remove this member?')) return;
+          await fetch('/users/' + this.dataset.id, { method: 'DELETE' });
+          loadUsers(); showToast('✅ Member removed!');
+        });
+      });
+    }
+
+    // CHANGE PASSWORD MODAL
+    document.getElementById('chpw-close').addEventListener('click', function () { document.getElementById('chpw-modal').classList.remove('show'); });
+    document.getElementById('chpw-btn').addEventListener('click', async function () {
+      const p = document.getElementById('chpw-p').value.trim();
+      const p2 = document.getElementById('chpw-p2').value.trim();
+      const err = document.getElementById('chpw-err'); const suc = document.getElementById('chpw-suc');
+      err.style.display = 'none'; suc.style.display = 'none';
+      if (!p || !p2) { err.textContent = 'Fill all fields'; err.style.display = 'block'; return; }
+      if (p !== p2) { err.textContent = 'Passwords do not match'; err.style.display = 'block'; return; }
+      if (p.length < 4) { err.textContent = 'Password too short'; err.style.display = 'block'; return; }
+      const r = await fetch('/users/' + chpwUid + '/password', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ password: p }) });
+      const d = await r.json();
+      if (d.success) { suc.textContent = '✅ Password updated!'; suc.style.display = 'block'; setTimeout(function () { document.getElementById('chpw-modal').classList.remove('show'); }, 1500); }
+      else { err.textContent = d.error || 'Failed'; err.style.display = 'block'; }
+    });
 
     // HEAD SCAN
     document.getElementById('h-rd').addEventListener('click', function () { hMode = 'read'; this.classList.add('active'); document.getElementById('h-up').classList.remove('active'); document.getElementById('h-res').innerHTML = ''; setHSt('Read mode'); });
@@ -2154,7 +2366,7 @@
 
     async function procH(qrId) {
       const r = await fetch('/item/' + qrId);
-      if (!r.ok) { const err = await r.json(); document.getElementById('h-res').innerHTML += '<div class="rc"><p style="color:#dc2626;text-align:center;padding:10px">❌ ' + (err.error || 'Not found') + '</p></div>'; addHA(); return; }
+      if (!r.ok) { const e = await r.json(); document.getElementById('h-res').innerHTML += '<div class="rc"><p style="color:#dc2626;text-align:center;padding:10px">❌ ' + (e.error || 'Not found') + '</p></div>'; addHA(); return; }
       const item = await r.json();
       if (hMode === 'read') showHR(item); else showHE(item);
     }
@@ -2217,92 +2429,6 @@
     document.getElementById('dl-btn').addEventListener('click', function () { window.location.href = '/report/download'; });
     document.getElementById('lg-tog').addEventListener('click', function () { this.classList.toggle('open'); document.getElementById('lg-body').classList.toggle('open'); });
 
-    // TEAM
-    async function loadUsers() {
-      const r = await fetch('/users'); const users = await r.json();
-      document.getElementById('u-list').innerHTML = users.map(function (u) {
-        const ce = u.can_edit === 1 || u.can_edit === true;
-        return '<div class="ui">'
-          + '<div class="ua">' + u.username[0].toUpperCase() + '</div>'
-          + '<div style="flex:1;min-width:0">'
-          + '<div class="un">' + u.username + '</div>'
-          + '<div class="um">'
-          + '<span class="' + (u.role === 'head' ? 'hb' : 'mb2') + '">' + u.role + '</span>'
-          + (u.email ? '<span style="color:#9ca3af">' + u.email + '</span>' : '')
-          + (u.role !== 'head' ? '<span>Edit: ' + (ce ? '<span style="color:#16a34a">✅</span>' : '<span style="color:#dc2626">❌</span>') + '</span>' : '')
-          + '</div>'
-          + '</div>'
-          + '<div class="user-actions">'
-          + (u.role !== 'head'
-            ? '<label class="pt"><input type="checkbox" ' + (ce ? 'checked' : '') + ' data-id="' + u.id + '" class="pc"/><span class="ps"></span></label>'
-            + '<button class="bd chpw-btn" data-id="' + u.id + '" data-name="' + u.username + '">🔑</button>'
-            + '<button class="bd" data-id="' + u.id + '" class="rm-btn">✕</button>'
-            : '')
-          + '</div>'
-          + '</div>';
-      }).join('');
-
-      document.querySelectorAll('.pc').forEach(function (c) {
-        c.addEventListener('change', async function () {
-          await fetch('/users/' + this.dataset.id + '/permission', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ can_edit: this.checked }) });
-          showToast(this.checked ? '✅ Edit granted' : '🔒 Edit revoked');
-        });
-      });
-
-      document.querySelectorAll('.chpw-btn').forEach(function (b) {
-        b.addEventListener('click', function () {
-          chpwUserId = this.dataset.id;
-          document.getElementById('chpw-user-label').textContent = 'Changing password for: ' + this.dataset.name;
-          document.getElementById('chpw-pass').value = '';
-          document.getElementById('chpw-pass2').value = '';
-          document.getElementById('chpw-err').style.display = 'none';
-          document.getElementById('chpw-suc').style.display = 'none';
-          document.getElementById('chpw-modal').classList.add('show');
-        });
-      });
-
-      document.querySelectorAll('.bd[data-id]:not(.chpw-btn)').forEach(function (b) {
-        b.addEventListener('click', async function () {
-          if (!confirm('Remove member?')) return;
-          await fetch('/users/' + this.dataset.id, { method: 'DELETE' });
-          loadUsers(); showToast('✅ Removed!');
-        });
-      });
-    }
-
-    document.getElementById('add-u-btn').addEventListener('click', async function () {
-      const u = document.getElementById('nu-n').value.trim();
-      const email = document.getElementById('nu-e-mail').value.trim();
-      const p = document.getElementById('nu-p').value.trim();
-      const role = document.getElementById('nu-r').value;
-      const ce = document.getElementById('nu-e').checked;
-      if (!u || !p) { showToast('❌ Fill username and password'); return; }
-      const r = await fetch('/users', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ username: u, password: p, role: role, can_edit: ce, email: email || null }) });
-      const d = await r.json();
-      if (d.success) {
-        showToast('✅ Member created!' + (email ? ' Welcome email sent!' : ''));
-        document.getElementById('nu-n').value = ''; document.getElementById('nu-e-mail').value = '';
-        document.getElementById('nu-p').value = ''; document.getElementById('nu-e').checked = false;
-        loadUsers();
-      } else showToast('❌ ' + d.error);
-    });
-
-    // CHANGE PASSWORD MODAL
-    document.getElementById('chpw-close').addEventListener('click', function () { document.getElementById('chpw-modal').classList.remove('show'); });
-    document.getElementById('chpw-btn').addEventListener('click', async function () {
-      const p = document.getElementById('chpw-pass').value.trim();
-      const p2 = document.getElementById('chpw-pass2').value.trim();
-      const err = document.getElementById('chpw-err'); const suc = document.getElementById('chpw-suc');
-      err.style.display = 'none'; suc.style.display = 'none';
-      if (!p || !p2) { err.textContent = 'Fill all fields'; err.style.display = 'block'; return; }
-      if (p !== p2) { err.textContent = 'Passwords do not match'; err.style.display = 'block'; return; }
-      if (p.length < 4) { err.textContent = 'Password too short'; err.style.display = 'block'; return; }
-      const r = await fetch('/users/' + chpwUserId + '/password', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ password: p }) });
-      const d = await r.json();
-      if (d.success) { suc.textContent = '✅ Password updated! Email sent if member has email.'; suc.style.display = 'block'; setTimeout(function () { document.getElementById('chpw-modal').classList.remove('show'); }, 2000); }
-      else { err.textContent = d.error || 'Failed'; err.style.display = 'block'; }
-    });
-
     // MEMBER SCAN
     document.getElementById('m-rd').addEventListener('click', function () { mMode = 'read'; this.classList.add('active'); document.getElementById('m-ed').classList.remove('active'); document.getElementById('m-res').innerHTML = ''; setMSt('Read mode'); });
     document.getElementById('m-ed').addEventListener('click', function () { mMode = 'edit'; this.classList.add('active'); document.getElementById('m-rd').classList.remove('active'); document.getElementById('m-res').innerHTML = ''; setMSt('Edit mode'); });
@@ -2343,7 +2469,7 @@
 
     async function procM(qrId) {
       const r = await fetch('/item/' + qrId);
-      if (!r.ok) { const err = await r.json(); document.getElementById('m-res').innerHTML += '<div class="rc"><p style="color:#dc2626;text-align:center;padding:10px">❌ ' + (err.error || 'Item not found') + '</p></div>'; addMA(); return; }
+      if (!r.ok) { const e = await r.json(); document.getElementById('m-res').innerHTML += '<div class="rc"><p style="color:#dc2626;text-align:center;padding:10px">❌ ' + (e.error || 'Item not found') + '</p></div>'; addMA(); return; }
       const item = await r.json();
       if (mMode === 'edit' && mCanEdit) showME(item); else showMR(item);
     }
@@ -2375,7 +2501,7 @@
         + '<div class="fg"><label>Value</label><input id="mf-v" value="' + (item['Value'] || '') + '"/></div>'
         + '<div class="fg"><label>Varied Date</label><input type="date" id="mf-dt" value="' + (item['Varied Date'] || '') + '"/></div>'
         + '<div class="fg"><label>Remark</label><textarea id="mf-r" placeholder="Add remark..."></textarea></div>'
-        + '<p style="font-size:12px;color:#9ca3af;margin-bottom:8px">⚠️ Verification Status can only be changed by Team Head</p>'
+        + '<p style="font-size:12px;color:#9ca3af;margin-bottom:8px">⚠️ Status can only be changed by Team Head</p>'
         + '<button class="bp m" id="mf-sv">💾 Save Changes</button></div>';
       document.getElementById('mf-sv').addEventListener('click', function () { saveM(item['QR Code ID']); });
       addMA();

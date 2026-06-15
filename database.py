@@ -20,6 +20,7 @@ def init_db():
             password TEXT NOT NULL,
             role TEXT NOT NULL DEFAULT 'member',
             can_edit INTEGER DEFAULT 0,
+            can_access_excel INTEGER DEFAULT 0,
             email TEXT,
             reset_token TEXT
         );
@@ -38,15 +39,14 @@ def init_db():
             shared_at DATETIME
         );
     ''')
-    # Add columns if not exist
     for col in [
         "ALTER TABLE users ADD COLUMN email TEXT",
         "ALTER TABLE users ADD COLUMN reset_token TEXT",
         "ALTER TABLE users ADD COLUMN can_edit INTEGER DEFAULT 0",
+        "ALTER TABLE users ADD COLUMN can_access_excel INTEGER DEFAULT 0",
         "ALTER TABLE excel_access ADD COLUMN access_code TEXT"
     ]:
-        try:
-            c.execute(col)
+        try: c.execute(col)
         except: pass
 
     row = c.execute("SELECT * FROM excel_access").fetchone()
@@ -57,8 +57,8 @@ def init_db():
     head = c.execute("SELECT * FROM users WHERE username='teamhead'").fetchone()
     if not head:
         pwd = hashlib.sha256("admin123".encode()).hexdigest()
-        c.execute("INSERT INTO users (username, password, role, can_edit, email) VALUES (?, ?, ?, ?, ?)",
-                  ("teamhead", pwd, "head", 1, "aakashkumarjha241@gmail.com"))
+        c.execute("INSERT INTO users (username, password, role, can_edit, can_access_excel, email) VALUES (?, ?, ?, ?, ?, ?)",
+                  ("teamhead", pwd, "head", 1, 1, "aakashkumarjha241@gmail.com"))
 
     conn.commit()
     conn.close()
@@ -87,11 +87,11 @@ def get_user_by_token(token):
     conn.close()
     return u
 
-def create_user(username, password, role='member', can_edit=0, email=None):
+def create_user(username, password, role='member', can_edit=0, email=None, can_access_excel=0):
     conn = get_db()
     try:
-        conn.execute("INSERT INTO users (username, password, role, can_edit, email) VALUES (?, ?, ?, ?, ?)",
-                     (username, hash_password(password), role, can_edit, email))
+        conn.execute("INSERT INTO users (username, password, role, can_edit, can_access_excel, email) VALUES (?, ?, ?, ?, ?, ?)",
+                     (username, hash_password(password), role, can_edit, can_access_excel, email))
         conn.commit()
         conn.close()
         return True
@@ -102,6 +102,12 @@ def create_user(username, password, role='member', can_edit=0, email=None):
 def update_user_permission(uid, can_edit):
     conn = get_db()
     conn.execute("UPDATE users SET can_edit=? WHERE id=?", (can_edit, uid))
+    conn.commit()
+    conn.close()
+
+def update_user_excel_access(uid, can_access):
+    conn = get_db()
+    conn.execute("UPDATE users SET can_access_excel=? WHERE id=?", (can_access, uid))
     conn.commit()
     conn.close()
 
@@ -149,7 +155,7 @@ def get_scan_logs():
 
 def get_all_users():
     conn = get_db()
-    users = conn.execute("SELECT id,username,role,can_edit,email FROM users").fetchall()
+    users = conn.execute("SELECT id,username,role,can_edit,can_access_excel,email FROM users").fetchall()
     conn.close()
     return [dict(u) for u in users]
 

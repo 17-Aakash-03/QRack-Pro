@@ -1,20 +1,20 @@
-from flask import Flask, jsonify, request, render_template, send_file, session, url_for
+from flask import Flask, jsonify, request, render_template, send_file, session
 import pandas as pd
 import os, io, qrcode, secrets
 from flask_mail import Mail, Message
 from database import (init_db, hash_password, get_user, get_user_by_email,
                        get_user_by_token, create_user, log_scan, get_scan_logs,
                        get_all_users, delete_user, update_user_permission,
-                       update_user_password, update_user_email, set_reset_token,
-                       clear_reset_token, set_excel_shared, get_excel_access,
-                       regenerate_code, verify_access_code)
+                       update_user_excel_access, update_user_password,
+                       update_user_email, set_reset_token, clear_reset_token,
+                       set_excel_shared, get_excel_access, regenerate_code,
+                       verify_access_code)
 from functools import wraps
 
 app = Flask(__name__, static_folder='templates', static_url_path='/static')
 app.secret_key = "qrack_secret_2024"
 EXCEL_FILE = "inventory.xlsx"
 
-# Mail config
 app.config['MAIL_SERVER'] = 'smtp.gmail.com'
 app.config['MAIL_PORT'] = 587
 app.config['MAIL_USE_TLS'] = True
@@ -58,8 +58,7 @@ def index():
 
 @app.route("/reset-password-page")
 def reset_password_page():
-    token = request.args.get('token', '')
-    return render_template("index.html", reset_token=token)
+    return render_template("index.html")
 
 @app.route("/login", methods=["POST"])
 def login():
@@ -72,10 +71,12 @@ def login():
         session['username'] = user['username']
         session['role'] = user['role']
         session['can_edit'] = user['can_edit']
-        session['excel_access'] = user['role'] == 'head'
+        session['can_access_excel'] = user['can_access_excel'] if user['role'] != 'head' else 1
+        session['excel_access'] = user['role'] == 'head' or bool(user['can_access_excel'])
         return jsonify({"success": True, "username": user['username'],
                         "role": user['role'], "can_edit": user['can_edit'],
-                        "excel_access": user['role'] == 'head'})
+                        "can_access_excel": user['can_access_excel'],
+                        "excel_access": session['excel_access']})
     return jsonify({"error": "Invalid username or password"}), 401
 
 @app.route("/logout", methods=["POST"])
@@ -90,8 +91,11 @@ def me():
     user = get_user(session['username'])
     if user:
         session['can_edit'] = user['can_edit']
+        session['can_access_excel'] = user['can_access_excel'] if user['role'] != 'head' else 1
+        session['excel_access'] = user['role'] == 'head' or bool(user['can_access_excel'])
     return jsonify({"logged_in": True, "username": session['username'],
                     "role": session['role'], "can_edit": session.get('can_edit', 0),
+                    "can_access_excel": session.get('can_access_excel', 0),
                     "excel_access": session.get('excel_access', False)})
 
 @app.route("/my-permissions")
@@ -100,8 +104,13 @@ def my_permissions():
     user = get_user(session['username'])
     if user:
         session['can_edit'] = user['can_edit']
-        return jsonify({"can_edit": user['can_edit'], "role": user['role']})
-    return jsonify({"can_edit": 0, "role": "member"})
+        session['can_access_excel'] = user['can_access_excel'] if user['role'] != 'head' else 1
+        session['excel_access'] = user['role'] == 'head' or bool(user['can_access_excel'])
+        return jsonify({"can_edit": user['can_edit'],
+                        "can_access_excel": user['can_access_excel'],
+                        "role": user['role'],
+                        "excel_access": session['excel_access']})
+    return jsonify({"can_edit": 0, "can_access_excel": 0, "role": "member", "excel_access": False})
 
 @app.route("/register-head", methods=["POST"])
 def register_head():
@@ -115,20 +124,17 @@ def register_head():
         return jsonify({"error": "Password too short (min 4)"}), 400
     if '@' not in e:
         return jsonify({"error": "Invalid email address"}), 400
-    if create_user(u, p, 'head', 1, e):
+    if create_user(u, p, 'head', 1, e, 1):
         return jsonify({"success": True})
     return jsonify({"error": "Username already exists"}), 400
 
-# FORGOT PASSWORD
 @app.route("/forgot-password", methods=["POST"])
 def forgot_password():
     data = request.json
     role = data.get("role", "")
     username = data.get("username", "").strip()
     email = data.get("email", "").strip()
-
     if role == "head":
-        # Head: username + email → reset link
         user = get_user(username)
         if not user or user['role'] != 'head':
             return jsonify({"error": "No Team Head found with this username"}), 404
@@ -138,93 +144,64 @@ def forgot_password():
         set_reset_token(user['id'], token)
         reset_url = request.host_url.rstrip('/') + '/reset-password-page?token=' + token
         try:
-            msg = Message("QRack — Reset Your Password",
-                          recipients=[user['email']])
-            msg.html = f"""
-            <div style="font-family:Arial,sans-serif;max-width:500px;margin:0 auto;padding:20px">
+            msg = Message("QRack — Reset Your Password", recipients=[user['email']])
+            msg.html = f"""<div style="font-family:Arial;max-width:500px;margin:0 auto;padding:20px">
               <h2 style="color:#4f46e5">📦 QRack Password Reset</h2>
               <p>Hello <strong>{user['username']}</strong>,</p>
-              <p>Click the button below to reset your password:</p>
-              <a href="{reset_url}" style="display:inline-block;background:linear-gradient(135deg,#4f46e5,#7c3aed);color:white;padding:12px 24px;border-radius:8px;text-decoration:none;font-weight:bold;margin:16px 0">Reset Password</a>
-              <p style="color:#6b7280;font-size:13px">This link expires in 1 hour. If you didn't request this, ignore this email.</p>
-              <p style="color:#6b7280;font-size:12px">Link: {reset_url}</p>
+              <p>Click below to reset your password:</p>
+              <a href="{reset_url}" style="display:inline-block;background:#4f46e5;color:white;padding:12px 24px;border-radius:8px;text-decoration:none;font-weight:bold;margin:16px 0">Reset Password</a>
+              <p style="color:#6b7280;font-size:13px">Link: {reset_url}</p>
             </div>"""
             mail.send(msg)
             return jsonify({"success": True, "message": "Reset link sent to your email!"})
         except Exception as ex:
             return jsonify({"error": "Failed to send email: " + str(ex)}), 500
-
     elif role == "member":
-        # Member: username or email → credentials sent to their email
         user = None
         if username:
             user = get_user(username)
-            if user and user['role'] != 'member':
-                user = None
+            if user and user['role'] != 'member': user = None
         if not user and email:
             user = get_user_by_email(email)
-            if user and user['role'] != 'member':
-                user = None
+            if user and user['role'] != 'member': user = None
         if not user:
-            return jsonify({"error": "No member found with this username or email"}), 404
+            return jsonify({"error": "No member found"}), 404
         if not user['email']:
             return jsonify({"error": "No email on file. Contact your Team Head."}), 400
-
-        # Get plain password — we can't since it's hashed
-        # Send username and ask head to reset
         try:
-            # Find team head
-            all_users = get_all_users()
-            heads = [u for u in all_users if u['role'] == 'head' and u['email']]
-
-            # Send to member's email
-            msg = Message("QRack — Your Login Details",
-                          recipients=[user['email']])
-            msg.html = f"""
-            <div style="font-family:Arial,sans-serif;max-width:500px;margin:0 auto;padding:20px">
+            msg = Message("QRack — Your Login Details", recipients=[user['email']])
+            msg.html = f"""<div style="font-family:Arial;max-width:500px;margin:0 auto;padding:20px">
               <h2 style="color:#7c3aed">📦 QRack Login Info</h2>
               <p>Hello <strong>{user['username']}</strong>,</p>
-              <p>Your login credentials:</p>
               <div style="background:#f5f3ff;border:2px solid #c4b5fd;border-radius:10px;padding:16px;margin:16px 0">
                 <p><strong>Username:</strong> {user['username']}</p>
                 <p style="margin-top:8px"><strong>Password:</strong> Contact your Team Head to reset your password.</p>
               </div>
-              <p style="color:#6b7280;font-size:13px">Only your Team Head can reset your password. Please contact them directly.</p>
             </div>"""
             mail.send(msg)
-
-            # Also notify head
-            for head in heads:
+            all_users = get_all_users()
+            for head in [u for u in all_users if u['role'] == 'head' and u['email']]:
                 try:
-                    msg2 = Message("QRack — Member Password Reset Request",
-                                   recipients=[head['email']])
-                    msg2.html = f"""
-                    <div style="font-family:Arial,sans-serif;max-width:500px;margin:0 auto;padding:20px">
-                      <h2 style="color:#4f46e5">📦 QRack — Password Reset Request</h2>
-                      <p>Hello <strong>{head['username']}</strong>,</p>
-                      <p>Team member <strong>{user['username']}</strong> has requested their password.</p>
-                      <p>Please login to QRack and reset their password from the Team tab.</p>
-                      <p style="color:#6b7280;font-size:13px">Login at: {request.host_url}</p>
+                    msg2 = Message("QRack — Member Password Reset Request", recipients=[head['email']])
+                    msg2.html = f"""<div style="font-family:Arial;padding:20px">
+                      <h2 style="color:#4f46e5">📦 Password Reset Request</h2>
+                      <p>Member <strong>{user['username']}</strong> needs password reset.</p>
+                      <p>Login at: {request.host_url}</p>
                     </div>"""
                     mail.send(msg2)
                 except: pass
-
-            return jsonify({"success": True, "message": "Your username has been sent to your email. Your Team Head has been notified to reset your password."})
+            return jsonify({"success": True, "message": "Your username sent to email. Team Head notified."})
         except Exception as ex:
             return jsonify({"error": "Failed to send email: " + str(ex)}), 500
-
     return jsonify({"error": "Invalid role"}), 400
 
-# RESET PASSWORD (Head only via token)
 @app.route("/reset-password", methods=["POST"])
 def reset_password():
     data = request.json
     token = data.get("token", "").strip()
     new_password = data.get("password", "").strip()
-    if not token or not new_password:
+    if not token or not new_password or len(new_password) < 4:
         return jsonify({"error": "Invalid request"}), 400
-    if len(new_password) < 4:
-        return jsonify({"error": "Password too short"}), 400
     user = get_user_by_token(token)
     if not user:
         return jsonify({"error": "Invalid or expired reset link"}), 400
@@ -254,27 +231,25 @@ def add_user():
     p = data.get("password", "").strip()
     e = data.get("email", "").strip()
     if not u or not p:
-        return jsonify({"error": "Fill all fields"}), 400
+        return jsonify({"error": "Username and password required"}), 400
     if len(p) < 4:
         return jsonify({"error": "Password too short"}), 400
-    if create_user(u, p, data.get("role", "member"), 1 if data.get("can_edit") else 0, e if e else None):
-        # Send welcome email to member
+    can_edit = 1 if data.get("can_edit") else 0
+    can_access = 1 if data.get("can_access_excel") else 0
+    if create_user(u, p, data.get("role", "member"), can_edit, e if e else None, can_access):
         if e and data.get("role", "member") == "member":
             try:
-                msg = Message("QRack — Your Account Details",
-                              recipients=[e])
-                msg.html = f"""
-                <div style="font-family:Arial,sans-serif;max-width:500px;margin:0 auto;padding:20px">
+                msg = Message("QRack — Your Account Details", recipients=[e])
+                msg.html = f"""<div style="font-family:Arial;padding:20px">
                   <h2 style="color:#7c3aed">📦 Welcome to QRack!</h2>
                   <p>Hello <strong>{u}</strong>,</p>
-                  <p>Your Team Head has created an account for you:</p>
                   <div style="background:#f5f3ff;border:2px solid #c4b5fd;border-radius:10px;padding:16px;margin:16px 0">
                     <p><strong>Username:</strong> {u}</p>
-                    <p style="margin-top:8px"><strong>Password:</strong> {p}</p>
-                    <p style="margin-top:8px"><strong>Edit Permission:</strong> {'Yes' if data.get('can_edit') else 'No'}</p>
+                    <p><strong>Password:</strong> {p}</p>
+                    <p><strong>Edit Permission:</strong> {'Yes' if can_edit else 'No'}</p>
+                    <p><strong>Excel Access:</strong> {'Yes' if can_access else 'No (need access code)'}</p>
                   </div>
                   <p>Login at: <a href="{request.host_url}">{request.host_url}</a></p>
-                  <p style="color:#6b7280;font-size:13px">Select "Team Member" on the login page.</p>
                 </div>"""
                 mail.send(msg)
             except: pass
@@ -292,45 +267,38 @@ def remove_user(uid):
 def update_perm(uid):
     can_edit = 1 if request.json.get("can_edit") else 0
     update_user_permission(uid, can_edit)
-    return jsonify({"success": True, "can_edit": can_edit})
+    return jsonify({"success": True})
+
+@app.route("/users/<int:uid>/excel-access", methods=["POST"])
+@head_required
+def update_excel_access(uid):
+    can_access = 1 if request.json.get("can_access") else 0
+    update_user_excel_access(uid, can_access)
+    return jsonify({"success": True})
 
 @app.route("/users/<int:uid>/password", methods=["POST"])
 @head_required
 def change_member_password(uid):
-    data = request.json
-    new_pass = data.get("password", "").strip()
+    new_pass = request.json.get("password", "").strip()
     if not new_pass or len(new_pass) < 4:
-        return jsonify({"error": "Password too short (min 4)"}), 400
+        return jsonify({"error": "Password too short"}), 400
     update_user_password(uid, new_pass)
-    # Get user and send email if they have one
     all_u = get_all_users()
     user = next((u for u in all_u if u['id'] == uid), None)
     if user and user.get('email'):
         try:
-            msg = Message("QRack — Your Password Has Been Changed",
-                          recipients=[user['email']])
-            msg.html = f"""
-            <div style="font-family:Arial,sans-serif;max-width:500px;margin:0 auto;padding:20px">
+            msg = Message("QRack — Password Updated", recipients=[user['email']])
+            msg.html = f"""<div style="font-family:Arial;padding:20px">
               <h2 style="color:#7c3aed">📦 QRack Password Updated</h2>
               <p>Hello <strong>{user['username']}</strong>,</p>
-              <p>Your Team Head has updated your password:</p>
               <div style="background:#f5f3ff;border:2px solid #c4b5fd;border-radius:10px;padding:16px;margin:16px 0">
                 <p><strong>Username:</strong> {user['username']}</p>
-                <p style="margin-top:8px"><strong>New Password:</strong> {new_pass}</p>
+                <p><strong>New Password:</strong> {new_pass}</p>
               </div>
               <p>Login at: <a href="{request.host_url}">{request.host_url}</a></p>
             </div>"""
             mail.send(msg)
         except: pass
-    return jsonify({"success": True})
-
-@app.route("/users/<int:uid>/email", methods=["POST"])
-@head_required
-def change_member_email(uid):
-    email = request.json.get("email", "").strip()
-    if not email or '@' not in email:
-        return jsonify({"error": "Invalid email"}), 400
-    update_user_email(uid, email)
     return jsonify({"success": True})
 
 @app.route("/excel/share", methods=["POST"])
@@ -357,13 +325,16 @@ def excel_status():
         if not os.path.exists(EXCEL_FILE):
             return jsonify({"available": False, "shared": False, "has_access": False})
         df = load_data()
-        role = session.get('role')
-        has_access = role == 'head' or session.get('excel_access', False)
         user = get_user(session['username'])
+        role = session.get('role')
         can_edit = user['can_edit'] if user else 0
+        can_access_excel = user['can_access_excel'] if user else 0
         session['can_edit'] = can_edit
+        has_access = role == 'head' or bool(can_access_excel) or session.get('excel_access', False)
+        session['excel_access'] = has_access
         return jsonify({"available": True, "shared": info.get('shared', 0) == 1,
-                        "total_items": len(df), "has_access": has_access, "can_edit": can_edit})
+                        "total_items": len(df), "has_access": has_access,
+                        "can_edit": can_edit, "can_access_excel": can_access_excel})
     except:
         return jsonify({"available": False, "shared": False, "has_access": False, "can_edit": 0})
 
@@ -371,8 +342,11 @@ def excel_status():
 @login_required
 def get_item(qr_id):
     try:
-        if not session.get('excel_access') and session.get('role') != 'head':
-            return jsonify({"error": "Enter access code first"}), 403
+        user = get_user(session['username'])
+        role = session.get('role')
+        can_access = role == 'head' or bool(user['can_access_excel']) or session.get('excel_access', False)
+        if not can_access:
+            return jsonify({"error": "No access to Excel sheet"}), 403
         df = load_data()
         row = df[df["QR Code ID"] == qr_id]
         if row.empty:
@@ -385,15 +359,16 @@ def get_item(qr_id):
 @login_required
 def update_item(qr_id):
     try:
-        if not session.get('excel_access') and session.get('role') != 'head':
-            return jsonify({"error": "Enter access code first"}), 403
-        data = request.json
-        remark = data.pop("remark", "")
-        role = session.get('role')
         user = get_user(session['username'])
+        role = session.get('role')
+        can_access = role == 'head' or bool(user['can_access_excel']) or session.get('excel_access', False)
+        if not can_access:
+            return jsonify({"error": "No access"}), 403
         can_edit = user['can_edit'] if user else 0
         if role != 'head' and not can_edit:
             return jsonify({"error": "No edit permission"}), 403
+        data = request.json
+        remark = data.pop("remark", "")
         df = load_data()
         idx = df[df["QR Code ID"] == qr_id].index
         if idx.empty:
@@ -415,8 +390,11 @@ def update_item(qr_id):
 @login_required
 def log_scan_only(qr_id):
     try:
-        if not session.get('excel_access') and session.get('role') != 'head':
-            return jsonify({"error": "Enter access code first"}), 403
+        user = get_user(session['username'])
+        role = session.get('role')
+        can_access = role == 'head' or bool(user['can_access_excel']) or session.get('excel_access', False)
+        if not can_access:
+            return jsonify({"error": "No access"}), 403
         data = request.json
         df = load_data()
         row = df[df["QR Code ID"] == qr_id]
@@ -426,8 +404,7 @@ def log_scan_only(qr_id):
         df.at[idx, 'Last Scanned'] = pd.Timestamp.now().strftime("%Y-%m-%d %H:%M:%S")
         df.at[idx, 'Scanned By'] = session['username']
         save_data(df)
-        log_scan(qr_id, session['username'], data.get("remark", ""),
-                 row.iloc[0].get("Verification Status", ""))
+        log_scan(qr_id, session['username'], data.get("remark", ""), row.iloc[0].get("Verification Status", ""))
         return jsonify({"success": True})
     except Exception as e:
         return jsonify({"error": str(e)}), 500
@@ -479,15 +456,14 @@ def get_all_logs():
         try:
             df = load_data()
             for _, row in df.iterrows():
-                scanned_by = str(row.get('Scanned By', '')).strip()
-                qr_id = str(row.get('QR Code ID', '')).strip()
-                last_scanned = str(row.get('Last Scanned', '')).strip()
-                status = str(row.get('Verification Status', '')).strip()
-                if (scanned_by and scanned_by != 'nan' and
-                    qr_id and qr_id != 'nan' and qr_id not in log_qr_ids):
-                    extra_logs.append({'id': None, 'qr_id': qr_id, 'scanned_by': scanned_by,
-                                       'timestamp': last_scanned if last_scanned != 'nan' else '',
-                                       'remark': '', 'verification_status': status if status != 'nan' else ''})
+                sb = str(row.get('Scanned By', '')).strip()
+                qid = str(row.get('QR Code ID', '')).strip()
+                ls = str(row.get('Last Scanned', '')).strip()
+                st = str(row.get('Verification Status', '')).strip()
+                if sb and sb != 'nan' and qid and qid != 'nan' and qid not in log_qr_ids:
+                    extra_logs.append({'id': None, 'qr_id': qid, 'scanned_by': sb,
+                                       'timestamp': ls if ls != 'nan' else '',
+                                       'remark': '', 'verification_status': st if st != 'nan' else ''})
         except: pass
     return logs + extra_logs
 
