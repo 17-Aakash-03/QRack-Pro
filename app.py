@@ -18,8 +18,8 @@ EXCEL_FILE = "inventory.xlsx"
 app.config['MAIL_SERVER'] = 'smtp.gmail.com'
 app.config['MAIL_PORT'] = 587
 app.config['MAIL_USE_TLS'] = True
-app.config['MAIL_USERNAME'] = 'aakashkumarjha241@gmail.com'
-app.config['MAIL_PASSWORD'] = 'yaebappncugoeljg'
+app.config['MAIL_USERNAME'] = 'aakashkumarjha44@gmail.com'
+app.config['MAIL_PASSWORD'] = 'bjbdkgafrxajiyqs'
 app.config['MAIL_DEFAULT_SENDER'] = 'aakashkumarjha241@gmail.com'
 mail = Mail(app)
 
