@@ -51,14 +51,13 @@ def init_db():
 
     row = c.execute("SELECT * FROM excel_access").fetchone()
     if not row:
-        code = gen_code()
-        c.execute("INSERT INTO excel_access (shared, access_code) VALUES (0, ?)", (code,))
+        c.execute("INSERT INTO excel_access (shared, access_code) VALUES (0, ?)", ("QRACK001",))
 
     head = c.execute("SELECT * FROM users WHERE username='teamhead'").fetchone()
     if not head:
         pwd = hashlib.sha256("admin123".encode()).hexdigest()
         c.execute("INSERT INTO users (username, password, role, can_edit, can_access_excel, email) VALUES (?, ?, ?, ?, ?, ?)",
-                  ("teamhead", pwd, "head", 1, 1, "aakashkumarjha241@gmail.com"))
+                  ("teamhead", pwd, "head", 1, 1, ""))
 
     conn.commit()
     conn.close()
@@ -136,20 +135,28 @@ def clear_reset_token(uid):
     conn.close()
 
 def log_scan(qr_id, scanned_by, remark, verification_status):
+    # FIXED: Always INSERT new row — full audit trail
     conn = get_db()
-    ex = conn.execute("SELECT id FROM scan_logs WHERE qr_id=?", (qr_id,)).fetchone()
-    if ex:
-        conn.execute("UPDATE scan_logs SET scanned_by=?,timestamp=CURRENT_TIMESTAMP,remark=?,verification_status=? WHERE qr_id=?",
-                     (scanned_by, remark, verification_status, qr_id))
-    else:
-        conn.execute("INSERT INTO scan_logs (qr_id,scanned_by,remark,verification_status) VALUES (?,?,?,?)",
-                     (qr_id, scanned_by, remark, verification_status))
+    conn.execute("INSERT INTO scan_logs (qr_id, scanned_by, remark, verification_status) VALUES (?, ?, ?, ?)",
+                 (qr_id, scanned_by, remark, verification_status))
     conn.commit()
     conn.close()
 
 def get_scan_logs():
     conn = get_db()
     logs = conn.execute("SELECT * FROM scan_logs ORDER BY timestamp DESC").fetchall()
+    conn.close()
+    return [dict(l) for l in logs]
+
+def get_scan_logs_by_user(username):
+    conn = get_db()
+    logs = conn.execute("SELECT * FROM scan_logs WHERE scanned_by=? ORDER BY timestamp DESC", (username,)).fetchall()
+    conn.close()
+    return [dict(l) for l in logs]
+
+def get_scan_logs_by_qr(qr_id):
+    conn = get_db()
+    logs = conn.execute("SELECT * FROM scan_logs WHERE qr_id=? ORDER BY timestamp DESC", (qr_id,)).fetchall()
     conn.close()
     return [dict(l) for l in logs]
 
