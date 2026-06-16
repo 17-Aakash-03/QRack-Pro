@@ -4,6 +4,7 @@ import os, io, qrcode, secrets
 from flask_mail import Mail, Message
 from database import (init_db, hash_password, get_user, get_user_by_email,
                        get_user_by_token, create_user, log_scan, get_scan_logs,
+                       get_scan_logs_by_user, get_scan_logs_by_qr,
                        get_all_users, delete_user, update_user_permission,
                        update_user_excel_access, update_user_password,
                        update_user_email, set_reset_token, clear_reset_token,
@@ -186,7 +187,6 @@ def forgot_password():
                     msg2.html = f"""<div style="font-family:Arial;padding:20px">
                       <h2 style="color:#4f46e5">📦 Password Reset Request</h2>
                       <p>Member <strong>{user['username']}</strong> needs password reset.</p>
-                      <p>Login at: {request.host_url}</p>
                     </div>"""
                     mail.send(msg2)
                 except: pass
@@ -208,15 +208,6 @@ def reset_password():
     update_user_password(user['id'], new_password)
     clear_reset_token(user['id'])
     return jsonify({"success": True, "message": "Password reset successfully!"})
-
-@app.route("/verify-code", methods=["POST"])
-@login_required
-def verify_code():
-    code = request.json.get("code", "").strip().upper()
-    if verify_access_code(code):
-        session['excel_access'] = True
-        return jsonify({"success": True})
-    return jsonify({"error": "Invalid or expired code"}), 400
 
 @app.route("/users", methods=["GET"])
 @head_required
@@ -247,7 +238,7 @@ def add_user():
                     <p><strong>Username:</strong> {u}</p>
                     <p><strong>Password:</strong> {p}</p>
                     <p><strong>Edit Permission:</strong> {'Yes' if can_edit else 'No'}</p>
-                    <p><strong>Excel Access:</strong> {'Yes' if can_access else 'No (need access code)'}</p>
+                    <p><strong>Excel Access:</strong> {'Yes' if can_access else 'Needs to be granted by Team Head'}</p>
                   </div>
                   <p>Login at: <a href="{request.host_url}">{request.host_url}</a></p>
                 </div>"""
@@ -307,11 +298,6 @@ def share_excel():
     set_excel_shared(request.json.get("shared", False))
     return jsonify({"success": True})
 
-@app.route("/excel/regenerate-code", methods=["POST"])
-@head_required
-def regen():
-    return jsonify({"success": True, "code": regenerate_code()})
-
 @app.route("/excel/access-info")
 @head_required
 def access_info():
@@ -321,22 +307,21 @@ def access_info():
 @login_required
 def excel_status():
     try:
-        info = get_excel_access()
         if not os.path.exists(EXCEL_FILE):
-            return jsonify({"available": False, "shared": False, "has_access": False})
+            return jsonify({"available": False, "has_access": False})
         df = load_data()
         user = get_user(session['username'])
         role = session.get('role')
         can_edit = user['can_edit'] if user else 0
         can_access_excel = user['can_access_excel'] if user else 0
         session['can_edit'] = can_edit
-        has_access = role == 'head' or bool(can_access_excel) or session.get('excel_access', False)
+        has_access = role == 'head' or bool(can_access_excel)
         session['excel_access'] = has_access
-        return jsonify({"available": True, "shared": info.get('shared', 0) == 1,
-                        "total_items": len(df), "has_access": has_access,
-                        "can_edit": can_edit, "can_access_excel": can_access_excel})
+        return jsonify({"available": True, "total_items": len(df),
+                        "has_access": has_access, "can_edit": can_edit,
+                        "can_access_excel": can_access_excel})
     except:
-        return jsonify({"available": False, "shared": False, "has_access": False, "can_edit": 0})
+        return jsonify({"available": False, "has_access": False, "can_edit": 0})
 
 @app.route("/item/<qr_id>", methods=["GET"])
 @login_required
@@ -351,7 +336,11 @@ def get_item(qr_id):
         row = df[df["QR Code ID"] == qr_id]
         if row.empty:
             return jsonify({"error": "Item not found"}), 404
-        return jsonify(row.iloc[0].to_dict())
+        # Get scan history for this item
+        history = get_scan_logs_by_qr(qr_id)
+        item_data = row.iloc[0].to_dict()
+        item_data['scan_history'] = history
+        return jsonify(item_data)
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
@@ -409,6 +398,30 @@ def log_scan_only(qr_id):
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
+@app.route("/my-scan-history")
+@login_required
+def my_scan_history():
+    try:
+        logs = get_scan_logs_by_user(session['username'])
+        # Enrich with item names
+        if os.path.exists(EXCEL_FILE):
+            df = load_data()
+            inv = {str(r['QR Code ID']): str(r.get('Item Name','')) for _, r in df.iterrows()}
+            for l in logs:
+                l['item_name'] = inv.get(l['qr_id'], '')
+        return jsonify(logs)
+    except Exception as e:
+        return jsonify([])
+
+@app.route("/item-history/<qr_id>")
+@login_required
+def item_history(qr_id):
+    try:
+        logs = get_scan_logs_by_qr(qr_id)
+        return jsonify(logs)
+    except Exception as e:
+        return jsonify([])
+
 @app.route("/items")
 @login_required
 def get_all_items():
@@ -449,36 +462,41 @@ def serve_qr(qr_id):
     return send_file(path, mimetype="image/png")
 
 def get_all_logs():
-    logs = get_scan_logs()
-    log_qr_ids = {l['qr_id'] for l in logs}
-    extra_logs = []
-    if os.path.exists(EXCEL_FILE):
-        try:
-            df = load_data()
-            for _, row in df.iterrows():
-                sb = str(row.get('Scanned By', '')).strip()
-                qid = str(row.get('QR Code ID', '')).strip()
-                ls = str(row.get('Last Scanned', '')).strip()
-                st = str(row.get('Verification Status', '')).strip()
-                if sb and sb != 'nan' and qid and qid != 'nan' and qid not in log_qr_ids:
-                    extra_logs.append({'id': None, 'qr_id': qid, 'scanned_by': sb,
-                                       'timestamp': ls if ls != 'nan' else '',
-                                       'remark': '', 'verification_status': st if st != 'nan' else ''})
-        except: pass
-    return logs + extra_logs
+    return get_scan_logs()
 
 @app.route("/report")
 @head_required
 def get_report():
     try:
         all_logs = get_all_logs()
+        if not os.path.exists(EXCEL_FILE):
+            return jsonify({"total": 0, "scanned": 0, "verified": 0,
+                           "pending": 0, "rejected": 0, "not_scanned": 0, "logs": []})
         df = load_data()
         total = len(df)
-        return jsonify({"total": total, "scanned": len(all_logs),
+        # Get unique scanned QR IDs
+        scanned_qr_ids = set(l['qr_id'] for l in all_logs)
+        # Per-member stats
+        member_stats = {}
+        for l in all_logs:
+            mb = l['scanned_by']
+            if mb not in member_stats:
+                member_stats[mb] = {'total': 0, 'verified': 0, 'pending': 0, 'rejected': 0}
+            member_stats[mb]['total'] += 1
+            st = l.get('verification_status', '')
+            if st == 'Verified': member_stats[mb]['verified'] += 1
+            elif st == 'Pending': member_stats[mb]['pending'] += 1
+            elif st == 'Rejected': member_stats[mb]['rejected'] += 1
+        return jsonify({
+            "total": total,
+            "scanned": len(scanned_qr_ids),
             "verified": sum(1 for l in all_logs if l['verification_status'] == 'Verified'),
             "pending": sum(1 for l in all_logs if l['verification_status'] == 'Pending'),
             "rejected": sum(1 for l in all_logs if l['verification_status'] == 'Rejected'),
-            "not_scanned": total - len(all_logs), "logs": all_logs})
+            "not_scanned": total - len(scanned_qr_ids),
+            "logs": all_logs,
+            "member_stats": member_stats
+        })
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
@@ -497,12 +515,13 @@ def download_report():
             elif not df_inv.empty:
                 df_inv.to_excel(writer, sheet_name='Scan Report', index=False)
             total = len(df_inv)
+            scanned_ids = set(l['qr_id'] for l in all_logs)
             pd.DataFrame({'Status': ['Total','Scanned','Verified','Pending','Rejected','Not Scanned'],
-                'Count': [total, len(all_logs),
+                'Count': [total, len(scanned_ids),
                     sum(1 for l in all_logs if l['verification_status']=='Verified'),
                     sum(1 for l in all_logs if l['verification_status']=='Pending'),
                     sum(1 for l in all_logs if l['verification_status']=='Rejected'),
-                    total - len(all_logs)]
+                    total - len(scanned_ids)]
             }).to_excel(writer, sheet_name='Summary', index=False)
         output.seek(0)
         return send_file(output, mimetype='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
