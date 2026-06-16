@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
   <title>QRack</title>
   <link rel="manifest" href="/static/manifest.json">
   <meta name="theme-color" content="#4f46e5">
@@ -252,11 +252,6 @@
       font-size: 13px
     }
 
-    .logout-btn:disabled {
-      opacity: .5;
-      cursor: not-allowed
-    }
-
     .nav-bar {
       display: flex;
       background: white;
@@ -297,7 +292,7 @@
     .page {
       display: none;
       padding: 16px;
-      max-width: 600px;
+      max-width: 700px;
       margin: 0 auto
     }
 
@@ -576,459 +571,6 @@
       text-decoration: underline
     }
 
-    .ac-box {
-      background: linear-gradient(135deg, #f5f3ff, #ede9fe);
-      border: 2px solid #c4b5fd;
-      border-radius: 12px;
-      padding: 20px;
-      margin-bottom: 14px;
-      text-align: center
-    }
-
-    .ac-box h3 {
-      font-size: 15px;
-      font-weight: 700;
-      color: #4f46e5;
-      margin-bottom: 12px
-    }
-
-    .ac-code {
-      font-size: 26px;
-      font-weight: 800;
-      color: #4f46e5;
-      letter-spacing: 5px;
-      font-family: monospace;
-      background: white;
-      border: 2px dashed #c4b5fd;
-      border-radius: 10px;
-      padding: 12px;
-      margin: 0 0 12px;
-      display: block;
-      word-break: break-all
-    }
-
-    .ac-hint {
-      font-size: 12px;
-      color: #6b7280
-    }
-
-    .ec-box {
-      background: #fafafe;
-      border: 2px solid #c7d2fe;
-      border-radius: 12px;
-      padding: 24px;
-      text-align: center
-    }
-
-    .ec-box h3 {
-      font-size: 16px;
-      font-weight: 700;
-      color: #4f46e5;
-      margin-bottom: 8px
-    }
-
-    .ec-box p {
-      font-size: 13px;
-      color: #6b7280;
-      margin-bottom: 16px
-    }
-
-    .ci {
-      font-size: 20px;
-      font-weight: 700;
-      letter-spacing: 4px;
-      text-align: center;
-      font-family: monospace;
-      text-transform: uppercase;
-      border: 2px solid #c4b5fd;
-      border-radius: 8px;
-      padding: 12px;
-      width: 100%;
-      color: #4f46e5
-    }
-
-    .ci:focus {
-      outline: none;
-      border-color: #4f46e5;
-      box-shadow: 0 0 0 3px rgba(79, 70, 229, .1)
-    }
-
-    .ce {
-      font-size: 12px;
-      color: #dc2626;
-      margin-top: 8px;
-      min-height: 18px
-    }
-
-    .st {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      background: #f9fafb;
-      border: 1px solid #e5e7eb;
-      border-radius: 10px;
-      padding: 14px 16px;
-      margin-bottom: 14px
-    }
-
-    .st .si h4 {
-      font-size: 14px;
-      font-weight: 600;
-      margin-bottom: 2px
-    }
-
-    .st .si p {
-      font-size: 12px;
-      color: #6b7280
-    }
-
-    .ts {
-      position: relative;
-      width: 48px;
-      height: 26px;
-      flex-shrink: 0
-    }
-
-    .ts input {
-      opacity: 0;
-      width: 0;
-      height: 0
-    }
-
-    .sl {
-      position: absolute;
-      cursor: pointer;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: #cbd5e1;
-      border-radius: 26px;
-      transition: .3s
-    }
-
-    .sl::before {
-      position: absolute;
-      content: "";
-      height: 20px;
-      width: 20px;
-      left: 3px;
-      bottom: 3px;
-      background: white;
-      border-radius: 50%;
-      transition: .3s
-    }
-
-    input:checked+.sl {
-      background: #4f46e5
-    }
-
-    input:checked+.sl::before {
-      transform: translateX(22px)
-    }
-
-    .pt {
-      position: relative;
-      width: 36px;
-      height: 20px;
-      display: inline-block
-    }
-
-    .pt input {
-      opacity: 0;
-      width: 0;
-      height: 0
-    }
-
-    .ps {
-      position: absolute;
-      cursor: pointer;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: #cbd5e1;
-      border-radius: 20px;
-      transition: .3s
-    }
-
-    .ps::before {
-      position: absolute;
-      content: "";
-      height: 14px;
-      width: 14px;
-      left: 3px;
-      bottom: 3px;
-      background: white;
-      border-radius: 50%;
-      transition: .3s
-    }
-
-    input:checked+.ps {
-      background: #7c3aed
-    }
-
-    input:checked+.ps::before {
-      transform: translateX(16px)
-    }
-
-    .pt.green input:checked+.ps {
-      background: #16a34a
-    }
-
-    .mr {
-      display: flex;
-      gap: 8px;
-      margin-bottom: 16px;
-      background: #f3f4f6;
-      border-radius: 10px;
-      padding: 4px
-    }
-
-    .mb {
-      flex: 1;
-      padding: 9px 8px;
-      border: none;
-      border-radius: 7px;
-      background: transparent;
-      font-size: 13px;
-      cursor: pointer;
-      color: #6b7280;
-      font-weight: 500;
-      transition: all .2s
-    }
-
-    .mb.active {
-      background: white;
-      color: #4f46e5;
-      font-weight: 700;
-      box-shadow: 0 1px 4px rgba(0, 0, 0, .1)
-    }
-
-    .tr {
-      display: flex;
-      gap: 8px;
-      margin-bottom: 14px
-    }
-
-    .tb {
-      flex: 1;
-      padding: 8px;
-      border: 1px solid #e5e7eb;
-      border-radius: 8px;
-      background: white;
-      font-size: 13px;
-      cursor: pointer;
-      color: #6b7280;
-      font-weight: 500;
-      transition: all .2s
-    }
-
-    .tb.active {
-      background: #ede9fe;
-      color: #4f46e5;
-      border-color: #c4b5fd;
-      font-weight: 700
-    }
-
-    .sw {
-      position: relative;
-      border-radius: 10px;
-      overflow: hidden;
-      background: #000
-    }
-
-    video {
-      width: 100%;
-      display: block;
-      max-height: 260px;
-      object-fit: cover
-    }
-
-    canvas {
-      display: none
-    }
-
-    .sf {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 160px;
-      height: 160px;
-      border-radius: 10px;
-      box-shadow: 0 0 0 9999px rgba(0, 0, 0, .5)
-    }
-
-    .sf::before,
-    .sf::after,
-    .sf span::before,
-    .sf span::after {
-      content: '';
-      position: absolute;
-      width: 20px;
-      height: 20px;
-      border-color: #4f46e5;
-      border-style: solid
-    }
-
-    .sf::before {
-      top: 0;
-      left: 0;
-      border-width: 3px 0 0 3px;
-      border-radius: 4px 0 0 0
-    }
-
-    .sf::after {
-      top: 0;
-      right: 0;
-      border-width: 3px 3px 0 0;
-      border-radius: 0 4px 0 0
-    }
-
-    .sf span::before {
-      bottom: 0;
-      left: 0;
-      border-width: 0 0 3px 3px;
-      border-radius: 0 0 0 4px
-    }
-
-    .sf span::after {
-      bottom: 0;
-      right: 0;
-      border-width: 0 3px 3px 0;
-      border-radius: 0 0 4px 0
-    }
-
-    .stb {
-      background: #ede9fe;
-      border-left: 3px solid #4f46e5;
-      border-radius: 0 6px 6px 0;
-      padding: 9px 12px;
-      font-size: 13px;
-      color: #4338ca;
-      margin: 10px 0
-    }
-
-    .stb.m {
-      background: #faf5ff;
-      border-color: #7c3aed;
-      color: #7c3aed
-    }
-
-    .rc {
-      background: white;
-      border-radius: 12px;
-      padding: 18px;
-      margin-top: 12px;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, .08);
-      border: 1px solid #e5e7eb
-    }
-
-    .rb {
-      text-align: center;
-      font-size: 17px;
-      font-weight: 700;
-      padding: 12px;
-      border-radius: 8px;
-      margin-bottom: 16px
-    }
-
-    .rb.vf {
-      background: #f0fdf4;
-      color: #16a34a;
-      border: 1px solid #bbf7d0
-    }
-
-    .rb.nv {
-      background: #fef2f2;
-      color: #dc2626;
-      border: 1px solid #fecaca
-    }
-
-    .rb.pd {
-      background: #fffbeb;
-      color: #d97706;
-      border: 1px solid #fde68a
-    }
-
-    .ir {
-      display: flex;
-      padding: 8px 0;
-      border-bottom: 1px solid #f3f4f6;
-      font-size: 14px
-    }
-
-    .ir:last-child {
-      border-bottom: none
-    }
-
-    .il {
-      color: #9ca3af;
-      width: 120px;
-      flex-shrink: 0;
-      font-size: 13px
-    }
-
-    .iv {
-      color: #1a1a2e;
-      font-weight: 500;
-      flex: 1
-    }
-
-    .badge {
-      display: inline-block;
-      padding: 3px 10px;
-      border-radius: 12px;
-      font-size: 12px;
-      font-weight: 600
-    }
-
-    .badge.Verified {
-      background: #f0fdf4;
-      color: #16a34a;
-      border: 1px solid #bbf7d0
-    }
-
-    .badge.Pending {
-      background: #fffbeb;
-      color: #d97706;
-      border: 1px solid #fde68a
-    }
-
-    .badge.Rejected {
-      background: #fef2f2;
-      color: #dc2626;
-      border: 1px solid #fecaca
-    }
-
-    .rem-box {
-      background: #fafafe;
-      border: 1px solid #e0d9fe;
-      border-radius: 10px;
-      padding: 14px;
-      margin-top: 12px
-    }
-
-    .rem-box label {
-      display: block;
-      font-size: 12px;
-      color: #6b7280;
-      margin-bottom: 6px;
-      font-weight: 700;
-      text-transform: uppercase
-    }
-
-    .rem-box textarea {
-      width: 100%;
-      padding: 9px;
-      border: 1px solid #e5e7eb;
-      border-radius: 8px;
-      font-size: 14px;
-      height: 70px;
-      resize: vertical
-    }
-
     .ef-box {
       background: #fafafe;
       border: 1px solid #e0d9fe;
@@ -1117,7 +659,7 @@
     .tw {
       overflow-x: auto;
       border-radius: 8px;
-      max-height: 380px;
+      max-height: 400px;
       overflow-y: auto
     }
 
@@ -1343,7 +885,7 @@
     .msc h4 {
       font-size: 14px;
       font-weight: 600;
-      margin-bottom: 6px
+      margin-bottom: 4px
     }
 
     .msc p {
@@ -1405,7 +947,7 @@
       border-radius: 16px;
       padding: 24px;
       width: 100%;
-      max-width: 380px;
+      max-width: 420px;
       box-shadow: 0 8px 32px rgba(0, 0, 0, .2);
       max-height: 90vh;
       overflow-y: auto
@@ -1429,27 +971,6 @@
       margin-top: -4px
     }
 
-    .member-info-box {
-      background: rgba(255, 255, 255, .1);
-      border: 1px solid rgba(255, 255, 255, .2);
-      border-radius: 10px;
-      padding: 14px;
-      text-align: center;
-      color: white;
-      margin-top: 14px
-    }
-
-    .member-info-box p {
-      font-size: 13px;
-      opacity: .9;
-      margin-bottom: 4px
-    }
-
-    .member-info-box small {
-      font-size: 12px;
-      opacity: .7
-    }
-
     #reset-page {
       min-height: 100vh;
       display: none;
@@ -1464,6 +985,623 @@
       padding: 20px;
       color: #9ca3af;
       font-size: 13px
+    }
+
+    .sw {
+      position: relative;
+      border-radius: 10px;
+      overflow: hidden;
+      background: #000
+    }
+
+    video {
+      width: 100%;
+      display: block;
+      max-height: 260px;
+      object-fit: cover
+    }
+
+    canvas {
+      display: none
+    }
+
+    .sf {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 160px;
+      height: 160px;
+      border-radius: 10px;
+      box-shadow: 0 0 0 9999px rgba(0, 0, 0, .5)
+    }
+
+    .sf::before,
+    .sf::after,
+    .sf span::before,
+    .sf span::after {
+      content: '';
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      border-color: #4f46e5;
+      border-style: solid
+    }
+
+    .sf::before {
+      top: 0;
+      left: 0;
+      border-width: 3px 0 0 3px;
+      border-radius: 4px 0 0 0
+    }
+
+    .sf::after {
+      top: 0;
+      right: 0;
+      border-width: 3px 3px 0 0;
+      border-radius: 0 4px 0 0
+    }
+
+    .sf span::before {
+      bottom: 0;
+      left: 0;
+      border-width: 0 0 3px 3px;
+      border-radius: 0 0 0 4px
+    }
+
+    .sf span::after {
+      bottom: 0;
+      right: 0;
+      border-width: 0 3px 3px 0;
+      border-radius: 0 0 4px 0
+    }
+
+    .stb {
+      background: #ede9fe;
+      border-left: 3px solid #4f46e5;
+      border-radius: 0 6px 6px 0;
+      padding: 9px 12px;
+      font-size: 13px;
+      color: #4338ca;
+      margin: 10px 0
+    }
+
+    .stb.m {
+      background: #faf5ff;
+      border-color: #7c3aed;
+      color: #7c3aed
+    }
+
+    .rc {
+      background: white;
+      border-radius: 12px;
+      padding: 18px;
+      margin-top: 12px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, .08);
+      border: 1px solid #e5e7eb
+    }
+
+    .rb {
+      text-align: center;
+      font-size: 17px;
+      font-weight: 700;
+      padding: 12px;
+      border-radius: 8px;
+      margin-bottom: 16px
+    }
+
+    .rb.vf {
+      background: #f0fdf4;
+      color: #16a34a;
+      border: 1px solid #bbf7d0
+    }
+
+    .rb.nv {
+      background: #fef2f2;
+      color: #dc2626;
+      border: 1px solid #fecaca
+    }
+
+    .rb.pd {
+      background: #fffbeb;
+      color: #d97706;
+      border: 1px solid #fde68a
+    }
+
+    .ir {
+      display: flex;
+      padding: 8px 0;
+      border-bottom: 1px solid #f3f4f6;
+      font-size: 14px
+    }
+
+    .ir:last-child {
+      border-bottom: none
+    }
+
+    .il {
+      color: #9ca3af;
+      width: 120px;
+      flex-shrink: 0;
+      font-size: 13px
+    }
+
+    .iv {
+      color: #1a1a2e;
+      font-weight: 500;
+      flex: 1
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: 12px;
+      font-size: 12px;
+      font-weight: 600
+    }
+
+    .badge.Verified {
+      background: #f0fdf4;
+      color: #16a34a;
+      border: 1px solid #bbf7d0
+    }
+
+    .badge.Pending {
+      background: #fffbeb;
+      color: #d97706;
+      border: 1px solid #fde68a
+    }
+
+    .badge.Rejected {
+      background: #fef2f2;
+      color: #dc2626;
+      border: 1px solid #fecaca
+    }
+
+    .rem-box {
+      background: #fafafe;
+      border: 1px solid #e0d9fe;
+      border-radius: 10px;
+      padding: 14px;
+      margin-top: 12px
+    }
+
+    .rem-box label {
+      display: block;
+      font-size: 12px;
+      color: #6b7280;
+      margin-bottom: 6px;
+      font-weight: 700;
+      text-transform: uppercase
+    }
+
+    .rem-box textarea {
+      width: 100%;
+      padding: 9px;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      font-size: 14px;
+      height: 70px;
+      resize: vertical
+    }
+
+    .mr {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 16px;
+      background: #f3f4f6;
+      border-radius: 10px;
+      padding: 4px
+    }
+
+    .mb {
+      flex: 1;
+      padding: 9px 8px;
+      border: none;
+      border-radius: 7px;
+      background: transparent;
+      font-size: 13px;
+      cursor: pointer;
+      color: #6b7280;
+      font-weight: 500;
+      transition: all .2s
+    }
+
+    .mb.active {
+      background: white;
+      color: #4f46e5;
+      font-weight: 700;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, .1)
+    }
+
+    .tr {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 14px
+    }
+
+    .tb {
+      flex: 1;
+      padding: 8px;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      background: white;
+      font-size: 13px;
+      cursor: pointer;
+      color: #6b7280;
+      font-weight: 500;
+      transition: all .2s
+    }
+
+    .tb.active {
+      background: #ede9fe;
+      color: #4f46e5;
+      border-color: #c4b5fd;
+      font-weight: 700
+    }
+
+    /* Progress bar */
+    .prog-wrap {
+      background: #f3f4f6;
+      border-radius: 20px;
+      height: 12px;
+      margin: 10px 0 4px;
+      overflow: hidden
+    }
+
+    .prog-bar {
+      height: 100%;
+      border-radius: 20px;
+      background: linear-gradient(90deg, #4f46e5, #7c3aed);
+      transition: width .5s
+    }
+
+    .prog-label {
+      font-size: 12px;
+      color: #6b7280;
+      text-align: right
+    }
+
+    /* Search box */
+    .search-box {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 12px
+    }
+
+    .search-box input {
+      flex: 1;
+      padding: 9px 12px;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      font-size: 14px
+    }
+
+    .search-box input:focus {
+      outline: none;
+      border-color: #4f46e5
+    }
+
+    .search-box select {
+      padding: 9px 8px;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      font-size: 13px;
+      color: #374151
+    }
+
+    /* Filter bar */
+    .filter-bar {
+      display: flex;
+      gap: 6px;
+      margin-bottom: 12px;
+      flex-wrap: wrap
+    }
+
+    .filter-btn {
+      padding: 5px 12px;
+      border: 1px solid #e5e7eb;
+      border-radius: 20px;
+      font-size: 12px;
+      cursor: pointer;
+      background: white;
+      color: #6b7280;
+      transition: all .2s
+    }
+
+    .filter-btn.active {
+      background: #ede9fe;
+      color: #4f46e5;
+      border-color: #c4b5fd;
+      font-weight: 600
+    }
+
+    /* Chart */
+    .chart-wrap {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+      padding: 16px 0
+    }
+
+    .donut {
+      position: relative;
+      width: 120px;
+      height: 120px;
+      flex-shrink: 0
+    }
+
+    .donut svg {
+      transform: rotate(-90deg)
+    }
+
+    .donut-label {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      font-size: 11px;
+      color: #6b7280
+    }
+
+    .donut-label strong {
+      display: block;
+      font-size: 18px;
+      color: #4f46e5
+    }
+
+    .legend {
+      flex: 1
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 8px;
+      font-size: 13px
+    }
+
+    .legend-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      flex-shrink: 0
+    }
+
+    /* Activity feed */
+    .af-item {
+      display: flex;
+      gap: 10px;
+      padding: 10px 0;
+      border-bottom: 1px solid #f3f4f6
+    }
+
+    .af-item:last-child {
+      border-bottom: none
+    }
+
+    .af-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      margin-top: 5px;
+      flex-shrink: 0
+    }
+
+    .af-dot.vf {
+      background: #16a34a
+    }
+
+    .af-dot.pd {
+      background: #d97706
+    }
+
+    .af-dot.rj {
+      background: #dc2626
+    }
+
+    .af-text {
+      flex: 1;
+      font-size: 13px;
+      color: #374151
+    }
+
+    .af-time {
+      font-size: 11px;
+      color: #9ca3af;
+      margin-top: 2px
+    }
+
+    /* History item */
+    .hist-item {
+      background: #fafafe;
+      border: 1px solid #e5e7eb;
+      border-radius: 10px;
+      padding: 12px;
+      margin-bottom: 8px
+    }
+
+    .hist-item h4 {
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 6px;
+      color: #1a1a2e
+    }
+
+    .hist-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      font-size: 12px;
+      color: #6b7280
+    }
+
+    .hist-meta span {
+      display: flex;
+      align-items: center;
+      gap: 3px
+    }
+
+    /* Member stat cards */
+    .ms-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin-bottom: 14px
+    }
+
+    .ms-card {
+      background: white;
+      border: 1px solid #e5e7eb;
+      border-radius: 10px;
+      padding: 12px;
+      text-align: center
+    }
+
+    .ms-card h3 {
+      font-size: 22px;
+      font-weight: 800;
+      color: #7c3aed
+    }
+
+    .ms-card p {
+      font-size: 11px;
+      color: #6b7280;
+      margin-top: 2px
+    }
+
+    /* pt toggle */
+    .pt {
+      position: relative;
+      width: 36px;
+      height: 20px;
+      display: inline-block
+    }
+
+    .pt input {
+      opacity: 0;
+      width: 0;
+      height: 0
+    }
+
+    .ps {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: #cbd5e1;
+      border-radius: 20px;
+      transition: .3s
+    }
+
+    .ps::before {
+      position: absolute;
+      content: "";
+      height: 14px;
+      width: 14px;
+      left: 3px;
+      bottom: 3px;
+      background: white;
+      border-radius: 50%;
+      transition: .3s
+    }
+
+    input:checked+.ps {
+      background: #7c3aed
+    }
+
+    input:checked+.ps::before {
+      transform: translateX(16px)
+    }
+
+    .pt.green input:checked+.ps {
+      background: #16a34a
+    }
+
+    .ts {
+      position: relative;
+      width: 48px;
+      height: 26px;
+      flex-shrink: 0
+    }
+
+    .ts input {
+      opacity: 0;
+      width: 0;
+      height: 0
+    }
+
+    .sl {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: #cbd5e1;
+      border-radius: 26px;
+      transition: .3s
+    }
+
+    .sl::before {
+      position: absolute;
+      content: "";
+      height: 20px;
+      width: 20px;
+      left: 3px;
+      bottom: 3px;
+      background: white;
+      border-radius: 50%;
+      transition: .3s
+    }
+
+    input:checked+.sl {
+      background: #4f46e5
+    }
+
+    input:checked+.sl::before {
+      transform: translateX(22px)
+    }
+
+    .st {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #f9fafb;
+      border: 1px solid #e5e7eb;
+      border-radius: 10px;
+      padding: 14px 16px;
+      margin-bottom: 14px
+    }
+
+    .st .si h4 {
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 2px
+    }
+
+    .st .si p {
+      font-size: 12px;
+      color: #6b7280
+    }
+
+    /* Scan already badge */
+    .already-scanned {
+      background: #fffbeb;
+      border: 2px solid #fde68a;
+      border-radius: 8px;
+      padding: 10px 14px;
+      font-size: 13px;
+      color: #d97706;
+      font-weight: 600;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 6px
     }
   </style>
 </head>
@@ -1523,8 +1661,6 @@
                 onclick="togglePw('l-p',this)">👁️</button></div>
           </div>
           <button class="bp" id="login-btn">🔐 Login</button>
-          <p id="l-hint" style="text-align:center;font-size:12px;color:#9ca3af;margin-top:10px">Default: teamhead /
-            admin123</p>
           <p class="forgot-link" id="forgot-link">Forgot password?</p>
         </div>
         <div id="hrf" style="display:none">
@@ -1541,8 +1677,10 @@
           <button class="bp" id="head-reg-btn">👑 Register as Team Head</button>
         </div>
         <div id="member-info-box" style="display:none">
-          <div class="member-info-box">
-            <p>🔑 Contact your Team Head for login credentials</p><small>Members are created by Team Head only</small>
+          <div
+            style="background:rgba(124,58,237,.1);border:1px solid #c4b5fd;border-radius:10px;padding:14px;text-align:center;color:#7c3aed;margin-top:8px">
+            <p style="font-size:13px">🔑 Contact your Team Head for login credentials</p>
+            <small style="font-size:12px;color:#6b7280">Members are created by Team Head only</small>
           </div>
         </div>
       </div>
@@ -1588,11 +1726,14 @@
       <button class="nav-btn" data-pg="ht">👥 Team</button>
       <button class="nav-btn" data-pg="he">📂 Excel</button>
     </div>
+
+    <!-- HEAD HOME -->
     <div class="page active" id="hh">
       <div class="wc hd">
         <h2 id="h-wlc">👋 Welcome!</h2>
         <p>Manage your team, Excel sheet and view reports</p>
       </div>
+      <!-- Stats -->
       <div class="qs">
         <div class="sb df">
           <h3 id="qs-t">-</h3>
@@ -1611,20 +1752,48 @@
           <p>Rejected</p>
         </div>
       </div>
+      <!-- Progress bar -->
       <div class="card">
-        <div class="ct">⚡ Quick Actions</div>
+        <div class="ct">📈 Scan Progress</div>
+        <div class="prog-wrap">
+          <div class="prog-bar" id="prog-bar" style="width:0%"></div>
+        </div>
+        <div class="prog-label" id="prog-label">0 of 0 items scanned</div>
+        <div style="display:flex;gap:8px;margin-top:12px;flex-wrap:wrap">
+          <span style="font-size:12px;color:#16a34a">● Verified: <strong id="ph-v">0</strong></span>
+          <span style="font-size:12px;color:#d97706">● Pending: <strong id="ph-p">0</strong></span>
+          <span style="font-size:12px;color:#dc2626">● Rejected: <strong id="ph-r">0</strong></span>
+          <span style="font-size:12px;color:#6b7280">● Not Scanned: <strong id="ph-n">0</strong></span>
+        </div>
+      </div>
+      <!-- Recent Activity -->
+      <div class="card">
+        <div class="ct">⚡ Recent Activity</div>
+        <div id="h-activity">
+          <p class="loading">Loading...</p>
+        </div>
+      </div>
+      <!-- Quick Actions -->
+      <div class="card">
+        <div class="ct">🚀 Quick Actions</div>
         <button class="bp" id="qa-s" style="margin-bottom:8px">📷 Start Scanning</button>
         <button class="bp" id="qa-r" style="margin-bottom:8px">📊 View Report</button>
         <button class="bp" id="qa-t">👥 Manage Team</button>
       </div>
     </div>
+
+    <!-- HEAD SCAN -->
     <div class="page" id="hs">
       <div class="card">
         <div class="ct">📷 Scan QR Code</div>
-        <div class="mr"><button class="mb active" id="h-rd">🔍 Read</button><button class="mb" id="h-up">✏️
-            Update</button></div>
-        <div class="tr"><button class="tb" id="h-cb">📷 Camera</button><button class="tb active" id="h-fb">🖼️
-            Upload</button></div>
+        <div class="mr">
+          <button class="mb active" id="h-rd">🔍 Read</button>
+          <button class="mb" id="h-up">✏️ Update</button>
+        </div>
+        <div class="tr">
+          <button class="tb" id="h-cb">📷 Camera</button>
+          <button class="tb active" id="h-fb">🖼️ Upload</button>
+        </div>
         <div id="h-cambox" style="display:none">
           <div class="sw"><video id="hv" autoplay playsinline></video><canvas id="hc"></canvas>
             <div class="sf"><span></span></div>
@@ -1634,13 +1803,26 @@
           <div class="ub" id="h-qrz">
             <div class="icon">🖼️</div>
             <p>Click to upload QR image</p>
-            <p class="hint">PNG, JPG</p><input type="file" id="h-qri" accept="image/*" />
-          </div><canvas id="h-fc" style="display:none"></canvas>
+            <p class="hint">PNG, JPG</p>
+            <input type="file" id="h-qri" accept="image/*" />
+          </div>
+          <canvas id="h-fc" style="display:none"></canvas>
+        </div>
+        <!-- Search by QR ID / Item Name -->
+        <div class="fg" style="margin-top:10px">
+          <label>🔍 Or search by QR ID / Item Name</label>
+          <div style="display:flex;gap:8px">
+            <input type="text" id="h-srch" placeholder="QR ID or item name..."
+              style="flex:1;padding:10px 12px;border:1px solid #e5e7eb;border-radius:8px;font-size:14px" />
+            <button class="bp sm" id="h-srch-btn" style="margin-top:0">Search</button>
+          </div>
         </div>
         <div class="stb" id="h-st">Upload QR or use camera</div>
         <div id="h-res"></div>
       </div>
     </div>
+
+    <!-- HEAD REPORT -->
     <div class="page" id="hr">
       <div class="card">
         <div class="ct">📊 Report Summary</div>
@@ -1670,11 +1852,62 @@
             <p>Rejected</p>
           </div>
         </div>
+        <!-- Donut chart -->
+        <div class="chart-wrap">
+          <div class="donut">
+            <svg width="120" height="120" viewBox="0 0 120 120">
+              <circle cx="60" cy="60" r="50" fill="none" stroke="#f3f4f6" stroke-width="18" />
+              <circle cx="60" cy="60" r="50" fill="none" stroke="#16a34a" stroke-width="18" stroke-dasharray="0 314"
+                id="ch-v" stroke-linecap="round" />
+              <circle cx="60" cy="60" r="50" fill="none" stroke="#d97706" stroke-width="18" stroke-dasharray="0 314"
+                id="ch-p" stroke-linecap="round" />
+              <circle cx="60" cy="60" r="50" fill="none" stroke="#dc2626" stroke-width="18" stroke-dasharray="0 314"
+                id="ch-r" stroke-linecap="round" />
+            </svg>
+            <div class="donut-label"><strong id="ch-pct">0%</strong>scanned</div>
+          </div>
+          <div class="legend">
+            <div class="legend-item">
+              <div class="legend-dot" style="background:#16a34a"></div><span>Verified: <strong
+                  id="lg-v">0</strong></span>
+            </div>
+            <div class="legend-item">
+              <div class="legend-dot" style="background:#d97706"></div><span>Pending: <strong
+                  id="lg-p">0</strong></span>
+            </div>
+            <div class="legend-item">
+              <div class="legend-dot" style="background:#dc2626"></div><span>Rejected: <strong
+                  id="lg-r">0</strong></span>
+            </div>
+            <div class="legend-item">
+              <div class="legend-dot" style="background:#e5e7eb"></div><span>Not Scanned: <strong
+                  id="lg-n">0</strong></span>
+            </div>
+          </div>
+        </div>
         <button class="bp" id="dl-btn">⬇️ Download Report</button>
       </div>
+      <!-- Member stats -->
+      <div class="card" id="member-stats-card" style="display:none">
+        <div class="ct">👥 Per Member Stats</div>
+        <div id="member-stats-body"></div>
+      </div>
+      <!-- Scan logs with filters -->
       <div class="card">
         <button class="cb" id="lg-tog"><span>📋 Scan Logs</span><span class="ar">▼</span></button>
         <div class="cc" id="lg-body">
+          <div class="filter-bar">
+            <button class="filter-btn active" data-f="all">All</button>
+            <button class="filter-btn" data-f="Verified">✅ Verified</button>
+            <button class="filter-btn" data-f="Pending">⏳ Pending</button>
+            <button class="filter-btn" data-f="Rejected">❌ Rejected</button>
+          </div>
+          <div class="search-box">
+            <input type="text" id="log-search" placeholder="Search by QR, item, member..." />
+            <select id="log-member-filter">
+              <option value="">All Members</option>
+            </select>
+          </div>
           <div class="tw">
             <table>
               <thead>
@@ -1693,6 +1926,8 @@
         </div>
       </div>
     </div>
+
+    <!-- HEAD TEAM -->
     <div class="page" id="ht">
       <div class="card">
         <div class="ct">➕ Add Team Member</div>
@@ -1703,13 +1938,14 @@
           <div class="pw-wrap"><input type="password" id="nu-p" placeholder="Member password" /><button class="pw-eye"
               onclick="togglePw('nu-p',this)">👁️</button></div>
         </div>
-        <div class="fg"><label>Role</label><select id="nu-r">
+        <div class="fg"><label>Role</label>
+          <select id="nu-r">
             <option value="member">Member</option>
             <option value="head">Team Head</option>
-          </select></div>
+          </select>
+        </div>
         <div class="cr"><input type="checkbox" id="nu-e" /><label for="nu-e">✏️ Allow to edit items</label></div>
-        <div class="cr"><input type="checkbox" id="nu-xa" /><label for="nu-xa">📊 Allow Excel access (no code
-            needed)</label></div>
+        <div class="cr"><input type="checkbox" id="nu-xa" /><label for="nu-xa">📊 Allow Excel access</label></div>
         <button class="bp" id="add-u-btn" style="margin-top:12px">➕ Create Member Account</button>
       </div>
       <div class="card">
@@ -1719,36 +1955,35 @@
         </div>
       </div>
     </div>
+
+    <!-- HEAD EXCEL -->
     <div class="page" id="he">
       <div class="card">
-        <div class="ct">🔑 Member Access Code</div>
-        <div class="ac-box">
-          <h3>Share this code with team members</h3>
-          <span class="ac-code" id="ac-code">--------</span>
-          <p class="ac-hint">Members without direct access use this code</p>
-          <button class="bp" id="regen-btn" style="margin-top:14px;max-width:220px">🔄 Regenerate Code</button>
-        </div>
-        <div class="st">
-          <div class="si">
-            <h4>🔗 Global Member Access</h4>
-            <p>Enable code access for all members</p>
-          </div>
-          <label class="ts"><input type="checkbox" id="sh-tog" /><span class="sl"></span></label>
-        </div>
-      </div>
-      <div class="card">
         <div class="ct">📂 Upload Excel Sheet</div>
-        <div class="si-box" id="h-si"><span>✅</span><span id="h-sn"></span><small id="h-sc"></small><button class="sc"
-            id="h-scl">✕</button></div>
+        <div class="si-box" id="h-si">
+          <span>✅</span><span id="h-sn"></span><small id="h-sc"></small>
+          <button class="sc" id="h-scl">✕</button>
+        </div>
         <div class="ub" id="h-ez">
           <div class="icon">📊</div>
           <p>Click to upload .xlsx file</p>
-          <p class="hint">Must include QR Code ID column</p><input type="file" id="h-ei" accept=".xlsx" />
+          <p class="hint">Must include QR Code ID column</p>
+          <input type="file" id="h-ei" accept=".xlsx" />
         </div>
       </div>
       <div class="card" id="h-ic" style="display:none">
         <button class="cb" id="inv-tog"><span>📋 Inventory List</span><span class="ar">▼</span></button>
         <div class="cc" id="inv-body">
+          <!-- Search/filter for inventory -->
+          <div class="search-box" style="margin-top:10px">
+            <input type="text" id="inv-search" placeholder="Search item name, serial, QR ID..." />
+            <select id="inv-status-filter">
+              <option value="">All Status</option>
+              <option value="Verified">Verified</option>
+              <option value="Pending">Pending</option>
+              <option value="Rejected">Rejected</option>
+            </select>
+          </div>
           <div class="tw">
             <table>
               <thead>
@@ -1759,6 +1994,7 @@
                   <th>Status</th>
                   <th>Date</th>
                   <th>QR ID</th>
+                  <th>History</th>
                 </tr>
               </thead>
               <tbody id="inv-rows"></tbody>
@@ -1781,10 +2017,27 @@
       <button class="nav-btn" data-pg="ms">📷 Scan</button>
       <button class="nav-btn" data-pg="mhi">📋 History</button>
     </div>
+
+    <!-- MEMBER HOME -->
     <div class="page active" id="mh">
       <div class="wc md">
         <h2 id="m-wlc">👋 Welcome!</h2>
         <p>Scan QR codes and submit verification reports</p>
+      </div>
+      <!-- Member stats -->
+      <div class="ms-grid">
+        <div class="ms-card">
+          <h3 id="ms-total">0</h3>
+          <p>My Scans</p>
+        </div>
+        <div class="ms-card">
+          <h3 id="ms-today">0</h3>
+          <p>Today</p>
+        </div>
+        <div class="ms-card">
+          <h3 id="ms-last" style="font-size:13px;padding-top:4px">—</h3>
+          <p>Last Scan</p>
+        </div>
       </div>
       <div id="m-ex-st"></div>
       <div class="card">
@@ -1805,20 +2058,13 @@
         </div>
       </div>
     </div>
+
+    <!-- MEMBER SCAN -->
     <div class="page" id="ms">
       <div id="m-no-acc" style="display:none">
         <div class="na-box">
           <h3>🔒 Access Required</h3>
           <p id="m-no-msg">Contact your Team Head.</p>
-        </div>
-      </div>
-      <div id="m-code-area" style="display:none">
-        <div class="ec-box">
-          <h3>🔑 Enter Access Code</h3>
-          <p>Ask your Team Head for the 8-character access code</p>
-          <input class="ci" type="text" id="m-ci" placeholder="XXXXXXXX" maxlength="8" />
-          <div class="ce" id="m-ce"></div>
-          <button class="bp m" id="m-cv" style="margin-top:12px">✅ Verify & Unlock</button>
         </div>
       </div>
       <div id="m-scan-area" style="display:none">
@@ -1832,8 +2078,10 @@
             <div class="mr"><button class="mb active" id="m-rd">🔍 Read</button><button class="mb" id="m-ed">✏️
                 Edit</button></div>
           </div>
-          <div class="tr"><button class="tb" id="m-cb">📷 Camera</button><button class="tb active" id="m-fb">🖼️
-              Upload</button></div>
+          <div class="tr">
+            <button class="tb" id="m-cb">📷 Camera</button>
+            <button class="tb active" id="m-fb">🖼️ Upload</button>
+          </div>
           <div id="m-cambox" style="display:none">
             <div class="sw"><video id="mv" autoplay playsinline></video><canvas id="mc"></canvas>
               <div class="sf"><span></span></div>
@@ -1843,19 +2091,41 @@
             <div class="ub" id="m-qrz">
               <div class="icon">🖼️</div>
               <p>Click to upload QR image</p>
-              <p class="hint">PNG, JPG</p><input type="file" id="m-qri" accept="image/*" />
-            </div><canvas id="m-fc" style="display:none"></canvas>
+              <p class="hint">PNG, JPG</p>
+              <input type="file" id="m-qri" accept="image/*" />
+            </div>
+            <canvas id="m-fc" style="display:none"></canvas>
+          </div>
+          <!-- Search -->
+          <div class="fg" style="margin-top:10px">
+            <label>🔍 Or search by QR ID / Item Name</label>
+            <div style="display:flex;gap:8px">
+              <input type="text" id="m-srch" placeholder="QR ID or item name..."
+                style="flex:1;padding:10px 12px;border:1px solid #e5e7eb;border-radius:8px;font-size:14px" />
+              <button class="bp m sm" id="m-srch-btn" style="margin-top:0">Search</button>
+            </div>
           </div>
           <div class="stb m" id="m-st">Upload QR or use camera</div>
           <div id="m-res"></div>
         </div>
       </div>
     </div>
+
+    <!-- MEMBER HISTORY -->
     <div class="page" id="mhi">
       <div class="card">
         <div class="ct m">📋 My Scan History</div>
+        <div class="search-box">
+          <input type="text" id="hist-search" placeholder="Search item or QR ID..." />
+          <select id="hist-status-filter">
+            <option value="">All Status</option>
+            <option value="Verified">Verified</option>
+            <option value="Pending">Pending</option>
+            <option value="Rejected">Rejected</option>
+          </select>
+        </div>
         <div id="m-hist">
-          <p style="text-align:center;color:#9ca3af;padding:20px">No scans yet</p>
+          <p style="text-align:center;color:#9ca3af;padding:20px">Loading...</p>
         </div>
       </div>
     </div>
@@ -1881,6 +2151,18 @@
     </div>
   </div>
 
+  <!-- ITEM HISTORY MODAL -->
+  <div class="modal-overlay" id="ih-modal">
+    <div class="modal">
+      <button class="modal-close" id="ih-close">✕</button>
+      <h3>📋 Scan History</h3>
+      <p style="font-size:13px;color:#6b7280;margin-bottom:14px" id="ih-title"></p>
+      <div id="ih-body">
+        <p class="loading">Loading...</p>
+      </div>
+    </div>
+  </div>
+
   <div class="toast" id="toast"></div>
 
   <script>
@@ -1888,35 +2170,22 @@
     var cu = null, selRole = 'head';
     var hMode = 'read', hMeth = 'file', mMode = 'read', mMeth = 'file';
     var hCam = null, mCam = null, hSc = true, mSc = true;
-    var myScans = [], invMap = {}, mCanEdit = false, mCanAccess = false;
+    var allInvItems = [], allLogs = [], mCanEdit = false, mCanAccess = false;
     var chpwUid = null, resetToken = '';
     var isLoggingOut = false;
 
     var hV = document.getElementById('hv'), hC = document.getElementById('hc'), hX = hC.getContext('2d');
     var mV = document.getElementById('mv'), mC = document.getElementById('mc'), mX = mC.getContext('2d');
 
-    function togglePw(id, btn) {
-      var inp = document.getElementById(id);
-      if (inp.type === 'password') { inp.type = 'text'; btn.textContent = '🙈'; }
-      else { inp.type = 'password'; btn.textContent = '👁️'; }
-    }
+    function togglePw(id, btn) { var inp = document.getElementById(id); if (inp.type === 'password') { inp.type = 'text'; btn.textContent = '🙈'; } else { inp.type = 'password'; btn.textContent = '👁️'; } }
 
-    // CHECK RESET TOKEN
     window.addEventListener('load', function () {
       var params = new URLSearchParams(window.location.search);
       var token = params.get('token');
-      if (token) {
-        resetToken = token;
-        document.getElementById('login-page').style.display = 'none';
-        document.getElementById('reset-page').style.display = 'flex';
-        return;
-      }
-      fetch('/me').then(function (r) { return r.json(); }).then(function (d) {
-        if (d.logged_in) { cu = d; showDash(d); }
-      }).catch(function () { });
+      if (token) { resetToken = token; document.getElementById('login-page').style.display = 'none'; document.getElementById('reset-page').style.display = 'flex'; return; }
+      fetch('/me').then(function (r) { return r.json(); }).then(function (d) { if (d.logged_in) { cu = d; showDash(d); } }).catch(function () { });
     });
 
-    // RESET PASSWORD
     document.getElementById('rp-btn').addEventListener('click', function () {
       var p = document.getElementById('rp-pass').value.trim();
       var p2 = document.getElementById('rp-pass2').value.trim();
@@ -1932,7 +2201,6 @@
         });
     });
 
-    // ROLE SELECTOR
     function selectRole(role) {
       selRole = role;
       document.getElementById('rc-head').classList.toggle('active', role === 'head');
@@ -1941,7 +2209,6 @@
       document.getElementById('lbt').className = 'lbt' + (role === 'member' ? ' m' : '');
       document.getElementById('head-tabs').style.display = role === 'head' ? 'flex' : 'none';
       document.getElementById('member-info-box').style.display = role === 'member' ? 'block' : 'none';
-      document.getElementById('l-hint').style.display = role === 'head' ? 'block' : 'none';
       document.getElementById('login-btn').className = role === 'member' ? 'bp m' : 'bp';
       document.getElementById('forgot-title').textContent = role === 'head' ? '🔑 Forgot Password (Head)' : '🔑 Forgot Password (Member)';
       document.getElementById('f-head-form').style.display = role === 'head' ? 'block' : 'none';
@@ -1956,11 +2223,7 @@
     function showErr(m) { var e = document.getElementById('l-err'); e.textContent = m; e.style.display = 'block'; }
     function showSuc(m) { var e = document.getElementById('l-suc'); e.textContent = m; e.style.display = 'block'; }
 
-    // FORGOT PASSWORD
-    document.getElementById('forgot-link').addEventListener('click', function () {
-      document.getElementById('f-err').style.display = 'none'; document.getElementById('f-suc').style.display = 'none';
-      document.getElementById('forgot-modal').classList.add('show');
-    });
+    document.getElementById('forgot-link').addEventListener('click', function () { document.getElementById('f-err').style.display = 'none'; document.getElementById('f-suc').style.display = 'none'; document.getElementById('forgot-modal').classList.add('show'); });
     document.getElementById('forgot-close').addEventListener('click', function () { document.getElementById('forgot-modal').classList.remove('show'); });
 
     document.getElementById('f-send-btn').addEventListener('click', function () {
@@ -1970,10 +2233,7 @@
       err.style.display = 'none'; suc.style.display = 'none';
       if (!user || !email) { err.textContent = 'Enter username and email'; err.style.display = 'block'; return; }
       fetch('/forgot-password', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ role: 'head', username: user, email: email }) })
-        .then(function (r) { return r.json(); }).then(function (d) {
-          if (d.success) { suc.textContent = '✅ ' + d.message; suc.style.display = 'block'; }
-          else { err.textContent = d.error || 'Failed'; err.style.display = 'block'; }
-        });
+        .then(function (r) { return r.json(); }).then(function (d) { if (d.success) { suc.textContent = '✅ ' + d.message; suc.style.display = 'block'; } else { err.textContent = d.error || 'Failed'; err.style.display = 'block'; } });
     });
 
     document.getElementById('f-m-send-btn').addEventListener('click', function () {
@@ -1983,21 +2243,16 @@
       err.style.display = 'none'; suc.style.display = 'none';
       if (!user && !email) { err.textContent = 'Enter username or email'; err.style.display = 'block'; return; }
       fetch('/forgot-password', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ role: 'member', username: user, email: email }) })
-        .then(function (r) { return r.json(); }).then(function (d) {
-          if (d.success) { suc.textContent = '✅ ' + d.message; suc.style.display = 'block'; }
-          else { err.textContent = d.error || 'Failed'; err.style.display = 'block'; }
-        });
+        .then(function (r) { return r.json(); }).then(function (d) { if (d.success) { suc.textContent = '✅ ' + d.message; suc.style.display = 'block'; } else { err.textContent = d.error || 'Failed'; err.style.display = 'block'; } });
     });
 
-    // LOGIN
     document.getElementById('login-btn').addEventListener('click', doLogin);
     document.getElementById('l-p').addEventListener('keypress', function (e) { if (e.key === 'Enter') doLogin(); });
     function doLogin() {
       var u = document.getElementById('l-u').value.trim();
       var p = document.getElementById('l-p').value.trim();
       if (!u || !p) { showErr('Enter username and password'); return; }
-      var btn = document.getElementById('login-btn');
-      btn.disabled = true; btn.textContent = 'Logging in...';
+      var btn = document.getElementById('login-btn'); btn.disabled = true; btn.textContent = 'Logging in...';
       fetch('/login', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ username: u, password: p, expected_role: selRole }) })
         .then(function (r) { return r.json(); }).then(function (d) {
           btn.disabled = false; btn.textContent = '🔐 Login';
@@ -2005,7 +2260,6 @@
         }).catch(function () { btn.disabled = false; btn.textContent = '🔐 Login'; showErr('Connection error'); });
     }
 
-    // HEAD REGISTER
     document.getElementById('head-reg-btn').addEventListener('click', function () {
       var u = document.getElementById('hr-u').value.trim();
       var e = document.getElementById('hr-e').value.trim();
@@ -2029,8 +2283,7 @@
         document.getElementById('head-app').style.display = 'block';
         document.getElementById('h-un').textContent = '👤 ' + u.username;
         document.getElementById('h-wlc').textContent = '👋 Welcome, ' + u.username + '!';
-        // Load home stats asynchronously - don't block UI
-        setTimeout(function () { loadHHome(); loadAccessInfo(); loadExcelStatus(); }, 100);
+        setTimeout(function () { loadHHome(); loadExcelStatus(); }, 100);
       } else {
         document.getElementById('member-app').style.display = 'block';
         document.getElementById('m-un').textContent = '👤 ' + u.username;
@@ -2045,23 +2298,18 @@
     function updateMPerms() {
       document.getElementById('m-ep').textContent = mCanEdit ? '✅ Allowed' : '❌ Not Allowed';
       document.getElementById('m-ep').style.color = mCanEdit ? '#16a34a' : '#dc2626';
-      document.getElementById('m-xp').textContent = mCanAccess ? '✅ Direct Access' : '🔑 Code Required';
-      document.getElementById('m-xp').style.color = mCanAccess ? '#16a34a' : '#d97706';
+      document.getElementById('m-xp').textContent = mCanAccess ? '✅ Allowed' : '❌ Not Allowed';
+      document.getElementById('m-xp').style.color = mCanAccess ? '#16a34a' : '#dc2626';
       document.getElementById('m-mode-row').style.display = mCanEdit ? 'block' : 'none';
     }
 
-    // LOGOUT — FIXED: immediate UI update
     function doLogout() {
-      if (isLoggingOut) return;
-      isLoggingOut = true;
-      // Immediately hide dashboards and show login — don't wait for server
-      stopCams();
-      cu = null; mCanEdit = false; mCanAccess = false;
+      if (isLoggingOut) return; isLoggingOut = true;
+      stopCams(); cu = null; mCanEdit = false; mCanAccess = false;
       document.getElementById('head-app').style.display = 'none';
       document.getElementById('member-app').style.display = 'none';
       document.getElementById('login-page').style.display = 'flex';
       selectRole('head');
-      // Then call server in background
       fetch('/logout', { method: 'POST' }).catch(function () { }).finally(function () { isLoggingOut = false; });
     }
     document.getElementById('h-lo').addEventListener('click', doLogout);
@@ -2085,7 +2333,6 @@
         if (pg !== 'hs' && hCam) { try { hCam.getTracks().forEach(function (t) { t.stop(); }); } catch (e) { } hCam = null; }
       });
     });
-
     function goH(pg) {
       document.querySelectorAll('#head-app .page').forEach(function (p) { p.classList.remove('active'); });
       document.querySelectorAll('#head-app .nav-btn').forEach(function (x) { x.classList.remove('ha'); });
@@ -2105,7 +2352,7 @@
         document.querySelectorAll('#member-app .nav-btn').forEach(function (x) { x.classList.remove('ma'); });
         document.getElementById(pg).classList.add('active'); this.classList.add('ma');
         if (pg === 'ms') checkMAccess();
-        if (pg === 'mhi') renderHist();
+        if (pg === 'mhi') loadMemberHistory();
         if (pg !== 'ms' && mCam) { try { mCam.getTracks().forEach(function (t) { t.stop(); }); } catch (e) { } mCam = null; }
       });
     });
@@ -2121,25 +2368,36 @@
       document.querySelectorAll('#member-app .nav-btn').forEach(function (x) { x.classList.remove('ma'); });
       document.getElementById('mhi').classList.add('active');
       document.querySelector('#member-app .nav-btn[data-pg="mhi"]').classList.add('ma');
-      renderHist();
+      loadMemberHistory();
     });
 
-    // HEAD HOME — lightweight, no blocking
+    // HEAD HOME
     function loadHHome() {
       fetch('/report').then(function (r) { return r.json(); }).then(function (d) {
-        if (!d.error) {
-          document.getElementById('qs-t').textContent = d.total;
-          document.getElementById('qs-s').textContent = d.scanned;
-          document.getElementById('qs-v').textContent = d.verified;
-          document.getElementById('qs-r').textContent = d.rejected;
+        if (d.error) return;
+        document.getElementById('qs-t').textContent = d.total;
+        document.getElementById('qs-s').textContent = d.scanned;
+        document.getElementById('qs-v').textContent = d.verified;
+        document.getElementById('qs-r').textContent = d.rejected;
+        // Progress bar
+        var pct = d.total > 0 ? Math.round((d.scanned / d.total) * 100) : 0;
+        document.getElementById('prog-bar').style.width = pct + '%';
+        document.getElementById('prog-label').textContent = d.scanned + ' of ' + d.total + ' items scanned (' + pct + '%)';
+        document.getElementById('ph-v').textContent = d.verified;
+        document.getElementById('ph-p').textContent = d.pending;
+        document.getElementById('ph-r').textContent = d.rejected;
+        document.getElementById('ph-n').textContent = d.not_scanned;
+        // Recent activity
+        var logs = d.logs || [];
+        var html = '';
+        if (!logs.length) { html = '<p style="color:#9ca3af;font-size:13px;text-align:center;padding:12px">No scans yet</p>'; }
+        else {
+          logs.slice(0, 8).forEach(function (l) {
+            var dotCls = l.verification_status === 'Verified' ? 'vf' : l.verification_status === 'Rejected' ? 'rj' : 'pd';
+            html += '<div class="af-item"><div class="af-dot ' + dotCls + '"></div><div class="af-text"><strong>' + l.scanned_by + '</strong> scanned <span style="color:#4f46e5">' + l.qr_id + '</span><div class="af-time">' + l.timestamp + '</div></div><span class="badge ' + (l.verification_status || '') + '">' + l.verification_status + '</span></div>';
+          });
         }
-      }).catch(function () { });
-    }
-
-    function loadAccessInfo() {
-      fetch('/excel/access-info').then(function (r) { return r.json(); }).then(function (d) {
-        document.getElementById('ac-code').textContent = d.access_code || '--------';
-        document.getElementById('sh-tog').checked = d.shared === 1;
+        document.getElementById('h-activity').innerHTML = html;
       }).catch(function () { });
     }
 
@@ -2163,22 +2421,24 @@
         updateMPerms();
       }).catch(function () { });
 
+      // Load member scan stats from server
+      fetch('/my-scan-history').then(function (r) { return r.json(); }).then(function (logs) {
+        document.getElementById('ms-total').textContent = logs.length;
+        var today = new Date().toISOString().slice(0, 10);
+        var todayCount = logs.filter(function (l) { return l.timestamp && l.timestamp.slice(0, 10) === today; }).length;
+        document.getElementById('ms-today').textContent = todayCount;
+        if (logs.length > 0) {
+          var last = logs[0].timestamp || '';
+          document.getElementById('ms-last').textContent = last.slice(0, 16) || '—';
+          document.getElementById('ms-last').style.fontSize = '11px';
+        }
+      }).catch(function () { });
+
       fetch('/excel/status').then(function (r) { return r.json(); }).then(function (d) {
         var el = document.getElementById('m-ex-st');
         if (!d.available) { el.innerHTML = '<div class="na-box"><h3>⚠️ No Excel Sheet</h3><p>Team Head has not uploaded any sheet yet.</p></div>'; }
         else if (d.has_access) { el.innerHTML = '<div class="ok-box"><h3>✅ Excel Access Active</h3><p>' + d.total_items + ' items ready for scanning</p></div>'; }
-        else if (!d.shared) { el.innerHTML = '<div class="na-box"><h3>🔒 Access Not Enabled</h3><p>Team Head has not enabled member access yet.</p></div>'; }
-        else {
-          el.innerHTML = '<div class="ec-box"><h3>🔑 Enter Access Code</h3><p>Ask your Team Head for the access code</p><input class="ci" type="text" id="hm-ci" placeholder="XXXXXXXX" maxlength="8"/><div class="ce" id="hm-ce"></div><button class="bp m" id="hm-cv" style="margin-top:12px">✅ Verify Code</button></div>';
-          document.getElementById('hm-cv').addEventListener('click', function () {
-            var code = document.getElementById('hm-ci').value.trim().toUpperCase();
-            fetch('/verify-code', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ code: code }) })
-              .then(function (r) { return r.json(); }).then(function (d) {
-                if (d.success) { mCanAccess = true; showToast('✅ Access granted!'); loadMHome(); }
-                else document.getElementById('hm-ce').textContent = d.error || 'Invalid code';
-              });
-          });
-        }
+        else { el.innerHTML = '<div class="na-box"><h3>🔒 Access Not Enabled</h3><p>Team Head has not enabled your access yet.</p></div>'; }
       }).catch(function () { });
     }
 
@@ -2188,10 +2448,8 @@
         mCanAccess = pd.can_access_excel === 1 || pd.can_access_excel === true || pd.excel_access === true;
         updateMPerms();
       }).catch(function () { });
-
       fetch('/excel/status').then(function (r) { return r.json(); }).then(function (d) {
         document.getElementById('m-no-acc').style.display = 'none';
-        document.getElementById('m-code-area').style.display = 'none';
         document.getElementById('m-scan-area').style.display = 'none';
         if (!d.available) {
           document.getElementById('m-no-acc').style.display = 'block';
@@ -2199,37 +2457,12 @@
         } else if (d.has_access) {
           document.getElementById('m-scan-area').style.display = 'block';
           document.getElementById('m-access-info').textContent = d.total_items + ' items' + (mCanEdit ? ' — Edit enabled' : '');
-        } else if (!d.shared) {
-          document.getElementById('m-no-acc').style.display = 'block';
-          document.getElementById('m-no-msg').textContent = 'Team Head has not enabled member access yet.';
         } else {
-          document.getElementById('m-code-area').style.display = 'block';
+          document.getElementById('m-no-acc').style.display = 'block';
+          document.getElementById('m-no-msg').textContent = 'Team Head has not enabled your access yet. Contact Team Head.';
         }
       }).catch(function () { });
     }
-
-    document.getElementById('m-cv').addEventListener('click', function () {
-      var code = document.getElementById('m-ci').value.trim().toUpperCase();
-      fetch('/verify-code', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ code: code }) })
-        .then(function (r) { return r.json(); }).then(function (d) {
-          if (d.success) { mCanAccess = true; showToast('✅ Access granted!'); checkMAccess(); loadMHome(); }
-          else document.getElementById('m-ce').textContent = d.error || 'Invalid code';
-        });
-    });
-
-    // SHARE TOGGLE
-    document.getElementById('sh-tog').addEventListener('change', function () {
-      fetch('/excel/share', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ shared: this.checked }) })
-        .then(function () { showToast(document.getElementById('sh-tog').checked ? '✅ Global access enabled!' : '🔒 Global access disabled'); });
-    });
-
-    // REGEN CODE
-    document.getElementById('regen-btn').addEventListener('click', function () {
-      if (!confirm('Regenerate? Current code stops working.')) return;
-      fetch('/excel/regenerate-code', { method: 'POST' }).then(function (r) { return r.json(); }).then(function (d) {
-        if (d.success) { document.getElementById('ac-code').textContent = d.code; showToast('✅ New code: ' + d.code); }
-      });
-    });
 
     // EXCEL UPLOAD
     document.getElementById('h-ez').addEventListener('click', function () { document.getElementById('h-ei').click(); });
@@ -2245,20 +2478,58 @@
 
     function loadInv() {
       fetch('/items').then(function (r) { return r.json(); }).then(function (items) {
-        invMap = {};
-        var rows = '';
-        for (var i = 0; i < items.length; i++) {
-          var it = items[i];
-          invMap[it['QR Code ID']] = (it['Item Name'] || '');
-          rows += '<tr><td>' + (it['Serial Number'] || '') + '</td><td>' + (it['Item Name'] || '') + '</td><td>' + (it['Value'] || '') + '</td><td><span class="badge ' + (it['Verification Status'] || '') + '">' + (it['Verification Status'] || '') + '</span></td><td>' + (it['Varied Date'] || '') + '</td><td style="font-size:12px;color:#6b7280">' + (it['QR Code ID'] || '') + '</td></tr>';
-        }
-        document.getElementById('inv-rows').innerHTML = rows;
+        allInvItems = items;
+        renderInvTable(items);
         document.getElementById('h-ic').style.display = 'block';
       }).catch(function () { });
     }
+
+    function renderInvTable(items) {
+      var rows = '';
+      for (var i = 0; i < items.length; i++) {
+        var it = items[i];
+        var v = it['Verification Status'] || '';
+        rows += '<tr><td>' + (it['Serial Number'] || '') + '</td><td>' + (it['Item Name'] || '') + '</td><td>' + (it['Value'] || '') + '</td><td><span class="badge ' + v + '">' + v + '</span></td><td>' + (it['Varied Date'] || '') + '</td><td style="font-size:12px;color:#6b7280">' + (it['QR Code ID'] || '') + '</td><td><button class="btn-icon ih-btn" data-qr="' + (it['QR Code ID'] || '') + '" data-name="' + (it['Item Name'] || '') + '">📋</button></td></tr>';
+      }
+      document.getElementById('inv-rows').innerHTML = rows;
+      document.querySelectorAll('.ih-btn').forEach(function (b) {
+        b.addEventListener('click', function () { showItemHistory(this.dataset.qr, this.dataset.name); });
+      });
+    }
+
+    // Inventory search/filter
+    document.getElementById('inv-search').addEventListener('input', filterInv);
+    document.getElementById('inv-status-filter').addEventListener('change', filterInv);
+    function filterInv() {
+      var q = document.getElementById('inv-search').value.toLowerCase();
+      var st = document.getElementById('inv-status-filter').value;
+      var filtered = allInvItems.filter(function (it) {
+        var matchQ = !q || (it['Item Name'] || '').toLowerCase().includes(q) || (it['Serial Number'] || '').toLowerCase().includes(q) || (it['QR Code ID'] || '').toLowerCase().includes(q);
+        var matchSt = !st || (it['Verification Status'] || '') === st;
+        return matchQ && matchSt;
+      });
+      renderInvTable(filtered);
+    }
+
     document.getElementById('inv-tog').addEventListener('click', function () { this.classList.toggle('open'); document.getElementById('inv-body').classList.toggle('open'); });
 
-    // ADD MEMBER — FIXED
+    // ITEM HISTORY MODAL
+    function showItemHistory(qrId, name) {
+      document.getElementById('ih-title').textContent = 'Item: ' + name + ' (' + qrId + ')';
+      document.getElementById('ih-body').innerHTML = '<p class="loading">Loading...</p>';
+      document.getElementById('ih-modal').classList.add('show');
+      fetch('/item-history/' + qrId).then(function (r) { return r.json(); }).then(function (logs) {
+        if (!logs.length) { document.getElementById('ih-body').innerHTML = '<p style="text-align:center;color:#9ca3af;padding:20px">No scan history yet</p>'; return; }
+        var html = '';
+        logs.forEach(function (l) {
+          html += '<div class="hist-item"><div class="hist-meta"><span>👤 ' + l.scanned_by + '</span><span class="badge ' + (l.verification_status || '') + '">' + l.verification_status + '</span></div><div class="hist-meta" style="margin-top:6px"><span>🕐 ' + l.timestamp + '</span>' + (l.remark ? '<span>💬 ' + l.remark + '</span>' : '') + '</div></div>';
+        });
+        document.getElementById('ih-body').innerHTML = html;
+      }).catch(function () { document.getElementById('ih-body').innerHTML = '<p style="color:#dc2626;text-align:center">Failed to load</p>'; });
+    }
+    document.getElementById('ih-close').addEventListener('click', function () { document.getElementById('ih-modal').classList.remove('show'); });
+
+    // ADD MEMBER
     document.getElementById('add-u-btn').addEventListener('click', function () {
       var u = document.getElementById('nu-n').value.trim();
       var p = document.getElementById('nu-p').value.trim();
@@ -2268,26 +2539,15 @@
       var can_access_excel = document.getElementById('nu-xa').checked;
       if (!u || !p) { showToast('❌ Username and password required'); return; }
       if (p.length < 4) { showToast('❌ Password too short (min 4)'); return; }
-      var btn = document.getElementById('add-u-btn');
-      btn.disabled = true; btn.textContent = 'Creating...';
-      fetch('/users', {
-        method: 'POST', headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username: u, password: p, email: email || null, role: role, can_edit: can_edit, can_access_excel: can_access_excel })
-      }).then(function (r) { return r.json(); }).then(function (d) {
-        btn.disabled = false; btn.textContent = '➕ Create Member Account';
-        if (d.success) {
-          showToast('✅ Member created!' + (email ? ' Email sent!' : ''));
-          document.getElementById('nu-n').value = '';
-          document.getElementById('nu-p').value = '';
-          document.getElementById('nu-email').value = '';
-          document.getElementById('nu-e').checked = false;
-          document.getElementById('nu-xa').checked = false;
-          loadUsers();
-        } else showToast('❌ ' + d.error);
-      }).catch(function () { btn.disabled = false; btn.textContent = '➕ Create Member Account'; showToast('❌ Error creating member'); });
+      var btn = document.getElementById('add-u-btn'); btn.disabled = true; btn.textContent = 'Creating...';
+      fetch('/users', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ username: u, password: p, email: email || null, role: role, can_edit: can_edit, can_access_excel: can_access_excel }) })
+        .then(function (r) { return r.json(); }).then(function (d) {
+          btn.disabled = false; btn.textContent = '➕ Create Member Account';
+          if (d.success) { showToast('✅ Member created!' + (email ? ' Email sent!' : '')); document.getElementById('nu-n').value = ''; document.getElementById('nu-p').value = ''; document.getElementById('nu-email').value = ''; document.getElementById('nu-e').checked = false; document.getElementById('nu-xa').checked = false; loadUsers(); }
+          else showToast('❌ ' + d.error);
+        }).catch(function () { btn.disabled = false; btn.textContent = '➕ Create Member Account'; showToast('❌ Error'); });
     });
 
-    // LOAD USERS — OPTIMIZED
     function loadUsers() {
       document.getElementById('u-list').innerHTML = '<p class="loading">Loading...</p>';
       fetch('/users').then(function (r) { return r.json(); }).then(function (users) {
@@ -2297,32 +2557,15 @@
           var u = users[i];
           var ce = u.can_edit === 1 || u.can_edit === true;
           var ca = u.can_access_excel === 1 || u.can_access_excel === true;
-          html += '<div class="ui">'
-            + '<div class="ui-top">'
-            + '<div class="ua">' + u.username[0].toUpperCase() + '</div>'
-            + '<div style="flex:1;min-width:0">'
-            + '<div class="un">' + u.username + '</div>'
-            + (u.email ? '<div class="ue">' + u.email + '</div>' : '')
-            + '<div class="ui-badges">'
-            + '<span class="' + (u.role === 'head' ? 'hb' : 'mb2') + '">' + u.role + '</span>'
-            + (u.role !== 'head' ? '<span style="font-size:10px;color:#6b7280">Edit:' + (ce ? '✅' : '❌') + '</span>' : '')
-            + (u.role !== 'head' ? '<span style="font-size:10px;color:#6b7280">Excel:' + (ca ? '✅' : '🔑') + '</span>' : '')
-            + '</div>'
-            + '</div>'
-            + '</div>'
-            + (u.role !== 'head' ?
-              '<div class="ui-actions">'
-              + '<span class="tgl-grp"><label class="pt"><input type="checkbox" ' + (ce ? 'checked' : '') + ' data-id="' + u.id + '" class="pc"/><span class="ps"></span></label>✏️ Edit</span>'
-              + '<span class="tgl-grp"><label class="pt green"><input type="checkbox" ' + (ca ? 'checked' : '') + ' data-id="' + u.id + '" class="xc"/><span class="ps"></span></label>📊 Excel</span>'
-              + '<button class="btn-icon chpw-btn" data-id="' + u.id + '" data-name="' + u.username + '">🔑 Pwd</button>'
-              + '<button class="bd rm-btn" data-id="' + u.id + '">✕</button>'
-              + '</div>'
-              : '')
-            + '</div>';
+          html += '<div class="ui"><div class="ui-top"><div class="ua">' + u.username[0].toUpperCase() + '</div><div style="flex:1;min-width:0"><div class="un">' + u.username + '</div>' + (u.email ? '<div class="ue">' + u.email + '</div>' : '') +
+            '<div class="ui-badges"><span class="' + (u.role === 'head' ? 'hb' : 'mb2') + '">' + u.role + '</span>' + (u.role !== 'head' ? '<span style="font-size:10px;color:#6b7280">Edit:' + (ce ? '✅' : '❌') + '</span><span style="font-size:10px;color:#6b7280">Excel:' + (ca ? '✅' : '❌') + '</span>' : '') +
+            '</div></div></div>' +
+            (u.role !== 'head' ? '<div class="ui-actions"><span class="tgl-grp"><label class="pt"><input type="checkbox" ' + (ce ? 'checked' : '') + ' data-id="' + u.id + '" class="pc"/><span class="ps"></span></label>✏️ Edit</span><span class="tgl-grp"><label class="pt green"><input type="checkbox" ' + (ca ? 'checked' : '') + ' data-id="' + u.id + '" class="xc"/><span class="ps"></span></label>📊 Excel</span><button class="btn-icon chpw-btn" data-id="' + u.id + '" data-name="' + u.username + '">🔑 Pwd</button><button class="bd rm-btn" data-id="' + u.id + '">✕ Remove</button></div>' : '') +
+            '</div>';
         }
         document.getElementById('u-list').innerHTML = html;
         bindUserActions();
-      }).catch(function () { document.getElementById('u-list').innerHTML = '<p style="text-align:center;color:#dc2626;padding:20px">Failed to load members</p>'; });
+      }).catch(function () { document.getElementById('u-list').innerHTML = '<p style="color:#dc2626;text-align:center;padding:20px">Failed to load</p>'; });
     }
 
     function bindUserActions() {
@@ -2358,7 +2601,6 @@
       });
     }
 
-    // CHANGE PASSWORD
     document.getElementById('chpw-close').addEventListener('click', function () { document.getElementById('chpw-modal').classList.remove('show'); });
     document.getElementById('chpw-btn').addEventListener('click', function () {
       var p = document.getElementById('chpw-p').value.trim();
@@ -2382,6 +2624,15 @@
     document.getElementById('h-up').addEventListener('click', function () { hMode = 'update'; this.classList.add('active'); document.getElementById('h-rd').classList.remove('active'); document.getElementById('h-res').innerHTML = ''; setHSt('Update mode'); });
     document.getElementById('h-cb').addEventListener('click', function () { setHM('camera'); });
     document.getElementById('h-fb').addEventListener('click', function () { setHM('file'); });
+
+    // Head search
+    document.getElementById('h-srch-btn').addEventListener('click', function () {
+      var q = document.getElementById('h-srch').value.trim();
+      if (!q) return;
+      var found = allInvItems.filter(function (it) { return (it['QR Code ID'] || '').toLowerCase().includes(q.toLowerCase()) || (it['Item Name'] || '').toLowerCase().includes(q.toLowerCase()); });
+      if (!found.length) { document.getElementById('h-res').innerHTML = '<div class="rc"><p style="color:#dc2626;text-align:center;padding:10px">❌ No item found for "' + q + '"</p></div>'; addHA(); return; }
+      procH(found[0]['QR Code ID']);
+    });
 
     function setHM(m) {
       hMeth = m;
@@ -2443,16 +2694,23 @@
       var v = item['Verification Status'] || '';
       var bc = v === 'Verified' ? 'vf' : v === 'Pending' ? 'pd' : 'nv';
       var bt = v === 'Verified' ? '✅ VERIFIED' : v === 'Pending' ? '⏳ PENDING' : '❌ NOT VERIFIED';
-      var html = '<div class="rc"><div class="rb ' + bc + '">' + bt + '</div>'
-        + '<div class="ir"><span class="il">Item Name</span><span class="iv">' + (item['Item Name'] || '') + '</span></div>'
-        + '<div class="ir"><span class="il">Serial No.</span><span class="iv">' + (item['Serial Number'] || '') + '</span></div>'
-        + '<div class="ir"><span class="il">Description</span><span class="iv">' + (item['Description'] || '') + '</span></div>'
-        + '<div class="ir"><span class="il">Value</span><span class="iv">' + (item['Value'] || '') + '</span></div>'
-        + '<div class="ir"><span class="il">Status</span><span class="iv"><span class="badge ' + v + '">' + v + '</span></span></div>'
-        + (item['Last Scanned'] ? '<div class="ir"><span class="il">Last Scanned</span><span class="iv">' + item['Last Scanned'] + '</span></div>' : '')
-        + (item['Scanned By'] ? '<div class="ir"><span class="il">Scanned By</span><span class="iv" style="color:#4f46e5;font-weight:700">👤 ' + item['Scanned By'] + '</span></div>' : '')
-        + '<div style="margin-top:12px"><button class="bp sm" id="h-en">✏️ Edit Item</button></div></div>';
+      var hist = item.scan_history || [];
+      var alreadyScanned = hist.length > 0;
+      var html = '<div class="rc">' + (alreadyScanned ? '<div class="already-scanned">⚠️ Already scanned ' + hist.length + ' time(s) — last by ' + hist[0].scanned_by + '</div>' : '') +
+        '<div class="rb ' + bc + '">' + bt + '</div>' +
+        '<div class="ir"><span class="il">Item Name</span><span class="iv">' + (item['Item Name'] || '') + '</span></div>' +
+        '<div class="ir"><span class="il">Serial No.</span><span class="iv">' + (item['Serial Number'] || '') + '</span></div>' +
+        '<div class="ir"><span class="il">Description</span><span class="iv">' + (item['Description'] || '') + '</span></div>' +
+        '<div class="ir"><span class="il">Value</span><span class="iv">' + (item['Value'] || '') + '</span></div>' +
+        '<div class="ir"><span class="il">Status</span><span class="iv"><span class="badge ' + v + '">' + v + '</span></span></div>' +
+        (item['Last Scanned'] ? '<div class="ir"><span class="il">Last Scanned</span><span class="iv">' + item['Last Scanned'] + '</span></div>' : '') +
+        (item['Scanned By'] ? '<div class="ir"><span class="il">Scanned By</span><span class="iv" style="color:#4f46e5;font-weight:700">👤 ' + item['Scanned By'] + '</span></div>' : '') +
+        (hist.length ? '<div style="margin-top:10px"><button class="btn-icon" id="h-show-hist">📋 View Scan History (' + hist.length + ')</button></div>' : '') +
+        '<div style="margin-top:12px"><button class="bp sm" id="h-en">✏️ Edit Item</button></div></div>';
       document.getElementById('h-res').innerHTML += html;
+      if (document.getElementById('h-show-hist')) {
+        document.getElementById('h-show-hist').addEventListener('click', function () { showItemHistory(item['QR Code ID'], item['Item Name']); });
+      }
       document.getElementById('h-en').addEventListener('click', function () {
         hMode = 'update'; document.getElementById('h-res').innerHTML = ''; showHE(item);
         document.getElementById('h-up').classList.add('active'); document.getElementById('h-rd').classList.remove('active');
@@ -2462,14 +2720,14 @@
 
     function showHE(item) {
       var opts = ['Verified', 'Pending', 'Rejected'].map(function (s) { return '<option ' + (item['Verification Status'] === s ? 'selected' : '') + '>' + s + '</option>'; }).join('');
-      document.getElementById('h-res').innerHTML += '<div class="ef-box"><div class="ef-title">✏️ Editing: ' + (item['QR Code ID'] || '') + '</div>'
-        + '<div class="fg"><label>Item Name</label><input id="ef-n" value="' + (item['Item Name'] || '') + '"/></div>'
-        + '<div class="fg"><label>Description</label><textarea id="ef-d">' + (item['Description'] || '') + '</textarea></div>'
-        + '<div class="fg"><label>Value</label><input id="ef-v" value="' + (item['Value'] || '') + '"/></div>'
-        + '<div class="fg"><label>Verification Status</label><select id="ef-s">' + opts + '</select></div>'
-        + '<div class="fg"><label>Varied Date</label><input type="date" id="ef-dt" value="' + (item['Varied Date'] || '') + '"/></div>'
-        + '<div class="fg"><label>Remark</label><textarea id="ef-r" placeholder="Add remark..."></textarea></div>'
-        + '<button class="bp" id="ef-sv">💾 Save Changes</button></div>';
+      document.getElementById('h-res').innerHTML += '<div class="ef-box"><div class="ef-title">✏️ Editing: ' + (item['QR Code ID'] || '') + '</div>' +
+        '<div class="fg"><label>Item Name</label><input id="ef-n" value="' + (item['Item Name'] || '') + '"/></div>' +
+        '<div class="fg"><label>Description</label><textarea id="ef-d">' + (item['Description'] || '') + '</textarea></div>' +
+        '<div class="fg"><label>Value</label><input id="ef-v" value="' + (item['Value'] || '') + '"/></div>' +
+        '<div class="fg"><label>Verification Status</label><select id="ef-s">' + opts + '</select></div>' +
+        '<div class="fg"><label>Varied Date</label><input type="date" id="ef-dt" value="' + (item['Varied Date'] || '') + '"/></div>' +
+        '<div class="fg"><label>Remark</label><textarea id="ef-r" placeholder="Add remark..."></textarea></div>' +
+        '<button class="bp" id="ef-sv">💾 Save Changes</button></div>';
       document.getElementById('ef-sv').addEventListener('click', function () { saveH(item['QR Code ID']); });
       addHA();
     }
@@ -2480,7 +2738,7 @@
       fetch('/item/' + qrId, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(d) })
         .then(function (r) { return r.json(); }).then(function (res) {
           btn.disabled = false; btn.textContent = '💾 Save Changes';
-          if (res.success) { showToast('✅ Item updated!'); loadInv(); }
+          if (res.success) { showToast('✅ Item updated!'); loadInv(); loadHHome(); }
           else showToast('❌ ' + (res.error || 'Failed'));
         }).catch(function () { btn.disabled = false; btn.textContent = '💾 Save Changes'; });
     }
@@ -2493,6 +2751,7 @@
     function setHSt(m) { document.getElementById('h-st').textContent = m; }
 
     // REPORT
+    var currentLogFilter = 'all', currentMemberFilter = '';
     function loadReport() {
       fetch('/report').then(function (r) { return r.json(); }).then(function (d) {
         if (d.error) return;
@@ -2502,21 +2761,85 @@
         document.getElementById('r-v').textContent = d.verified;
         document.getElementById('r-p').textContent = d.pending;
         document.getElementById('r-r').textContent = d.rejected;
-        fetch('/items').then(function (r) { return r.json(); }).then(function (inv) {
-          inv.forEach(function (i) { invMap[i['QR Code ID']] = i['Item Name']; });
-          var rows = '';
-          d.logs.forEach(function (l) {
-            rows += '<tr><td style="font-size:12px;color:#6b7280">' + l.qr_id + '</td>'
-              + '<td>' + (invMap[l.qr_id] || '-') + '</td>'
-              + '<td style="font-weight:700;color:#4f46e5">👤 ' + l.scanned_by + '</td>'
-              + '<td style="font-size:12px">' + l.timestamp + '</td>'
-              + '<td><span class="badge ' + (l.verification_status || '') + '">' + l.verification_status + '</span></td>'
-              + '<td style="font-size:12px">' + (l.remark || '-') + '</td></tr>';
+        allLogs = d.logs || [];
+        // Update donut chart
+        updateChart(d);
+        // Member filter dropdown
+        var members = Object.keys(d.member_stats || {});
+        var sel = document.getElementById('log-member-filter');
+        sel.innerHTML = '<option value="">All Members</option>';
+        members.forEach(function (m) { sel.innerHTML += '<option value="' + m + '">' + m + '</option>'; });
+        // Member stats cards
+        if (members.length) {
+          var mhtml = '';
+          members.forEach(function (m) {
+            var s = d.member_stats[m];
+            mhtml += '<div class="ui" style="margin-bottom:8px"><div class="ui-top"><div class="ua">' + m[0].toUpperCase() + '</div><div><div class="un">' + m + '</div><div class="ui-badges"><span style="font-size:12px;color:#16a34a">✅ ' + s.verified + '</span><span style="font-size:12px;color:#d97706;margin-left:8px">⏳ ' + s.pending + '</span><span style="font-size:12px;color:#dc2626;margin-left:8px">❌ ' + s.rejected + '</span><span style="font-size:12px;color:#6b7280;margin-left:8px">Total: ' + s.total + '</span></div></div></div></div>';
           });
-          document.getElementById('lg-rows').innerHTML = rows;
-        }).catch(function () { });
+          document.getElementById('member-stats-body').innerHTML = mhtml;
+          document.getElementById('member-stats-card').style.display = 'block';
+        }
+        renderLogs();
       }).catch(function () { });
     }
+
+    function updateChart(d) {
+      var total = d.total || 1;
+      var circ = 2 * Math.PI * 50;
+      var vPct = (d.verified / total) * circ;
+      var pPct = (d.pending / total) * circ;
+      var rPct = (d.rejected / total) * circ;
+      var vEl = document.getElementById('ch-v');
+      var pEl = document.getElementById('ch-p');
+      var rEl = document.getElementById('ch-r');
+      vEl.style.strokeDasharray = vPct + ' ' + (circ - vPct);
+      vEl.style.strokeDashoffset = '0';
+      pEl.style.strokeDasharray = pPct + ' ' + (circ - pPct);
+      pEl.style.strokeDashoffset = (-vPct) + '';
+      rEl.style.strokeDasharray = rPct + ' ' + (circ - rPct);
+      rEl.style.strokeDashoffset = (-(vPct + pPct)) + '';
+      var pct = d.total > 0 ? Math.round((d.scanned / d.total) * 100) : 0;
+      document.getElementById('ch-pct').textContent = pct + '%';
+      document.getElementById('lg-v').textContent = d.verified;
+      document.getElementById('lg-p').textContent = d.pending;
+      document.getElementById('lg-r').textContent = d.rejected;
+      document.getElementById('lg-n').textContent = d.not_scanned;
+    }
+
+    function renderLogs() {
+      // Enrich with item names
+      var invMap = {};
+      allInvItems.forEach(function (it) { invMap[it['QR Code ID']] = it['Item Name'] || ''; });
+      var q = (document.getElementById('log-search').value || '').toLowerCase();
+      var mf = document.getElementById('log-member-filter').value;
+      var filtered = allLogs.filter(function (l) {
+        var matchF = currentLogFilter === 'all' || l.verification_status === currentLogFilter;
+        var matchM = !mf || l.scanned_by === mf;
+        var matchQ = !q || (l.qr_id || '').toLowerCase().includes(q) || (invMap[l.qr_id] || '').toLowerCase().includes(q) || (l.scanned_by || '').toLowerCase().includes(q);
+        return matchF && matchM && matchQ;
+      });
+      var rows = '';
+      filtered.forEach(function (l) {
+        rows += '<tr><td style="font-size:12px;color:#6b7280">' + l.qr_id + '</td>' +
+          '<td>' + (invMap[l.qr_id] || '-') + '</td>' +
+          '<td style="font-weight:700;color:#4f46e5">👤 ' + l.scanned_by + '</td>' +
+          '<td style="font-size:12px">' + l.timestamp + '</td>' +
+          '<td><span class="badge ' + (l.verification_status || '') + '">' + l.verification_status + '</span></td>' +
+          '<td style="font-size:12px">' + (l.remark || '-') + '</td></tr>';
+      });
+      document.getElementById('lg-rows').innerHTML = rows || '<tr><td colspan="6" style="text-align:center;color:#9ca3af;padding:20px">No logs found</td></tr>';
+    }
+
+    document.querySelectorAll('.filter-btn').forEach(function (b) {
+      b.addEventListener('click', function () {
+        document.querySelectorAll('.filter-btn').forEach(function (x) { x.classList.remove('active'); });
+        this.classList.add('active');
+        currentLogFilter = this.dataset.f;
+        renderLogs();
+      });
+    });
+    document.getElementById('log-search').addEventListener('input', renderLogs);
+    document.getElementById('log-member-filter').addEventListener('change', renderLogs);
     document.getElementById('dl-btn').addEventListener('click', function () { window.location.href = '/report/download'; });
     document.getElementById('lg-tog').addEventListener('click', function () { this.classList.toggle('open'); document.getElementById('lg-body').classList.toggle('open'); });
 
@@ -2525,6 +2848,17 @@
     document.getElementById('m-ed').addEventListener('click', function () { mMode = 'edit'; this.classList.add('active'); document.getElementById('m-rd').classList.remove('active'); document.getElementById('m-res').innerHTML = ''; setMSt('Edit mode'); });
     document.getElementById('m-cb').addEventListener('click', function () { setMM('camera'); });
     document.getElementById('m-fb').addEventListener('click', function () { setMM('file'); });
+
+    // Member search
+    document.getElementById('m-srch-btn').addEventListener('click', function () {
+      var q = document.getElementById('m-srch').value.trim();
+      if (!q) return;
+      fetch('/items').then(function (r) { return r.json(); }).then(function (items) {
+        var found = items.filter(function (it) { return (it['QR Code ID'] || '').toLowerCase().includes(q.toLowerCase()) || (it['Item Name'] || '').toLowerCase().includes(q.toLowerCase()); });
+        if (!found.length) { document.getElementById('m-res').innerHTML = '<div class="rc"><p style="color:#dc2626;text-align:center;padding:10px">❌ No item found</p></div>'; addMA(); return; }
+        procM(found[0]['QR Code ID']);
+      });
+    });
 
     function setMM(m) {
       mMeth = m;
@@ -2586,16 +2920,20 @@
       var v = item['Verification Status'] || '';
       var bc = v === 'Verified' ? 'vf' : v === 'Pending' ? 'pd' : 'nv';
       var bt = v === 'Verified' ? '✅ VERIFIED' : v === 'Pending' ? '⏳ PENDING' : '❌ NOT VERIFIED';
-      document.getElementById('m-res').innerHTML += '<div class="rc"><div class="rb ' + bc + '">' + bt + '</div>'
-        + '<div class="ir"><span class="il">Item Name</span><span class="iv">' + (item['Item Name'] || '') + '</span></div>'
-        + '<div class="ir"><span class="il">Serial No.</span><span class="iv">' + (item['Serial Number'] || '') + '</span></div>'
-        + '<div class="ir"><span class="il">Description</span><span class="iv">' + (item['Description'] || '') + '</span></div>'
-        + '<div class="ir"><span class="il">Value</span><span class="iv">' + (item['Value'] || '') + '</span></div>'
-        + '<div class="ir"><span class="il">Status</span><span class="iv"><span class="badge ' + v + '">' + v + '</span></span></div>'
-        + (item['Last Scanned'] ? '<div class="ir"><span class="il">Last Scanned</span><span class="iv">' + item['Last Scanned'] + '</span></div>' : '')
-        + (item['Scanned By'] ? '<div class="ir"><span class="il">Scanned By</span><span class="iv" style="color:#7c3aed;font-weight:700">👤 ' + item['Scanned By'] + '</span></div>' : '')
-        + (mCanEdit ? '<div style="margin-top:12px"><button class="bp m sm" id="m-en">✏️ Edit Item</button></div>' : '')
-        + '</div>';
+      var hist = item.scan_history || [];
+      var alreadyScanned = hist.length > 0;
+      document.getElementById('m-res').innerHTML += '<div class="rc">' +
+        (alreadyScanned ? '<div class="already-scanned">⚠️ Already scanned ' + hist.length + ' time(s)</div>' : '') +
+        '<div class="rb ' + bc + '">' + bt + '</div>' +
+        '<div class="ir"><span class="il">Item Name</span><span class="iv">' + (item['Item Name'] || '') + '</span></div>' +
+        '<div class="ir"><span class="il">Serial No.</span><span class="iv">' + (item['Serial Number'] || '') + '</span></div>' +
+        '<div class="ir"><span class="il">Description</span><span class="iv">' + (item['Description'] || '') + '</span></div>' +
+        '<div class="ir"><span class="il">Value</span><span class="iv">' + (item['Value'] || '') + '</span></div>' +
+        '<div class="ir"><span class="il">Status</span><span class="iv"><span class="badge ' + v + '">' + v + '</span></span></div>' +
+        (item['Last Scanned'] ? '<div class="ir"><span class="il">Last Scanned</span><span class="iv">' + item['Last Scanned'] + '</span></div>' : '') +
+        (item['Scanned By'] ? '<div class="ir"><span class="il">Scanned By</span><span class="iv" style="color:#7c3aed;font-weight:700">👤 ' + item['Scanned By'] + '</span></div>' : '') +
+        (mCanEdit ? '<div style="margin-top:12px"><button class="bp m sm" id="m-en">✏️ Edit Item</button></div>' : '') +
+        '</div>';
       if (mCanEdit && document.getElementById('m-en')) {
         document.getElementById('m-en').addEventListener('click', function () {
           mMode = 'edit'; document.getElementById('m-res').innerHTML = ''; showME(item);
@@ -2606,14 +2944,14 @@
     }
 
     function showME(item) {
-      document.getElementById('m-res').innerHTML += '<div class="ef-box"><div class="ef-title" style="color:#7c3aed">✏️ Editing: ' + (item['QR Code ID'] || '') + '</div>'
-        + '<div class="fg"><label>Item Name</label><input id="mf-n" value="' + (item['Item Name'] || '') + '"/></div>'
-        + '<div class="fg"><label>Description</label><textarea id="mf-d">' + (item['Description'] || '') + '</textarea></div>'
-        + '<div class="fg"><label>Value</label><input id="mf-v" value="' + (item['Value'] || '') + '"/></div>'
-        + '<div class="fg"><label>Varied Date</label><input type="date" id="mf-dt" value="' + (item['Varied Date'] || '') + '"/></div>'
-        + '<div class="fg"><label>Remark</label><textarea id="mf-r" placeholder="Add remark..."></textarea></div>'
-        + '<p style="font-size:12px;color:#9ca3af;margin-bottom:8px">⚠️ Status can only be changed by Team Head</p>'
-        + '<button class="bp m" id="mf-sv">💾 Save Changes</button></div>';
+      document.getElementById('m-res').innerHTML += '<div class="ef-box"><div class="ef-title" style="color:#7c3aed">✏️ Editing: ' + (item['QR Code ID'] || '') + '</div>' +
+        '<div class="fg"><label>Item Name</label><input id="mf-n" value="' + (item['Item Name'] || '') + '"/></div>' +
+        '<div class="fg"><label>Description</label><textarea id="mf-d">' + (item['Description'] || '') + '</textarea></div>' +
+        '<div class="fg"><label>Value</label><input id="mf-v" value="' + (item['Value'] || '') + '"/></div>' +
+        '<div class="fg"><label>Varied Date</label><input type="date" id="mf-dt" value="' + (item['Varied Date'] || '') + '"/></div>' +
+        '<div class="fg"><label>Remark</label><textarea id="mf-r" placeholder="Add remark..."></textarea></div>' +
+        '<p style="font-size:12px;color:#9ca3af;margin-bottom:8px">⚠️ Status can only be changed by Team Head</p>' +
+        '<button class="bp m" id="mf-sv">💾 Save Changes</button></div>';
       document.getElementById('mf-sv').addEventListener('click', function () { saveM(item['QR Code ID']); });
       addMA();
     }
@@ -2624,7 +2962,7 @@
       fetch('/item/' + qrId, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(d) })
         .then(function (r) { return r.json(); }).then(function (res) {
           btn.disabled = false; btn.textContent = '💾 Save Changes';
-          if (res.success) { showToast('✅ Item updated!'); myScans.unshift({ qr_id: qrId, item_name: d['Item Name'], status: 'Updated', remark: d.remark, time: new Date().toLocaleString() }); }
+          if (res.success) { showToast('✅ Item updated!'); }
           else showToast('❌ ' + (res.error || 'Failed'));
         }).catch(function () { btn.disabled = false; btn.textContent = '💾 Save Changes'; });
     }
@@ -2639,9 +2977,10 @@
         fetch('/scan-log/' + qrId, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ remark: rem }) })
           .then(function (r) { return r.json(); }).then(function (res) {
             if (res.success) {
-              myScans.unshift({ qr_id: qrId, item_name: item['Item Name'], status: item['Verification Status'], remark: rem, time: new Date().toLocaleString() });
               showToast('✅ Scan submitted!');
-              box.innerHTML = '<p style="color:#16a34a;font-size:13px;text-align:center;padding:8px">✅ Submitted by ' + (cu ? cu.username : 'you') + '!</p>';
+              box.innerHTML = '<div style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:8px;padding:12px;text-align:center"><p style="color:#16a34a;font-weight:600">✅ Submitted successfully!</p><p style="font-size:12px;color:#6b7280;margin-top:4px">Scanned by ' + (cu ? cu.username : 'you') + ' at ' + new Date().toLocaleString() + '</p></div>';
+              // Refresh member stats
+              loadMHome();
             } else showToast('❌ Failed');
           }).catch(function () { sbtn.disabled = false; sbtn.textContent = '✅ Submit Scan'; });
       });
@@ -2654,20 +2993,48 @@
     }
     function setMSt(m) { document.getElementById('m-st').textContent = m; }
 
-    function renderHist() {
-      var el = document.getElementById('m-hist');
-      if (!myScans.length) { el.innerHTML = '<p style="text-align:center;color:#9ca3af;padding:20px">No scans yet</p>'; return; }
-      var html = '';
-      myScans.forEach(function (s) {
-        html += '<div class="msc"><h4>' + (s.item_name || s.qr_id) + '</h4><p>QR: ' + s.qr_id + '</p><p>Status: <span class="badge ' + (s.status || '') + '">' + s.status + '</span></p>' + (s.remark ? '<p>Remark: ' + s.remark + '</p>' : '') + '<p style="font-size:11px;color:#9ca3af;margin-top:4px">' + s.time + '</p></div>';
-      });
-      el.innerHTML = html;
+    // MEMBER HISTORY — loads from server
+    function loadMemberHistory() {
+      document.getElementById('m-hist').innerHTML = '<p style="text-align:center;color:#9ca3af;padding:20px">Loading...</p>';
+      fetch('/my-scan-history').then(function (r) { return r.json(); }).then(function (logs) {
+        renderMemberHistory(logs);
+        // Bind filter/search
+        document.getElementById('hist-search').addEventListener('input', function () {
+          var q = this.value.toLowerCase();
+          var st = document.getElementById('hist-status-filter').value;
+          var filtered = logs.filter(function (l) {
+            var matchQ = !q || (l.item_name || '').toLowerCase().includes(q) || (l.qr_id || '').toLowerCase().includes(q);
+            var matchSt = !st || (l.verification_status || '') === st;
+            return matchQ && matchSt;
+          });
+          renderMemberHistory(filtered);
+        });
+        document.getElementById('hist-status-filter').addEventListener('change', function () {
+          var st = this.value;
+          var q = (document.getElementById('hist-search').value || '').toLowerCase();
+          var filtered = logs.filter(function (l) {
+            var matchQ = !q || (l.item_name || '').toLowerCase().includes(q) || (l.qr_id || '').toLowerCase().includes(q);
+            var matchSt = !st || (l.verification_status || '') === st;
+            return matchQ && matchSt;
+          });
+          renderMemberHistory(filtered);
+        });
+      }).catch(function () { document.getElementById('m-hist').innerHTML = '<p style="color:#dc2626;text-align:center;padding:20px">Failed to load</p>'; });
     }
 
-    function showToast(m) {
-      var t = document.getElementById('toast'); t.textContent = m; t.style.display = 'block';
-      setTimeout(function () { t.style.display = 'none'; }, 3000);
+    function renderMemberHistory(logs) {
+      if (!logs.length) { document.getElementById('m-hist').innerHTML = '<p style="text-align:center;color:#9ca3af;padding:20px">No scans yet</p>'; return; }
+      var html = '';
+      logs.forEach(function (l) {
+        html += '<div class="hist-item"><h4>' + (l.item_name || l.qr_id) + '</h4>' +
+          '<div class="hist-meta"><span>📦 ' + l.qr_id + '</span><span class="badge ' + (l.verification_status || '') + '">' + l.verification_status + '</span></div>' +
+          (l.remark ? '<div class="hist-meta" style="margin-top:6px"><span>💬 ' + l.remark + '</span></div>' : '') +
+          '<div class="hist-meta" style="margin-top:6px"><span>🕐 ' + l.timestamp + '</span></div></div>';
+      });
+      document.getElementById('m-hist').innerHTML = html;
     }
+
+    function showToast(m) { var t = document.getElementById('toast'); t.textContent = m; t.style.display = 'block'; setTimeout(function () { t.style.display = 'none'; }, 3000); }
 
     if ('serviceWorker' in navigator) { navigator.serviceWorker.register('/static/sw.js').catch(function () { }); }
   </script>
