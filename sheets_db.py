@@ -52,7 +52,9 @@ def init_db():
 
     # Initialize Settings sheet
     settings_ws = get_sheet('Settings')
-    if not settings_ws.get_all_values():
+    existing = settings_ws.get_all_values()
+    if not existing or existing[0] != ['key', 'value']:
+        settings_ws.clear()
         settings_ws.append_row(['key','value'])
         settings_ws.append_row(['shared','0'])
         settings_ws.append_row(['access_code', gen_code()])
@@ -79,11 +81,20 @@ def _get_users_data():
     return users, ws
 
 def get_user(username):
-    users, _ = _get_users_data()
-    for u in users:
-        if u.get('username','').lower() == username.lower():
-            u['can_edit'] = int(u.get('can_edit',0) or 0)
-            u['can_access_excel'] = int(u.get('can_access_excel',0) or 0)
+    ws = get_sheet('Users')
+    rows = ws.get_all_values()
+    if len(rows) < 2:
+        return None
+    headers = rows[0]
+    for r in rows[1:]:
+        if not any(r):
+            continue
+        u = {}
+        for i, h in enumerate(headers):
+            u[h] = r[i] if i < len(r) else ''
+        if u.get('username', '').lower() == username.lower():
+            u['can_edit'] = int(u.get('can_edit', 0) or 0)
+            u['can_access_excel'] = int(u.get('can_access_excel', 0) or 0)
             return u
     return None
 
@@ -132,17 +143,27 @@ def _find_row_by_col(ws, col_idx, value):
     return None
 
 def create_user(username, password, role='member', can_edit=0, email=None, can_access_excel=0):
-    users, ws = _get_users_data()
-    for u in users:
-        if u.get('username','').lower() == username.lower():
+    ws = get_sheet('Users')
+    rows = ws.get_all_values()
+    # Check duplicate
+    for r in rows[1:]:
+        if r and len(r) > 1 and r[1].lower() == username.lower():
             return False
-    # Generate new ID
-    ids = [int(u.get('id',0)) for u in users if str(u.get('id','')).isdigit()]
+    # Generate ID
+    ids = []
+    for r in rows[1:]:
+        if r and r[0].isdigit():
+            ids.append(int(r[0]))
     new_id = str(max(ids) + 1) if ids else '1'
     ws.append_row([
-        new_id, username, hash_password(password),
-        role, str(can_edit), str(can_access_excel),
-        email or '', ''
+        new_id,
+        username,
+        hash_password(password),
+        role,
+        str(can_edit),
+        str(can_access_excel),
+        email or '',
+        ''  # reset_token always empty on create
     ])
     return True
 
