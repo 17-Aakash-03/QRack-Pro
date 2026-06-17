@@ -2,7 +2,7 @@ from flask import Flask, jsonify, request, render_template, send_file, session
 import pandas as pd
 import os, io, qrcode, secrets
 from flask_mail import Mail, Message
-from database import (init_db, hash_password, get_user, get_user_by_email,
+from sheets_db import (init_db, hash_password, get_user, get_user_by_email,
                        get_user_by_token, create_user, log_scan, get_scan_logs,
                        get_scan_logs_by_user, get_scan_logs_by_qr,
                        get_all_users, delete_user, update_user_permission,
@@ -214,6 +214,8 @@ def reset_password():
 def get_users():
     return jsonify(get_all_users())
 
+import threading
+
 @app.route("/users", methods=["POST"])
 @head_required
 def add_user():
@@ -228,22 +230,25 @@ def add_user():
     can_edit = 1 if data.get("can_edit") else 0
     can_access = 1 if data.get("can_access_excel") else 0
     if create_user(u, p, data.get("role", "member"), can_edit, e if e else None, can_access):
+        # Send email in background thread — don't block response
         if e and data.get("role", "member") == "member":
-            try:
-                msg = Message("QRack — Your Account Details", recipients=[e])
-                msg.html = f"""<div style="font-family:Arial;padding:20px">
-                  <h2 style="color:#7c3aed">📦 Welcome to QRack!</h2>
-                  <p>Hello <strong>{u}</strong>,</p>
-                  <div style="background:#f5f3ff;border:2px solid #c4b5fd;border-radius:10px;padding:16px;margin:16px 0">
-                    <p><strong>Username:</strong> {u}</p>
-                    <p><strong>Password:</strong> {p}</p>
-                    <p><strong>Edit Permission:</strong> {'Yes' if can_edit else 'No'}</p>
-                    <p><strong>Excel Access:</strong> {'Yes' if can_access else 'Needs to be granted by Team Head'}</p>
-                  </div>
-                  <p>Login at: <a href="{request.host_url}">{request.host_url}</a></p>
-                </div>"""
-                mail.send(msg)
-            except: pass
+            def send_mail():
+                try:
+                    msg = Message("QRack — Your Account Details", recipients=[e])
+                    msg.html = f"""<div style="font-family:Arial;padding:20px">
+                      <h2 style="color:#7c3aed">📦 Welcome to QRack!</h2>
+                      <p>Hello <strong>{u}</strong>,</p>
+                      <div style="background:#f5f3ff;border:2px solid #c4b5fd;border-radius:10px;padding:16px;margin:16px 0">
+                        <p><strong>Username:</strong> {u}</p>
+                        <p><strong>Password:</strong> {p}</p>
+                        <p><strong>Edit Permission:</strong> {'Yes' if can_edit else 'No'}</p>
+                        <p><strong>Excel Access:</strong> {'Yes' if can_access else 'Needs to be granted by Team Head'}</p>
+                      </div>
+                    </div>"""
+                    with app.app_context():
+                        mail.send(msg)
+                except: pass
+            threading.Thread(target=send_mail, daemon=True).start()
         return jsonify({"success": True})
     return jsonify({"error": "Username already exists"}), 400
 

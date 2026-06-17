@@ -26,3 +26,9 @@ env/
 # OS files
 .DS_Store
 Thumbs.db
+
+# Google credentials - NEVER push this
+credentials.json
+
+# SQLite database
+*.db

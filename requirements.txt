@@ -2,8 +2,10 @@ flask
 pandas
 openpyxl
 qrcode[pil]
-faker
-werkzeug
 gunicorn
 flask-mail
 xlsxwriter
+google-auth
+google-auth-httplib2
+google-api-python-client
+gspread
